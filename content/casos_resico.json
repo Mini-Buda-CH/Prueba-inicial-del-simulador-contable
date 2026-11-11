@@ -1,32 +1,144 @@
 [
- {"id": "R01", "titulo": "RESICO: solo clientes personas físicas", "estado": "PENDIENTE_VALIDACION", "autor": "Redactado por Claude a partir de la guía SAT; pendiente de validación",
+ {
+  "id": "R01",
+  "titulo": "RESICO: solo clientes personas físicas",
+  "estado": "PENDIENTE_VALIDACION",
+  "autor": "Redactado por Claude a partir de la guía SAT; pendiente de validación",
   "enunciado": "Una diseñadora en RESICO cobra en marzo $18,000 (sin IVA) a clientes personas físicas. No hay retenciones.",
   "supuestos": "Todo lo facturado en el mes se cobró en el mismo mes; sin notas de crédito.",
-  "datos": {"cobrado": 1800000, "devoluciones": 0, "retenido": 0},
+  "datos": {
+   "cobrado": 1800000,
+   "devoluciones": 0,
+   "retenido": 0
+  },
   "movimientos": [],
-  "resultados": [{"concepto": "Tasa aplicable %", "valor": 100}, {"concepto": "Impuesto mensual", "valor": 18000}, {"concepto": "Impuesto a cargo", "valor": 18000}]},
- {"id": "R02", "titulo": "RESICO: cliente persona moral que retiene", "estado": "PENDIENTE_VALIDACION", "autor": "Redactado por Claude a partir de la guía SAT; pendiente de validación",
+  "resultados": [
+   {
+    "concepto": "Tasa aplicable %",
+    "valor": 1,
+    "unidad": "pct"
+   },
+   {
+    "concepto": "Impuesto mensual",
+    "valor": 18000
+   },
+   {
+    "concepto": "Impuesto a cargo",
+    "valor": 18000
+   }
+  ]
+ },
+ {
+  "id": "R02",
+  "titulo": "RESICO: cliente persona moral que retiene",
+  "estado": "PENDIENTE_VALIDACION",
+  "autor": "Redactado por Claude a partir de la guía SAT; pendiente de validación",
   "enunciado": "En marzo cobra $40,000 (sin IVA) a una persona moral, que le retiene el ISR de 1.25 %.",
-  "supuestos": "Único ingreso del mes; la retención consta en el CFDI.",
-  "datos": {"cobrado": 4000000, "devoluciones": 0, "retenido": 50000},
+  "supuestos": "Único ingreso del mes; la retención consta en el CFDI. El excedente es un resultado aritmético: no es una devolución autorizada ni se traslada automáticamente a otro mes; su tratamiento debe validarse.",
+  "datos": {
+   "cobrado": 4000000,
+   "devoluciones": 0,
+   "retenido": 50000
+  },
   "movimientos": [],
-  "resultados": [{"concepto": "ISR retenido por la persona moral", "valor": 50000}, {"concepto": "Impuesto mensual", "valor": 44000}, {"concepto": "Impuesto a favor", "valor": 6000}]},
- {"id": "R03", "titulo": "RESICO: nota de crédito en el mes", "estado": "PENDIENTE_VALIDACION", "autor": "Redactado por Claude a partir de la guía SAT; pendiente de validación",
-  "enunciado": "Cobra $30,000 (sin IVA) a personas físicas y en el mismo mes emite una nota de crédito PUE por $5,000 por un descuento.",
-  "supuestos": "La nota de crédito es un CFDI de egreso pagado en el mes; sin retenciones.",
-  "datos": {"cobrado": 3000000, "devoluciones": 500000, "retenido": 0},
+  "resultados": [
+   {
+    "concepto": "ISR retenido por la persona moral",
+    "valor": 50000
+   },
+   {
+    "concepto": "Impuesto mensual",
+    "valor": 44000
+   },
+   {
+    "concepto": "Excedente de retenciones (aritmético)",
+    "valor": 6000
+   }
+  ]
+ },
+ {
+  "id": "R03",
+  "titulo": "RESICO: nota de crédito en el mes",
+  "estado": "PENDIENTE_VALIDACION",
+  "autor": "Redactado por Claude a partir de la guía SAT; pendiente de validación",
+  "enunciado": "Cobra $30,000 (sin IVA) a personas físicas. En el mismo mes concede a uno de esos clientes un descuento de $5,000 sobre una factura ya cobrada: le reembolsa el importe por transferencia y emite una nota de crédito PUE relacionada con esa factura.",
+  "supuestos": "El descuento es procedente y está documentado: CFDI de egreso relacionado con el CFDI cobrado, reembolso efectivo en el mes y comprobante bancario. Sin retenciones. Un CFDI de egreso sin esa vinculación y soporte no disminuye ingresos automáticamente.",
+  "datos": {
+   "cobrado": 3000000,
+   "devoluciones": 500000,
+   "retenido": 0
+  },
   "movimientos": [],
-  "resultados": [{"concepto": "Base gravable", "valor": 2500000}, {"concepto": "Impuesto mensual", "valor": 25000}]},
- {"id": "R04", "titulo": "RESICO: la tasa se aplica al total", "estado": "PENDIENTE_VALIDACION", "autor": "Redactado por Claude a partir de la guía SAT; pendiente de validación",
+  "resultados": [
+   {
+    "concepto": "Base gravable",
+    "valor": 2500000
+   },
+   {
+    "concepto": "Impuesto mensual",
+    "valor": 25000
+   }
+  ]
+ },
+ {
+  "id": "R04",
+  "titulo": "RESICO: la tasa se aplica al total",
+  "estado": "PENDIENTE_VALIDACION",
+  "autor": "Redactado por Claude a partir de la guía SAT; pendiente de validación",
   "enunciado": "Cobra $20,000 a personas físicas y $40,000 a una persona moral que le retiene 1.25 %. Todo sin IVA.",
   "supuestos": "Sin notas de crédito. La tasa NO es escalonada: un solo porcentaje sobre el total.",
-  "datos": {"cobrado": 6000000, "devoluciones": 0, "retenido": 50000},
+  "datos": {
+   "cobrado": 6000000,
+   "devoluciones": 0,
+   "retenido": 50000
+  },
   "movimientos": [],
-  "resultados": [{"concepto": "Tasa aplicable %", "valor": 150}, {"concepto": "Impuesto mensual", "valor": 90000}, {"concepto": "Impuesto a cargo", "valor": 40000}]},
- {"id": "R05", "titulo": "Marzo del cliente del despacho", "estado": "PENDIENTE_VALIDACION", "autor": "Redactado por Claude a partir de la guía SAT; pendiente de validación",
-  "enunciado": "CFDI de marzo: (1) ingreso PUE $20,000 a persona física, cobrado; (2) ingreso PUE $40,000 a persona moral, cobrado, con retención de $500; (3) ingreso PPD $15,000 a persona moral, aún sin cobrar; (4) nota de crédito PUE $5,000 relacionada con el CFDI 1.",
-  "supuestos": "Importes sin IVA. Solo cuenta lo efectivamente cobrado en el mes.",
-  "datos": {"cobrado": 6000000, "devoluciones": 500000, "retenido": 50000},
+  "resultados": [
+   {
+    "concepto": "Tasa aplicable %",
+    "valor": 1.5,
+    "unidad": "pct"
+   },
+   {
+    "concepto": "Impuesto mensual",
+    "valor": 90000
+   },
+   {
+    "concepto": "Impuesto a cargo",
+    "valor": 40000
+   }
+  ]
+ },
+ {
+  "id": "R05",
+  "titulo": "Marzo del cliente del despacho",
+  "estado": "PENDIENTE_VALIDACION",
+  "autor": "Redactado por Claude a partir de la guía SAT; pendiente de validación",
+  "enunciado": "CFDI de marzo: (1) ingreso PUE $20,000 a persona física, cobrado; (2) ingreso PUE $40,000 a persona moral, cobrado, con retención de $500; (3) ingreso PPD $15,000 a persona moral, sin pago ni complemento de pago en el mes; (4) nota de crédito PUE $5,000 relacionada con el CFDI 1, por un descuento reembolsado por transferencia en marzo.",
+  "supuestos": "Importes sin IVA. Solo cuenta lo efectivamente cobrado en el mes. El descuento es procedente y está documentado (CFDI de egreso relacionado, reembolso y comprobante bancario). El caso cubre solo ISR; el IVA se revisa por separado.",
+  "datos": {
+   "cobrado": 6000000,
+   "devoluciones": 500000,
+   "retenido": 50000
+  },
   "movimientos": [],
-  "resultados": [{"concepto": "Total de ingresos cobrados", "valor": 6000000}, {"concepto": "Base gravable", "valor": 5500000}, {"concepto": "Impuesto mensual", "valor": 82500}, {"concepto": "Impuesto a cargo", "valor": 32500}]}
+  "resultados": [
+   {
+    "concepto": "Total de ingresos cobrados",
+    "valor": 6000000
+   },
+   {
+    "concepto": "Base gravable",
+    "valor": 5500000
+   },
+   {
+    "concepto": "Impuesto mensual",
+    "valor": 82500
+   },
+   {
+    "concepto": "Impuesto a cargo",
+    "valor": 32500
+   }
+  ]
+ }
 ]

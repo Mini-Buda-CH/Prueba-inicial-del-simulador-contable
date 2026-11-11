@@ -16,7 +16,7 @@ Combina una **Academia** (lecciones, ejercicios, exámenes, progreso) con una **
 - Carrera: un mes como auxiliar en una PyME ficticia (20 tareas). Las pólizas con errores se arrastran al libro y a la declaración de IVA; los descuadres cuestan días; el cierre se evalúa en registro, control, fiscal, cumplimiento y comunicación.
 - Cada tarea de la Carrera exige haber completado su lección.
 
-**Fase 1, ruta RESICO (redactada por Claude, pendiente de validación):** tasas mensuales del art. 113-E (transcritas de la guía SAT dic-2024, p. 22), motor `isrResicoMensual`, 5 casos (`content/casos_resico.json`), lección M3-L01 y un mes de despacho con portal RESICO simulado (Ingresos → Determinación → Pago → Envío).
+**Fase 1, ruta RESICO (revisión v0.2 atendida):** tabla legal de 5 tramos del art. 113-E y retención de 1.25 % (cotejadas con fuentes SAT por el revisor), motor `isrResicoMensual`, 5 casos (`content/casos_resico.json`), lección M3-L01 y un mes de despacho con portal RESICO simulado (Ingresos → Determinación → Pago → Envío).
 
 **Marca y diseño:** logos en `public/`; sistema visual (pizarra/marino, verde para positivos, Fira Sans + Fira Code) recomendado por la skill `ui-ux-pro-max`, instalada en `.claude/skills/` para futuras sesiones.
 
@@ -33,6 +33,6 @@ Las tablas marcadas `habilitado_calculo=NO` o pendientes (ISN, CEAV, cuota fija 
 ```bash
 npm install
 npm run dev        # app en http://localhost:5173
-npm test           # 46 pruebas: motores, casos, lecciones, meses PyME y RESICO, revisión del usuario
+npm test           # 57 pruebas: motores, casos, lecciones, meses PyME y RESICO, revisiones del usuario
 npm run importar   # regenerar content/ desde datos/originales (requiere Python con openpyxl)
 ```

@@ -296,15 +296,15 @@ export const lecciones: Leccion[] = [
     id: 'M3-L01', modulo: M3, estado: P, titulo: 'RESICO personas físicas: el pago mensual',
     teoria: [
       'En RESICO la persona física paga ISR mensual sobre los ingresos efectivamente cobrados en el mes, amparados por CFDI, sin IVA y sin restar gastos.',
-      'A esos ingresos se les restan los descuentos, devoluciones y bonificaciones del mes (CFDI de egreso). Una factura PPD que aún no se cobra no cuenta.',
+      'A esos ingresos se les restan los descuentos, devoluciones y bonificaciones del mes cuando son procedentes y están documentados (CFDI de egreso relacionado con el ingreso y soporte del reembolso). Una factura PPD sin pago ni complemento no cuenta.',
       'Se aplica una sola tasa (de 1.00 % a 2.50 %) al total del mes, según el rango en que cae. No es escalonada como la tarifa de sueldos.',
-      'Si una persona moral le pagó, le retuvo 1.25 % de ISR: ese importe se resta del impuesto mensual. Si la retención supera al impuesto, queda un saldo a favor.',
+      'Si una persona moral le pagó, le retuvo 1.25 % de ISR (sobre el pago sin IVA): ese importe se resta del impuesto mensual. Si la retención supera al impuesto, el excedente es solo un resultado aritmético: no es una devolución autorizada ni se traslada automáticamente a otro mes.',
       'El pago vence el día 17 del mes siguiente.',
     ],
     ejercicios: [
       { id: 'M3-L01-E1', tipo: 'calculo', caso: 'R01', concepto: 'Impuesto mensual', pregunta: '¿Impuesto mensual?' },
       { id: 'M3-L01-E2', tipo: 'calculo', caso: 'R02', concepto: 'ISR retenido por la persona moral', pregunta: '¿Cuánto le retuvo la persona moral?' },
-      { id: 'M3-L01-E3', tipo: 'calculo', caso: 'R02', concepto: 'Impuesto a favor', pregunta: 'Con una tasa de 1.10 %, ¿qué saldo a favor resulta?' },
+      { id: 'M3-L01-E3', tipo: 'calculo', caso: 'R02', concepto: 'Excedente de retenciones (aritmético)', pregunta: 'Con una tasa de 1.10 %, ¿en cuánto excede la retención al impuesto?' },
       { id: 'M3-L01-E4', tipo: 'calculo', caso: 'R03', concepto: 'Base gravable', pregunta: '¿Base gravable del mes?' },
       { id: 'M3-L01-E5', tipo: 'calculo', caso: 'R04', concepto: 'Tasa aplicable %', pregunta: '¿Qué tasa aplica (en %)?' },
       { id: 'M3-L01-E6', tipo: 'calculo', caso: 'R04', concepto: 'Impuesto a cargo', pregunta: '¿Impuesto a cargo después de la retención?' },

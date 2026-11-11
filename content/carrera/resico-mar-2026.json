@@ -10,28 +10,76 @@
  "caso_declaracion": "R05",
  "vencimiento": "2026-04-17",
  "tareas": [
-  {"id": "R-T01", "fecha": "2026-04-01", "tipo": "opcion", "leccion": "M3-L01",
-   "correo": "Hola, te mando mis 4 facturas de marzo: (1) ingreso PUE $20,000 a una persona física, ya cobrado; (2) ingreso PUE $40,000 a una empresa, ya cobrado, me retuvieron $500; (3) ingreso PPD $15,000 a otra empresa, todavía no me pagan; (4) nota de crédito PUE $5,000 por un descuento al cliente de la factura 1.",
-   "pregunta": "¿Qué CFDI NO se considera ingreso de marzo?", "opciones": ["El ingreso PUE de $20,000", "El ingreso PUE de $40,000", "El ingreso PPD de $15,000 aún sin cobrar", "Todos se consideran"], "correcta": 2,
-   "explicacion": "En RESICO solo cuentan los ingresos efectivamente cobrados en el mes."},
-  {"id": "R-T02", "fecha": "2026-04-02", "tipo": "opcion", "leccion": "M3-L01",
+  {
+   "id": "R-T01",
+   "fecha": "2026-04-01",
+   "tipo": "opcion",
+   "leccion": "M3-L01",
+   "correo": "Hola, te mando mis 4 facturas de marzo: (1) ingreso PUE $20,000 a una persona física, ya cobrado; (2) ingreso PUE $40,000 a una empresa, ya cobrado, me retuvieron $500; (3) ingreso PPD $15,000 a otra empresa, todavía no me pagan (no hay pago ni complemento); (4) nota de crédito PUE $5,000 por un descuento que le reembolsé por transferencia al cliente de la factura 1; te paso el comprobante.",
+   "pregunta": "¿Qué CFDI NO se considera ingreso de marzo?",
+   "opciones": [
+    "El ingreso PUE de $20,000",
+    "El ingreso PUE de $40,000",
+    "El ingreso PPD de $15,000 aún sin cobrar",
+    "Todos se consideran"
+   ],
+   "correcta": 2,
+   "explicacion": "En RESICO cuentan los ingresos efectivamente cobrados. Aquí no hay pago ni complemento de la factura PPD; la sola clave PPD no decide el momento: lo decide el cobro."
+  },
+  {
+   "id": "R-T02",
+   "fecha": "2026-04-02",
+   "tipo": "opcion",
+   "leccion": "M3-L01",
    "correo": "¿Y la nota de crédito de $5,000 qué hacemos con ella?",
-   "pregunta": "¿Cómo se trata la nota de crédito en la declaración?", "opciones": ["Se ignora", "Se suma a los ingresos", "Disminuye los ingresos del mes como descuento, devolución o bonificación", "Se declara el próximo año"], "correcta": 2,
-   "explicacion": "Los CFDI de egreso del mes disminuyen los ingresos cobrados."},
-  {"id": "R-T03", "fecha": "2026-04-06", "tipo": "calculo", "leccion": "M3-L01", "caso": "R05", "concepto": "Base gravable",
-   "correo": "Antes de entrar al portal, arma tu papel de trabajo: ¿cuál es la base gravable de marzo?", "pregunta": "Base gravable de marzo"},
-  {"id": "R-T04", "fecha": "2026-04-10", "tipo": "declaracion", "leccion": "M3-L01",
-   "correo": "Presenta mi declaración de marzo, porfa. ¿Cuánto me va a salir?"},
-  {"id": "R-T05", "fecha": "2026-04-10", "tipo": "mensaje", "leccion": "M3-L01",
+   "pregunta": "¿Cómo se trata la nota de crédito en la declaración?",
+   "opciones": [
+    "Se ignora",
+    "Se suma a los ingresos",
+    "Disminuye los ingresos del mes porque el descuento es procedente, está relacionado con la factura cobrada y se reembolsó en marzo con soporte",
+    "Toda nota de crédito resta automáticamente, sin revisar nada más"
+   ],
+   "correcta": 2,
+   "explicacion": "Un CFDI de egreso disminuye los ingresos solo si corresponde a una operación real, está relacionado con el ingreso, el importe es procedente y hay soporte (aquí, el reembolso bancario de marzo)."
+  },
+  {
+   "id": "R-T03",
+   "fecha": "2026-04-06",
+   "tipo": "calculo",
+   "leccion": "M3-L01",
+   "caso": "R05",
+   "concepto": "Base gravable",
+   "correo": "Antes de entrar al portal, arma tu papel de trabajo: ¿cuál es la base gravable de marzo?",
+   "pregunta": "Base gravable de marzo"
+  },
+  {
+   "id": "R-T04",
+   "fecha": "2026-04-10",
+   "tipo": "declaracion",
+   "leccion": "M3-L01",
+   "correo": "Presenta mi declaración de marzo, porfa. ¿Cuánto me va a salir?"
+  },
+  {
+   "id": "R-T05",
+   "fecha": "2026-04-10",
+   "tipo": "mensaje",
+   "leccion": "M3-L01",
    "correo": "Ya me llegó tu aviso. Explícame qué pagué y qué falta.",
    "pregunta": "Elige tu mensaje al cliente:",
    "opciones": [
-    "Presenté tu declaración de marzo: te tocan $325 (impuesto de $825 menos los $500 que te retuvo la empresa). La línea de captura vence el 17 de abril. La factura de $15,000 se declarará el mes en que te paguen.",
-    "No tienes que pagar nada porque la empresa ya te retuvo.",
+    "Presenté tu declaración de ISR RESICO de marzo: ingresos cobrados $60,000 menos el descuento procedente y documentado de $5,000, base $55,000; ISR $825 menos $500 retenidos, importe a pagar $325. Te envío el acuse y la línea de captura; el vencimiento general del caso es el 17 de abril y falta confirmar el pago. La factura de $15,000 se incorporará por la parte que se cobre cuando corresponda. Este ejercicio cubre solo ISR; el IVA se revisa por separado.",
+    "No tienes que pagar nada porque la empresa ya te retuvo; ya quedó pagado.",
     "Declaramos también los $15,000 aunque no te hayan pagado, para adelantar.",
     "Te salió alto porque se aplica 1 % a los primeros $25,000 y 1.5 % al resto."
    ],
    "correcta": 0,
-   "explicacion": "Se explica el cálculo, la retención, el vencimiento y por qué el PPD sin cobrar no se declaró. La tasa no es escalonada."}
+   "explicacion": "Se explica la base, la retención, que se envió el acuse y la línea de captura (el pago aún debe confirmarse), el tratamiento del PPD sin cobrar y que el IVA va aparte. La tasa no es escalonada."
+  }
+ ],
+ "alcance": "Este mes cubre solo el ISR RESICO. El IVA de la cliente (incluida la retención de IVA por servicios personales independientes a personas morales) se revisa por separado.",
+ "supuestos": [
+  "El descuento de $5,000 es procedente y está documentado: CFDI de egreso relacionado con el CFDI 1, reembolso por transferencia en marzo y comprobante bancario.",
+  "La factura PPD de $15,000 no tiene pago ni complemento de pago en marzo.",
+  "Este mes cubre solo el ISR RESICO. El IVA de la cliente (incluida la retención de IVA por servicios personales independientes a personas morales) se revisa por separado."
  ]
 }

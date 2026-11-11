@@ -170,7 +170,7 @@
    "caso": "C07",
    "poliza": "P01",
    "leccion": "M1-L03",
-   "correo": "Pagamos el seguro anual de la bodega."
+   "correo": "Pagamos hoy el seguro anual de la bodega; la póliza cubre del 1 de febrero de 2026 al 31 de enero de 2027."
   },
   {
    "id": "T15",
@@ -235,5 +235,11 @@
  ],
  "titulo": "Empleado · PyME",
  "declaracion": "iva",
- "vencimiento": "2026-03-17"
+ "vencimiento": "2026-03-17",
+ "supuestos": [
+  "El saldo a favor de IVA de $5,120 supone que se cumplen los requisitos de acreditamiento (CFDI, pago efectivo, operaciones gravadas y estrictamente indispensables); no es un resultado aprobado sin esa revisión.",
+  "Seguro: vigencia del 1-feb-2026 al 31-ene-2027, pagado el 20-feb; en febrero se aplica 1/12 como gasto.",
+  "Depreciación: por política del caso se reconoce el mes completo en el mes de adquisición (convención del ejercicio, a validar).",
+  "El gasto de papelería duplicado lo capturó el auxiliar anterior; el banco muestra un solo cargo."
+ ]
 }

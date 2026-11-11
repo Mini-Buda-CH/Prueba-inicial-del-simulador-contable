@@ -116,15 +116,17 @@ export function Poliza({ casoId, poliza, modo, onResultado, onIntentoFallido }: 
 }
 
 function Calculo({ casoId, concepto, pregunta, modo, onResultado }: Props & { casoId: string; concepto: string; pregunta: string }) {
-  const esperado = caso(casoId).resultados.find((r) => r.concepto === concepto)!.valor;
+  const resultado = caso(casoId).resultados.find((r) => r.concepto === concepto)! as { valor: number; unidad?: 'pct' };
+  // Las tasas se capturan como porcentaje (1.5), no como dinero
+  const leer = (t: string) => (resultado.unidad === 'pct' ? (/^\d+(\.\d+)?$/.test(t.trim()) ? Number(t) : null) : aCentavos(t));
   const [valor, setValor] = useState('');
   const [aviso, setAviso] = useState<Aviso>(null);
   const [cerrado, setCerrado] = useState(false);
 
   function revisar() {
-    const c = aCentavos(valor);
-    if (c === null) return setAviso({ ok: false, textos: ['Escribe un importe como 1234.50'] });
-    const ok = c === esperado;
+    const c = leer(valor);
+    if (c === null) return setAviso({ ok: false, textos: [resultado.unidad === 'pct' ? 'Escribe el porcentaje como 1.5' : 'Escribe un importe como 1234.50'] });
+    const ok = c === resultado.valor;
     if (modo !== 'practica' || ok) setCerrado(true);
     setAviso({ ok, textos: [ok ? '¡Correcto!' : modo !== 'practica' ? 'Incorrecto.' : 'No es correcto; revisa el procedimiento.'] });
     if (modo !== 'practica' || ok) onResultado(ok);

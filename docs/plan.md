@@ -263,6 +263,42 @@ Decisiones del usuario:
 - Playwright: la marca se ve en claro y oscuro; jugar el mes RESICO completo; sin scroll horizontal a 390 px; captura de pantalla para el usuario.
 - Commit y push a `claude/ecstatic-allen-dlkm3k`.
 
+## 12. Entrega actual: atender la revisión v0.2 (V01–V12)
+Contexto: el revisor del usuario leyó v0.2 en Drive sin ejecutarla (`revision_v02_proyecto_RESICO_y_motor.md` y el CSV de recálculo).
+- Confirma la aritmética de R01–R05 y coteja la tabla RESICO y la retención de 1.25 % con fuentes del SAT.
+- Pide cambios de motor, de redacción y de persistencia.
+- No pudo leer `src/lecciones.ts` desde Drive.
+
+| # | Cambio | Archivos |
+|---|---|---|
+| V01 | La tabla legal queda en **5 tramos** (hasta 3,500,000). Por encima del límite, `isrResicoMensual` sigue calculando al 2.5 % como "extensión de la guía", pero devuelve una `alerta`. Nuevo parámetro `acumuladoAnual` que alerta si se superan los 3.5 M. Estado → `COTEJADA_SAT` con las URLs del art. 113-E/113-J; anual y salida siguen pendientes (RMF 2026). | `scripts/importar.py`, `src/engine/fiscal.ts`, `resico.test.ts` |
+| V02 | R02: "Impuesto a favor" → "Excedente de retenciones (aritmético)", y teoría que no lo trata como devolución ni lo traslada automáticamente. R03/R05: enunciado con evidencia del descuento (reembolso efectivo en el mes, CFDI de egreso relacionado con el cobrado, comprobante bancario). Tasas: `unidad: "pct"` con valor 1 / 1.5 (no 100/150); `Calculo` compara porcentajes como número y no los formatea como dinero. | `content/casos_resico.json`, `src/ejercicios.tsx`, `src/lecciones.ts` |
+| V03 | R-T01: aclarar "sin pago ni complemento". R-T02: explicación condicionada a operación, relación, importe y soporte. R-T05: el mensaje correcto pasa a ser **la redacción del revisor**. Nota de alcance: el mes cubre solo ISR; el IVA (incluida la retención por servicios a PM) va aparte y entra a pendientes. | `content/carrera/resico-mar-2026.json` |
+| V04 | `registrarPoliza`, `resolver` y `presentarDeclaracion` validan que la tarea pertenezca al mes, que sea del tipo correcto y que no esté ya resuelta; si no, lanzan error en lugar de duplicar. Pruebas de doble envío y de recarga. | `src/carrera/estado.ts`, `mes.test.ts` |
+| V05 | **Periodo bloqueado** tras presentar: no se aceptan pólizas después de la declaración (las complementarias quedan para el módulo 7). Prueba. | `estado.ts` |
+| V06 | `aPagarPesos(centavos)` según el art. 20 CFF (1–50 centavos hacia abajo, 51–99 hacia arriba). Se muestra como "Cantidad a pagar" en el paso Pago del portal RESICO y en la evaluación, separada del importe determinado. Pruebas con .50 y .51. | `src/engine/fiscal.ts`, `Escritorio.tsx` |
+| V07 | `aplicarTasa` con precisión de diezmilésimas de punto (`Math.round(tasa*10000)`, ÷ 1,000,000). Pruebas con 7.513 y 0.375. Los resultados actuales no cambian. | `fiscal.ts`, `motores.test.ts` |
+| V08 | Comentario en `subsidioMensual`/`retencionSueldo`: supone elegibilidad ya validada; no es motor integral de nómina (P08 sigue abierto). | `fiscal.ts` |
+| V09 | Validación de entradas en los motores: montos `Number.isSafeInteger` y ≥ 0 (o `RangeError`); devoluciones mayores al cobrado → error; `pagosAnteriores` documentado como pagos de la misma obligación y periodo (complementaria). Pruebas con NaN, Infinity, fraccionarios y negativos. | `fiscal.ts` |
+| V10 | La prueba de la balanza suma por agrupador (`(propia[agr] ?? 0) + saldo`) e incluye un caso sintético con dos subcuentas en el mismo agrupador. Comentario: el saldo no negativo es una expectativa de este escenario, no una regla universal. | `mes.test.ts` |
+| V11 | `cargarMes`/`cargar` validan esquema e ids. Si el guardado está corrupto, se copia tal cual a `<clave>:corrupto` antes de seguir y se intenta la clave anterior. `guardar*` devuelve si tuvo éxito y la UI muestra un aviso visible si falla. Botón "Exportar progreso" (descarga JSON con todas las claves `simcont.*`). Pruebas de validación. | `estado.ts`, `progreso.ts`, `App.tsx`, `Escritorio.tsx` |
+| V12 | El mes PyME agrega `supuestos` visibles en el escritorio (`<details>`): IVA a favor de 5,120 condicionado a requisitos de acreditamiento; seguro con vigencia del 1-feb-2026 al 31-ene-2027, pagado el 20-feb (corrige el choque con "1 enero" de C07); convención de depreciación de mes completo en el mes de adquisición. La PyME **no** se marca como aprobada globalmente. | `content/carrera/pyme-feb-2026.json`, `Escritorio.tsx` |
+
+Además:
+- Exportar `src/lecciones.ts` a `docs/lecciones.txt` (copia exacta) y enviarlo directamente al chat para que el revisor lo lea.
+- `docs/pendientes-usuario.md` adopta los estados que propuso el revisor:
+  - tabla y retención: COTEJADAS;
+  - casos RESICO: aritmética comprobada;
+  - historia RESICO: revisada, cambios aplicados;
+  - lecciones: pendientes;
+  - nuevo pendiente: IVA de la diseñadora (retención de IVA por servicios a PM).
+
+Verificación:
+- `npm test` con todas las pruebas nuevas.
+- `npm run build`.
+- Playwright: ambos meses completos, el doble clic en "Registrar póliza" no duplica, el aviso de guardado fallido (simulando un `localStorage` que lanza error) y la exportación descarga un JSON.
+- Commit y push.
+
 ## 9. Archivos a crear (Fase 0)
 - `datos/originales/`: el paquete v0.1 tal cual, como fuente de verdad versionada.
 - `scripts/importar.py`: convierte Excel/JSON → `content/*.json` (parámetros, catálogo, casos) y revisa que cada póliza cuadre y cada cuenta exista.

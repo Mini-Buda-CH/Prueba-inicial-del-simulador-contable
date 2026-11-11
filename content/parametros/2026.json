@@ -262,7 +262,11 @@
  "resico_pf_mensual": {
   "fuente_id": "SAT_GUIA_RESICO_PF_2024_p22",
   "articulo": "113-E",
-  "estado": "PENDIENTE_VALIDACION",
+  "estado": "COTEJADA_SAT (revisión del usuario v0.2, 2026-11-10); pendiente reglas RMF 2026 de anual, salida y retorno",
+  "cotejo": [
+   "https://wwwmat.sat.gob.mx/articulo/58780/articulo-113-e",
+   "https://wwwmat.sat.gob.mx/articulo/59511/articulo-113-j"
+  ],
   "nota": "La tasa se aplica al total de ingresos cobrados del mes (no por excedente).",
   "tabla": [
    {
@@ -289,16 +293,11 @@
     "limite_inferior": 20833334,
     "limite_superior": 350000000,
     "tasa_pct": 2.5
-   },
-   {
-    "limite_inferior": 350000001,
-    "limite_superior": null,
-    "tasa_pct": 2.5
    }
   ],
   "retencion_pm_pct": 1.25,
   "retencion_pm_articulo": "113-J",
-  "retencion_pm_estado": "PENDIENTE_VALIDACION: no cotejado en esta sesión"
+  "retencion_pm_estado": "COTEJADA_SAT art. 113-J (revisión del usuario v0.2)"
  },
  "solo_referencia": {
   "nota": "habilitado_calculo=NO o estado pendiente: el motor no usa estas tablas.",

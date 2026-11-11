@@ -84,19 +84,20 @@ parametros = {
                   "uma_mensual": cent(r["UMA_mensual"]), "porcentaje_uma": r["porcentaje_UMA"],
                   "cuota_publicada": cent(r["cuota_potencial_redondeada"]), "fuente_id": r["fuente_id"],
                   "pendiente": "P08: considerando del decreto menciona 536.22"} for r in hoja(P, "Subsidio")],
-    # Transcrita de la guía SAT de pagos mensuales RESICO PF (dic-2024, p. 22), datos/referencias/sat_resico.
-    # Pendiente: cotejar contra el art. 113-E LISR vigente 2026 (la Cámara de Diputados no fue accesible desde la sesión).
+    # Tabla legal de 5 tramos (art. 113-E). El renglón abierto ">3,500,000 al 2.5 %" de la guía SAT es solo extensión
+    # de interfaz: el motor lo calcula con alerta y no lo trata como permiso de permanecer en el régimen.
     "resico_pf_mensual": {
         "fuente_id": "SAT_GUIA_RESICO_PF_2024_p22",
         "articulo": "113-E",
-        "estado": "PENDIENTE_VALIDACION",
+        "estado": "COTEJADA_SAT (revisión del usuario v0.2, 2026-11-10); pendiente reglas RMF 2026 de anual, salida y retorno",
+        "cotejo": ["https://wwwmat.sat.gob.mx/articulo/58780/articulo-113-e", "https://wwwmat.sat.gob.mx/articulo/59511/articulo-113-j"],
         "nota": "La tasa se aplica al total de ingresos cobrados del mes (no por excedente).",
         "tabla": [{"limite_inferior": cent(li), "limite_superior": cent(ls), "tasa_pct": t} for li, ls, t in [
             ("0.01", "25000.00", 1.00), ("25000.01", "50000.00", 1.10), ("50000.01", "83333.33", 1.50),
-            ("83333.34", "208333.33", 2.00), ("208333.34", "3500000.00", 2.50), ("3500000.01", None, 2.50)]],
+            ("83333.34", "208333.33", 2.00), ("208333.34", "3500000.00", 2.50)]],
         "retencion_pm_pct": 1.25,
         "retencion_pm_articulo": "113-J",
-        "retencion_pm_estado": "PENDIENTE_VALIDACION: no cotejado en esta sesión",
+        "retencion_pm_estado": "COTEJADA_SAT art. 113-J (revisión del usuario v0.2)",
     },
     "solo_referencia": {
         "nota": "habilitado_calculo=NO o estado pendiente: el motor no usa estas tablas.",

@@ -21,16 +21,27 @@ Formatos: tablas en Excel/CSV con columna de fuente; casos con el formato de `ca
 | C10: vida útil 36 → 30 meses para que cuadre con $800 | `datos/correcciones.json` | APLICADO, por tu decisión |
 | Nombre "De 0 a CFO" y logos | `public/` | RECIBIDO |
 
-### Ruta RESICO (despacho) · ✅ jugable, redactada por Claude, falta tu validación
-| Qué necesito | Dónde revisarlo | Estado |
+### Ruta RESICO (despacho) · ✅ jugable · revisión v0.2 atendida
+| Qué | Dónde | Estado |
 |---|---|---|
-| Cotejar la tabla de tasas contra el **art. 113-E LISR vigente 2026** (la transcribí de tu guía SAT de dic-2024, p. 22; el sitio de la Cámara de Diputados no fue accesible desde la sesión) | `content/parametros/2026.json` → `resico_pf_mensual` | FALTA validar |
-| Confirmar la retención de 1.25 % de PM (art. 113-J) | mismo archivo | FALTA validar |
-| Validar los 5 casos RESICO (R01–R05) y la lección M3-L01 | `content/casos_resico.json`, `src/lecciones.ts` | FALTA validar |
-| Validar la historia del mes de despacho (5 tareas) y el mensaje "correcto" al cliente | `content/carrera/resico-mar-2026.json` | FALTA validar |
-| Regla de redondeo: el portal real declara en pesos; el simulador usa centavos | — | FALTA decidir |
-| Reglas de la anual RESICO y causales de salida del régimen (para el siguiente mes) | Word/Markdown | FALTA |
-| Guía SAT RESICO PF (flujo del portal) | `datos/referencias/sat_resico/` | RECIBIDO |
+| Tabla legal de 5 tramos (art. 113-E) | `content/parametros/2026.json` → `resico_pf_mensual` | **COTEJADA** con fuentes SAT (revisión v0.2). Falta cerrar vigencia anual con texto y reglas RMF 2026 |
+| Retención 1.25 % de PM (art. 113-J) | mismo archivo | **COTEJADA** |
+| Casos R01–R05 | `content/casos_resico.json` | **ARITMÉTICA COMPROBADA** (tu CSV es prueba automática); observaciones V02 aplicadas, falta tu visto bueno fiscal y pedagógico |
+| Historia del mes de despacho | `content/carrera/resico-mar-2026.json` | **REVISADA, CAMBIOS APLICADOS** (V03: mensaje del revisor, alcance solo ISR) |
+| Lección M3-L01 y todas las lecciones y exámenes | `docs/lecciones.txt` | **PENDIENTE**: enviado como texto para tu revisor |
+| Redondeo | `aPagarPesos` (art. 20 CFF) | **APLICADO** para el importe a pagar; el redondeo de cada campo de cada aplicativo sigue sin modelarse |
+| IVA de la diseñadora: retención de IVA por servicios personales independientes a PM (LIVA art. 1-A II a) | — | **FALTA**: casos o reglas para un mes de IVA |
+| Anual RESICO, salida y retorno del régimen (RMF 2026) | Word/Markdown | **FALTA** |
+| Guía SAT RESICO PF | `datos/referencias/sat_resico/` | RECIBIDO |
+
+### Estado de los motores (revisión v0.2)
+| Hallazgo | Estado |
+|---|---|
+| V04 doble registro · V05 periodo cerrado tras declarar · V09 validación de entradas · V10 suma por agrupador · V11 esquema, respaldo de datos dañados, aviso y exportación | **CORREGIDOS** con pruebas |
+| V07 precisión de tasas (7.513 %, 0.375 %) | **CORREGIDO** con pruebas; listo para CEAV/IMSS cuando lleguen tablas validadas |
+| V08 subsidio | **DOCUMENTADO**: supone elegibilidad validada; P08 sigue abierto |
+| V12 PyME | **SUPUESTOS VISIBLES** (IVA 5,120 condicionado, vigencia del seguro, convención de depreciación). La PyME **no** está aprobada globalmente: falta tu validación |
+| Complementarias (corregir después de declarar) | **FALTA**: llega con el módulo 7 |
 
 ## Fase 2 – Nómina, IMSS y despacho con varios clientes
 | Qué | Formato | Estado |

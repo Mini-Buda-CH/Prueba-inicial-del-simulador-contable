@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Escritorio from './carrera/Escritorio';
 import { EjercicioVista } from './ejercicios';
 import { APROBATORIO, leccionCompleta, lecciones, type Leccion } from './lecciones';
-import { cargar, guardar, type Progreso } from './progreso';
+import { cargar, exportarProgreso, guardar, type Progreso } from './progreso';
 
 const practicas = lecciones.filter((l) => !l.examen).flatMap((l) => l.ejercicios);
 const examenes = lecciones.filter((l) => l.examen);
@@ -16,7 +16,8 @@ export default function App() {
   const aprobados = examenes.filter((l) => leccionCompleta(l, progreso)).length;
   const pct = Math.round(((hechos + aprobados) / (practicas.length + examenes.length)) * 100);
 
-  const actualizar = (p: Progreso) => { guardar(p); setProgreso(p); };
+  const [sinGuardar, setSinGuardar] = useState(false);
+  const actualizar = (p: Progreso) => { setSinGuardar(!guardar(p)); setProgreso(p); };
   const irA = (l: Leccion) => { setActual(l); setSeccion('academia'); };
 
   return (
@@ -52,10 +53,12 @@ export default function App() {
             </ol>
           </nav>
         ))}
+        <button className="exportar" onClick={exportarProgreso}>Exportar progreso</button>
         <p className="aviso">Material educativo 2026 v0.1, pendiente de validación profesional. No usar para declarar.</p>
       </aside>
 
       <main>
+        {sinGuardar && <div role="alert" className="error">No se pudo guardar tu avance en este navegador (modo privado o almacenamiento lleno). Usa "Exportar progreso" para no perderlo.</div>}
         {seccion === 'carrera'
           ? <Escritorio progreso={progreso} irALeccion={(id) => irA(lecciones.find((l) => l.id === id)!)} />
           : actual.examen

@@ -1,15 +1,25 @@
 import { describe, expect, it } from 'vitest';
 import casosPm from '../../content/casos.json';
 import casosResico from '../../content/casos_resico.json';
-import { balanza, type Cuenta } from '../engine/contable';
+import { balanza, type Cuenta, type Movimiento } from '../engine/contable';
 import catalogo from '../../content/catalogo.json';
 import { ivaDelMes } from '../engine/fiscal';
 import { lecciones } from '../lecciones';
-import { declaracionCorrecta, evaluar, libroSolucion, MES, MESES, nuevoEstado, precargados, presentarDeclaracion, registrarPoliza, resolver, solucionTarea, sumarDias, type Resico } from './estado';
+import { cargarMes, declaracionCorrecta, esEstadoValido, evaluar, guardarMes, libroSolucion, MES, MESES, nuevoEstado, precargados, presentarDeclaracion, registrarPoliza, resolver, solucionTarea, sumarDias, type Resico } from './estado';
 
 const casos = [...casosPm, ...casosResico];
 
 const cat = catalogo as Cuenta[];
+
+/** Saldo deudor menos acreedor por código agrupador, sumando subcuentas que lo compartan. */
+function porAgrupador(movs: Movimiento[], catalogo: Cuenta[]) {
+  const r: Record<string, number> = {};
+  for (const [cuenta, s] of balanza(movs, catalogo)) {
+    const agr = catalogo.find((c) => c.cuenta === cuenta)!.agrupador;
+    r[agr] = (r[agr] ?? 0) + s.cargos - s.abonos;
+  }
+  return Object.fromEntries(Object.entries(r).filter(([, v]) => v !== 0));
+}
 
 describe('mes PyME febrero 2026', () => {
   it('cada tarea apunta a una lección existente y a una póliza existente', () => {
@@ -25,7 +35,7 @@ describe('mes PyME febrero 2026', () => {
     expect(s.get('SIM-102-01')?.saldo).toBe(6288000);
     // 20,000 + 10,000 − 18,000 − 6,000 + 3,000
     expect(s.get('SIM-115-01')?.saldo).toBe(900000);
-    // Ninguna cuenta queda con saldo contrario a su naturaleza
+    // Expectativa de ESTE escenario (no una regla contable universal): ninguna cuenta con saldo contrario a su naturaleza
     for (const [cuenta, v] of s) expect(v.saldo, cuenta).toBeGreaterThanOrEqual(0);
   });
 
@@ -84,12 +94,15 @@ describe('lecciones', () => {
 describe('revisión del usuario (datos/revisiones)', () => {
   it('la balanza del mes coincide renglón por renglón con la balanza reconstruida', async () => {
     const rev = (await import('../../datos/revisiones/revision_inicial_pyme_febrero_2026.json')).balanza_deudor_menos_acreedor as Record<string, number>;
-    const propia: Record<string, number> = {};
-    for (const [cuenta, s] of balanza(libroSolucion(), cat)) {
-      const agr = cat.find((c) => c.cuenta === cuenta)!.agrupador;
-      if (s.cargos - s.abonos !== 0) propia[agr] = s.cargos - s.abonos;
-    }
-    expect(propia).toEqual(rev);
+    expect(porAgrupador(libroSolucion(), cat)).toEqual(rev);
+  });
+
+  it('V10: dos subcuentas con el mismo agrupador se suman, no se sobrescriben', () => {
+    const cat2 = [...cat, { cuenta: 'SIM-102-01-B', nombre: 'Bancos 2', agrupador: '102.01', naturaleza: 'D' as const, estado: 'SINTETICO' }];
+    const movs = [
+      { poliza: 'X', cuenta: 'SIM-102-01', cargo: 1000, abono: 0 }, { poliza: 'X', cuenta: 'SIM-102-01-B', cargo: 500, abono: 0 },
+      { poliza: 'X', cuenta: 'SIM-301-01', cargo: 0, abono: 1500 }];
+    expect(porAgrupador(movs, cat2)).toEqual({ '102.01': 1500, '301.01': -1500 });
   });
 
   it('C10: la depreciación mensual corresponde a MOI / vida útil del enunciado', () => {
@@ -102,7 +115,7 @@ describe('revisión del usuario (datos/revisiones)', () => {
 describe('mes RESICO marzo 2026', () => {
   const m = MESES.find((x) => x.id === 'resico-mar-2026')!;
   it('declaración correcta: base 55,000 al 1.5 % = 825, menos 500 retenidos = 325 a cargo', () => {
-    expect(declaracionCorrecta(m)).toEqual({ cobrado: 6000000, devoluciones: 500000, tasa_pct: 1.5, impuesto: 82500, retenido: 50000, aCargo: 32500, aFavor: 0 });
+    expect(declaracionCorrecta(m)).toEqual({ cobrado: 6000000, devoluciones: 500000, tasa_pct: 1.5, impuesto: 82500, retenido: 50000, aCargo: 32500, excedente: 0 });
   });
   it('jugar perfecto: todo en verde y control no aplica', () => {
     let e = nuevoEstado(m);
@@ -117,5 +130,43 @@ describe('mes RESICO marzo 2026', () => {
   });
   it('sin precargados ni pólizas', () => {
     expect(precargados(m)).toEqual([]);
+  });
+});
+
+describe('revisión v0.2: candados y persistencia', () => {
+  const t1 = MES.tareas[0];
+  it('V04: registrar dos veces la misma póliza se rechaza y no duplica movimientos', () => {
+    const e = registrarPoliza(nuevoEstado(), t1, solucionTarea(t1));
+    expect(() => registrarPoliza(e, t1, solucionTarea(t1))).toThrow(/ya se resolvió/);
+    expect(e.movimientos.filter((m) => m.poliza === 'T01')).toHaveLength(2);
+  });
+  it('V04: tipo y mes equivocados se rechazan', () => {
+    const resicoT = MESES[1].tareas[0];
+    expect(() => registrarPoliza(nuevoEstado(), resicoT, [])).toThrow(/no pertenece/);
+    expect(() => resolver(nuevoEstado(), t1, true)).toThrow(/tipo poliza/);
+  });
+  it('V05: tras presentar la declaración el periodo queda cerrado', () => {
+    let e = nuevoEstado();
+    e = presentarDeclaracion(e, MES.tareas.find((t) => t.tipo === 'declaracion')!, ivaDelMes(e.movimientos));
+    expect(() => registrarPoliza(e, t1, solucionTarea(t1))).toThrow(/Periodo cerrado/);
+  });
+  it('V11: valida el esquema guardado', () => {
+    const ok = registrarPoliza(nuevoEstado(), t1, solucionTarea(t1));
+    expect(esEstadoValido(ok, MES)).toBe(true);
+    expect(esEstadoValido({ ...ok, tareas: { ZZZ: { ok: true, fecha: '2026-02-02' } } }, MES)).toBe(false);
+    expect(esEstadoValido({ ...ok, movimientos: [{ poliza: 'T01', cuenta: 'x', cargo: 1.5, abono: 0 }] }, MES)).toBe(false);
+    expect(esEstadoValido(null, MES)).toBe(false);
+  });
+  it('V11: un guardado dañado se respalda en :corrupto y no se pierde; recarga respeta el estado bueno', () => {
+    const almacen = new Map<string, string>();
+    globalThis.localStorage = { getItem: (k: string) => almacen.get(k) ?? null, setItem: (k: string, v: string) => void almacen.set(k, v) } as Storage;
+    almacen.set('simcont.carrera.v1:pyme-feb-2026', '{dañado');
+    expect(cargarMes(MES).tareas).toEqual({});
+    expect(almacen.get('simcont.carrera.v1:pyme-feb-2026:corrupto')).toBe('{dañado');
+    const e = registrarPoliza(nuevoEstado(), t1, solucionTarea(t1));
+    expect(guardarMes(e)).toBe(true);
+    expect(cargarMes(MES)).toEqual(e);
+    globalThis.localStorage = { getItem: () => null, setItem: () => { throw new Error('cuota'); } } as unknown as Storage;
+    expect(guardarMes(e)).toBe(false);
   });
 });

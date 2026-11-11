@@ -103,3 +103,8 @@ button:focus-visible, select:focus-visible, input:focus-visible { outline: 3px s
   td:nth-child(2), td:nth-child(3) { width: 90px; }
   .libro { display: block; overflow-x: auto; }
 }
+.exportar { width: 100%; margin-top: 24px; }
+.supuestos-mes { background: var(--panel); border: 1px solid var(--borde); border-radius: var(--radio); padding: 10px 16px; margin-bottom: 16px; font-size: .9rem; }
+.supuestos-mes summary { cursor: pointer; font-weight: 600; min-height: 32px; display: flex; align-items: center; }
+.supuestos-mes ul { margin: 8px 0 4px; padding-left: 20px; color: var(--suave); }
+[role=alert].error { margin: 0 0 16px; }

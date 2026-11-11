@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { balanza, pesos } from '../engine/contable';
-import { isrResicoMensual, type ivaDelMes } from '../engine/fiscal';
+import { aPagarPesos, isrResicoMensual, type ivaDelMes } from '../engine/fiscal';
 import { cat, EjercicioVista, Opcion } from '../ejercicios';
 import { lecciones, leccionCompleta } from '../lecciones';
 import { aCentavos, type Progreso } from '../progreso';
@@ -28,7 +28,14 @@ export default function Escritorio({ progreso, irALeccion }: { progreso: Progres
 function MesVista({ mes, progreso, irALeccion }: { mes: Mes; progreso: Progreso; irALeccion: (id: string) => void }) {
   const [estado, setEstado] = useState(() => cargarMes(mes));
   const [vista, setVista] = useState<'diario' | 'balanza'>('diario');
-  const actualizar = (e: EstadoMes) => { guardarMes(e); setEstado(e); };
+  const [aviso, setAviso] = useState('');
+  // Toda acción pasa por aquí: si el motor la rechaza (p. ej. doble envío) no se pierde nada y se explica.
+  const actualizar = (accion: () => EstadoMes) => {
+    let e: EstadoMes;
+    try { e = accion(); } catch (err) { return setAviso((err as Error).message); }
+    setAviso(guardarMes(e) ? '' : 'No se pudo guardar tu avance en este navegador (modo privado o almacenamiento lleno). Usa "Exportar progreso" para no perderlo.');
+    setEstado(e);
+  };
   const actual = tareaActual(estado);
   const hoy = actual ? sumarDias(actual.fecha, estado.retraso) : estado.declaracion?.fecha;
   const leccion = actual && lecciones.find((l) => l.id === actual.leccion)!;
@@ -41,6 +48,13 @@ function MesVista({ mes, progreso, irALeccion }: { mes: Mes; progreso: Progreso;
         <div><strong>{mes.empresa}</strong> · {mes.regimen} · Puesto: {mes.puesto}</div>
         <div>Hoy: <strong className="cifra">{hoy}</strong> · Vence la declaración: <span className="cifra">{mes.vencimiento}</span>{estado.retraso > 0 && ` · Retraso acumulado: ${estado.retraso} día(s)`}</div>
       </header>
+      {aviso && <div role="alert" className="error">{aviso}</div>}
+      {mes.supuestos && (
+        <details className="supuestos-mes">
+          <summary>Supuestos del caso</summary>
+          <ul>{mes.supuestos.map((x) => <li key={x}>{x}</li>)}</ul>
+        </details>
+      )}
 
       <div className="escritorio-cuerpo">
         <section className="bandeja" aria-label="Bandeja de entrada">
@@ -68,7 +82,7 @@ function MesVista({ mes, progreso, irALeccion }: { mes: Mes; progreso: Progreso;
             </section>
           )}
           {actual && !bloqueada && <TareaVista key={actual.id} tarea={actual} estado={estado} actualizar={actualizar} />}
-          {!actual && <Evaluacion estado={estado} reiniciar={() => actualizar(nuevoEstado(mes))} />}
+          {!actual && <Evaluacion estado={estado} reiniciar={() => actualizar(() => nuevoEstado(mes))} />}
 
           {conLibro && (
             <section>
@@ -85,17 +99,17 @@ function MesVista({ mes, progreso, irALeccion }: { mes: Mes; progreso: Progreso;
   );
 }
 
-function TareaVista({ tarea, estado, actualizar }: { tarea: Tarea; estado: EstadoMes; actualizar: (e: EstadoMes) => void }) {
+function TareaVista({ tarea, estado, actualizar }: { tarea: Tarea; estado: EstadoMes; actualizar: (accion: () => EstadoMes) => void }) {
   const mes = mesDe(estado);
-  const fallo = () => actualizar({ ...estado, retraso: estado.retraso + 1 });
-  const resuelta = (ok: boolean) => actualizar(resolver(estado, tarea, ok));
+  const fallo = () => actualizar(() => ({ ...estado, retraso: estado.retraso + 1 }));
+  const resuelta = (ok: boolean) => actualizar(() => resolver(estado, tarea, ok));
   switch (tarea.tipo) {
     case 'poliza':
       return (
         <EjercicioVista
           ej={{ id: tarea.id, tipo: 'poliza', caso: tarea.caso!, poliza: tarea.poliza! }} hecho={false} modo="carrera"
           onIntentoFallido={fallo}
-          onResultado={(_, movs) => actualizar(registrarPoliza(estado, tarea, movs!))}
+          onResultado={(_, movs) => actualizar(() => registrarPoliza(estado, tarea, movs!))}
         />
       );
     case 'calculo':
@@ -107,8 +121,8 @@ function TareaVista({ tarea, estado, actualizar }: { tarea: Tarea; estado: Estad
       );
     case 'declaracion':
       return mes.declaracion === 'iva'
-        ? <DeclaracionIva onPresentar={(d) => actualizar(presentarDeclaracion(estado, tarea, d))} />
-        : <DeclaracionResico vencimiento={mes.vencimiento} onPresentar={(d) => actualizar(presentarDeclaracion(estado, tarea, d))} />;
+        ? <DeclaracionIva onPresentar={(d) => actualizar(() => presentarDeclaracion(estado, tarea, d))} />
+        : <DeclaracionResico vencimiento={mes.vencimiento} onPresentar={(d) => actualizar(() => presentarDeclaracion(estado, tarea, d))} />;
     default:
       return (
         <section>
@@ -168,8 +182,8 @@ function DeclaracionResico({ vencimiento, onPresentar }: { vencimiento: string; 
   const [cobrado, devoluciones, retenido] = [campos.cobrado, campos.devoluciones, campos.retenido].map(aCentavos);
   const base = cobrado !== null && devoluciones !== null ? cobrado - devoluciones : null;
   // El jugador elige la tasa (es lo que se evalúa); el resto lo calcula el portal como el real.
-  const calculo = base !== null && retenido !== null && tasa !== null
-    ? isrResicoMensual(base, [{ limite_inferior: 0, limite_superior: null, tasa_pct: tasa }], retenido) : null;
+  const calculo = base !== null && base >= 0 && retenido !== null && tasa !== null
+    ? isrResicoMensual(base, [{ limite_inferior: 0, limite_superior: Number.MAX_SAFE_INTEGER, tasa_pct: tasa }], retenido) : null;
   const tasas = [...new Set(tablaResico.map((r) => r.tasa_pct))];
 
   function siguiente() {
@@ -205,12 +219,14 @@ function DeclaracionResico({ vencimiento, onPresentar }: { vencimiento: string; 
           </label>
           <Campo etiqueta="ISR retenido por personas morales" valor={campos.retenido} onChange={(v) => setCampos({ ...campos, retenido: v })} />
           {calculo && (
-            <p>Impuesto mensual: <strong className="cifra">{pesos(calculo.impuesto)}</strong> · {calculo.aFavor ? 'Impuesto a favor' : 'Impuesto a cargo'}: <strong className="cifra">{pesos(calculo.aFavor || calculo.aCargo)}</strong></p>
+            <p>Impuesto mensual: <strong className="cifra">{pesos(calculo.impuesto)}</strong> · {calculo.excedente ? 'Excedente de retenciones' : 'Impuesto a cargo'}: <strong className="cifra">{pesos(calculo.excedente || calculo.aCargo)}</strong></p>
           )}
         </>
       )}
       {paso === 2 && calculo && (
-        <p>{calculo.aFavor ? <>Saldo a favor: <strong className="cifra">{pesos(calculo.aFavor)}</strong></> : <>Cantidad a pagar: <strong className="cifra">{pesos(calculo.aCargo)}</strong> · Línea de captura vigente hasta el <span className="cifra">{vencimiento}</span></>}</p>
+        <p>{calculo.excedente
+          ? <>Excedente de retenciones: <strong className="cifra">{pesos(calculo.excedente)}</strong> (resultado aritmético; su tratamiento debe validarse)</>
+          : <>Impuesto a cargo: <span className="cifra">{pesos(calculo.aCargo)}</span> · Cantidad a pagar (pesos, art. 20 CFF): <strong className="cifra">${aPagarPesos(calculo.aCargo).toLocaleString('es-MX')}</strong> · Línea de captura vigente hasta el <span className="cifra">{vencimiento}</span></>}</p>
       )}
       {paso === 3 && <p>Revisa la información. Al enviar se genera el acuse y ya no podrás modificar esta declaración (solo con una complementaria).</p>}
 
@@ -218,7 +234,7 @@ function DeclaracionResico({ vencimiento, onPresentar }: { vencimiento: string; 
         {paso > 0 && <button onClick={() => setPaso(paso - 1)}>Anterior</button>}
         {paso < 3
           ? <button className="primario" onClick={siguiente}>Siguiente</button>
-          : <button className="primario" onClick={() => onPresentar({ cobrado: cobrado!, devoluciones: devoluciones!, ...calculo! })}>Enviar declaración</button>}
+          : <button className="primario" onClick={() => { const { alerta: _, ...c } = calculo!; onPresentar({ cobrado: cobrado!, devoluciones: devoluciones!, ...c }); }}>Enviar declaración</button>}
       </div>
       {error && <div role="status" className="error"><p>{error}</p></div>}
     </section>

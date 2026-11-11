@@ -1,0 +1,6 @@
+﻿caso,base_MXN,tasa_pct,ISR_determinado_MXN,ISR_retenido_MXN,a_cargo_aritmetico_MXN,excedente_retenciones_MXN
+R01,18000,1,180.00,0,180.00,0
+R02,40000,1.1,440.00,500,0,60.00
+R03,25000,1,250.00,0,250.00,0
+R04,60000,1.5,900.00,500,400.00,0
+R05,55000,1.5,825.00,500,325.00,0
