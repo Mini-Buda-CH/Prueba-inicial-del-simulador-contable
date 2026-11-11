@@ -259,6 +259,47 @@
    "pendiente": "P08: considerando del decreto menciona 536.22"
   }
  ],
+ "resico_pf_mensual": {
+  "fuente_id": "SAT_GUIA_RESICO_PF_2024_p22",
+  "articulo": "113-E",
+  "estado": "PENDIENTE_VALIDACION",
+  "nota": "La tasa se aplica al total de ingresos cobrados del mes (no por excedente).",
+  "tabla": [
+   {
+    "limite_inferior": 1,
+    "limite_superior": 2500000,
+    "tasa_pct": 1.0
+   },
+   {
+    "limite_inferior": 2500001,
+    "limite_superior": 5000000,
+    "tasa_pct": 1.1
+   },
+   {
+    "limite_inferior": 5000001,
+    "limite_superior": 8333333,
+    "tasa_pct": 1.5
+   },
+   {
+    "limite_inferior": 8333334,
+    "limite_superior": 20833333,
+    "tasa_pct": 2.0
+   },
+   {
+    "limite_inferior": 20833334,
+    "limite_superior": 350000000,
+    "tasa_pct": 2.5
+   },
+   {
+    "limite_inferior": 350000001,
+    "limite_superior": null,
+    "tasa_pct": 2.5
+   }
+  ],
+  "retencion_pm_pct": 1.25,
+  "retencion_pm_articulo": "113-J",
+  "retencion_pm_estado": "PENDIENTE_VALIDACION: no cotejado en esta sesión"
+ },
  "solo_referencia": {
   "nota": "habilitado_calculo=NO o estado pendiente: el motor no usa estas tablas.",
   "cuotas_imss": [

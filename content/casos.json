@@ -474,7 +474,7 @@
  {
   "id": "C10",
   "titulo": "Equipo y depreciación",
-  "enunciado": "Comprar equipo cómputo por $24000 + IVA. Vida contable propuesta 36 meses y residual cero; aplicar un mes.",
+  "enunciado": "Comprar equipo cómputo por $24000 + IVA. Vida contable propuesta 30 meses y residual cero; aplicar un mes.",
   "movimientos": [
    {
     "poliza": "P01",

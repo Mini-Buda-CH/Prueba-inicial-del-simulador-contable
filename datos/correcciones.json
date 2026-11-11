@@ -1,0 +1,10 @@
+[
+ {
+  "caso": "C10",
+  "campos": ["prompt"],
+  "antes": "36 meses",
+  "despues": "30 meses",
+  "motivo": "24,000 / 36 = 666.67, no 800. Se conserva la depreciación de $800 y se corrige la vida útil a 30 meses.",
+  "origen": "Revisión del usuario, datos/revisiones/revision_inicial_pyme_febrero_2026.xlsx (hoja Depreciacion), 2026-11-11"
+ }
+]

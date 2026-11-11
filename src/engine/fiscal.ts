@@ -35,3 +35,19 @@ export function ivaDelMes(movs: { cuenta: string; cargo: number; abono: number }
   const acreditable = saldo('SIM-118-01', 1);
   return { trasladado, acreditable, aCargo: Math.max(trasladado - acreditable, 0), aFavor: Math.max(acreditable - trasladado, 0) };
 }
+
+export type TablaResico = { limite_inferior: number; limite_superior: number | null; tasa_pct: number }[];
+
+/** ISR mensual RESICO PF: tasa única sobre el total cobrado del mes, menos lo retenido por personas morales.
+ * shortcut: trabaja en centavos; el portal real redondea a pesos. Ajustar cuando se modele el redondeo oficial. */
+export function isrResicoMensual(base: number, tabla: TablaResico, retenido = 0, pagosAnteriores = 0) {
+  const fila = base > 0 ? tabla.find((r) => base >= r.limite_inferior && (r.limite_superior === null || base <= r.limite_superior)) : undefined;
+  if (base > 0 && !fila) throw new Error(`Base ${base} fuera de la tabla RESICO`);
+  const tasa_pct = fila?.tasa_pct ?? 0;
+  const impuesto = aplicarTasa(Math.max(base, 0), tasa_pct);
+  const neto = impuesto - pagosAnteriores - retenido;
+  return { tasa_pct, impuesto, retenido, aCargo: Math.max(neto, 0), aFavor: Math.max(-neto, 0) };
+}
+
+/** Retención que hace una persona moral a una PF en RESICO (porcentaje sobre el monto sin IVA). */
+export const retencionResico = (monto: number, pct: number) => aplicarTasa(monto, pct);

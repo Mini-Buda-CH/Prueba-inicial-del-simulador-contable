@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import casos from '../content/casos.json';
+import casosPm from '../content/casos.json';
+import casosResico from '../content/casos_resico.json';
 import catalogo from '../content/catalogo.json';
 import { mismaPoliza, validarPoliza, type Cuenta, type Movimiento } from './engine/contable';
 import type { Ejercicio } from './lecciones';
 import { aCentavos } from './progreso';
 
 export const cat = catalogo as Cuenta[];
+const casos = [...casosPm, ...casosResico];
 export const caso = (id: string) => casos.find((c) => c.id === id)!;
 const xmls = import.meta.glob('../datos/originales/paquete_contable_2026/04_xml/*.xml', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
 const xml = (archivo: string) => xmls[`../datos/originales/paquete_contable_2026/04_xml/${archivo}`];
@@ -123,9 +125,9 @@ function Calculo({ casoId, concepto, pregunta, modo, onResultado }: Props & { ca
     const c = aCentavos(valor);
     if (c === null) return setAviso({ ok: false, textos: ['Escribe un importe como 1234.50'] });
     const ok = c === esperado;
-    if (modo === 'examen' || ok) setCerrado(true);
-    setAviso({ ok, textos: [ok ? '¡Correcto!' : modo === 'examen' ? 'Incorrecto.' : 'No es correcto; revisa el procedimiento.'] });
-    if (modo === 'examen' || ok) onResultado(ok);
+    if (modo !== 'practica' || ok) setCerrado(true);
+    setAviso({ ok, textos: [ok ? '¡Correcto!' : modo !== 'practica' ? 'Incorrecto.' : 'No es correcto; revisa el procedimiento.'] });
+    if (modo !== 'practica' || ok) onResultado(ok);
   }
 
   return (

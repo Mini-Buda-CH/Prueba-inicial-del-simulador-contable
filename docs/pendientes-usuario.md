@@ -17,14 +17,20 @@ Formatos: tablas en Excel/CSV con columna de fuente; casos con el formato de `ca
 | Validar la narrativa y el orden del mes PyME (20 tareas) | `content/carrera/pyme-feb-2026.json` | FALTA |
 | Confirmar el criterio del mes: IVA acreditable completo del equipo de cómputo y del seguro gravado; saldo a favor resultante de $5,120 | `src/carrera/mes.test.ts` | FALTA |
 | Confirmar el nombre de la empresa ficticia (hoy: "Comercializadora Escuela S.A. de C.V.") | — | FALTA |
+| Revisión inicial de la PyME (balanza, IVA, depreciación) | `datos/revisiones/` | RECIBIDO · la balanza coincide en las 19 cuentas (es prueba automática) |
+| C10: vida útil 36 → 30 meses para que cuadre con $800 | `datos/correcciones.json` | APLICADO, por tu decisión |
+| Nombre "De 0 a CFO" y logos | `public/` | RECIBIDO |
 
-### Ruta RESICO (despacho) · ⏸ bloqueada hasta recibir:
-| Qué | Formato | Estado |
+### Ruta RESICO (despacho) · ✅ jugable, redactada por Claude, falta tu validación
+| Qué necesito | Dónde revisarlo | Estado |
 |---|---|---|
-| Tabla de tasas RESICO PF 2026 (art. 113-E) con fuente | Excel/CSV | FALTA |
-| 3–5 casos RESICO resueltos (ingresos cobrados, retenciones de PM, pago mensual) | `casos_motor.json` + Excel | FALTA |
-| Reglas de la anual RESICO y causales de salida del régimen | Word/Markdown | FALTA |
-| Perfil del cliente: actividad, ingresos típicos, qué documentos manda y qué errores comete | Texto, 1 párrafo | FALTA |
+| Cotejar la tabla de tasas contra el **art. 113-E LISR vigente 2026** (la transcribí de tu guía SAT de dic-2024, p. 22; el sitio de la Cámara de Diputados no fue accesible desde la sesión) | `content/parametros/2026.json` → `resico_pf_mensual` | FALTA validar |
+| Confirmar la retención de 1.25 % de PM (art. 113-J) | mismo archivo | FALTA validar |
+| Validar los 5 casos RESICO (R01–R05) y la lección M3-L01 | `content/casos_resico.json`, `src/lecciones.ts` | FALTA validar |
+| Validar la historia del mes de despacho (5 tareas) y el mensaje "correcto" al cliente | `content/carrera/resico-mar-2026.json` | FALTA validar |
+| Regla de redondeo: el portal real declara en pesos; el simulador usa centavos | — | FALTA decidir |
+| Reglas de la anual RESICO y causales de salida del régimen (para el siguiente mes) | Word/Markdown | FALTA |
+| Guía SAT RESICO PF (flujo del portal) | `datos/referencias/sat_resico/` | RECIBIDO |
 
 ## Fase 2 – Nómina, IMSS y despacho con varios clientes
 | Qué | Formato | Estado |
@@ -33,6 +39,7 @@ Formatos: tablas en Excel/CSV con columna de fuente; casos con el formato de `ca
 | Tablas IMSS y CEAV 2026 cotejadas con los transitorios (P02, P03) | Excel | FALTA |
 | ISN validado de al menos 1 estado (el que usará el juego) (P01) | Excel | FALTA |
 | Prima de riesgo de trabajo de ejemplo y su clase | Excel | FALTA |
+| Guía IMSS 2026 de la prima de RT (SUA → DAP → IDSE) | PNG | RECIBIDO (`datos/referencias/imss_dap/`) |
 | Casos de aguinaldo, vacaciones y prima vacacional, finiquito y PTU | casos JSON + Excel | FALTA |
 | 5 eventos o dilemas más para el despacho (clientes que no pagan, que no mandan documentos…) | Texto, 1 párrafo c/u | FALTA |
 | Honorarios o igualas típicos por tipo de cliente | Excel | FALTA |

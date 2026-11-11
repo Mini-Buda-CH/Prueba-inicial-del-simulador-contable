@@ -1,16 +1,19 @@
 import { describe, expect, it } from 'vitest';
-import casos from '../../content/casos.json';
+import casosPm from '../../content/casos.json';
+import casosResico from '../../content/casos_resico.json';
 import { balanza, type Cuenta } from '../engine/contable';
 import catalogo from '../../content/catalogo.json';
 import { ivaDelMes } from '../engine/fiscal';
 import { lecciones } from '../lecciones';
-import { evaluar, libroSolucion, MES, nuevoEstado, precargados, presentarDeclaracion, registrarPoliza, solucionTarea, sumarDias } from './estado';
+import { declaracionCorrecta, evaluar, libroSolucion, MES, MESES, nuevoEstado, precargados, presentarDeclaracion, registrarPoliza, resolver, solucionTarea, sumarDias, type Resico } from './estado';
+
+const casos = [...casosPm, ...casosResico];
 
 const cat = catalogo as Cuenta[];
 
 describe('mes PyME febrero 2026', () => {
   it('cada tarea apunta a una lección existente y a una póliza existente', () => {
-    for (const t of MES.tareas) {
+    for (const t of MESES.flatMap((m) => m.tareas)) {
       expect(lecciones.some((l) => l.id === t.leccion), t.id).toBe(true);
       if (t.tipo === 'poliza') expect(solucionTarea(t).length, t.id).toBeGreaterThan(1);
     }
@@ -38,6 +41,10 @@ describe('mes PyME febrero 2026', () => {
     e = presentarDeclaracion(e, MES.tareas.find((t) => t.tipo === 'declaracion')!, ivaDelMes(e.movimientos));
     e = { ...e, tareas: { ...e.tareas, T20: { ok: true, fecha: '2026-03-11' } } };
     expect(evaluar(e)).toEqual({ registro: { correctas: 18, total: 18 }, control: true, cumplimiento: true, fiscal: { correcta: true, coherente: true }, comunicacion: true });
+  });
+
+  it('el estado de la Fase 1 sin sufijo de mes se sigue entendiendo', () => {
+    expect(nuevoEstado().mes).toBe('pyme-feb-2026');
   });
 
   it('un error de registro se arrastra: declaración coherente con su libro pero incorrecta; retraso vence el plazo', () => {
@@ -71,5 +78,44 @@ describe('lecciones', () => {
   it('ids únicos', () => {
     const ids = lecciones.flatMap((l) => [l.id, ...l.ejercicios.map((e) => e.id)]);
     expect(new Set(ids).size).toBe(ids.length);
+  });
+});
+
+describe('revisión del usuario (datos/revisiones)', () => {
+  it('la balanza del mes coincide renglón por renglón con la balanza reconstruida', async () => {
+    const rev = (await import('../../datos/revisiones/revision_inicial_pyme_febrero_2026.json')).balanza_deudor_menos_acreedor as Record<string, number>;
+    const propia: Record<string, number> = {};
+    for (const [cuenta, s] of balanza(libroSolucion(), cat)) {
+      const agr = cat.find((c) => c.cuenta === cuenta)!.agrupador;
+      if (s.cargos - s.abonos !== 0) propia[agr] = s.cargos - s.abonos;
+    }
+    expect(propia).toEqual(rev);
+  });
+
+  it('C10: la depreciación mensual corresponde a MOI / vida útil del enunciado', () => {
+    const c10 = casos.find((c) => c.id === 'C10')!;
+    const meses = Number(/(\d+) meses/.exec(c10.enunciado)![1]);
+    expect(c10.resultados.find((r) => r.concepto === 'Depreciación contable mensual')!.valor).toBe(2400000 / meses);
+  });
+});
+
+describe('mes RESICO marzo 2026', () => {
+  const m = MESES.find((x) => x.id === 'resico-mar-2026')!;
+  it('declaración correcta: base 55,000 al 1.5 % = 825, menos 500 retenidos = 325 a cargo', () => {
+    expect(declaracionCorrecta(m)).toEqual({ cobrado: 6000000, devoluciones: 500000, tasa_pct: 1.5, impuesto: 82500, retenido: 50000, aCargo: 32500, aFavor: 0 });
+  });
+  it('jugar perfecto: todo en verde y control no aplica', () => {
+    let e = nuevoEstado(m);
+    for (const t of m.tareas.filter((t) => t.tipo !== 'declaracion')) e = resolver(e, t, true);
+    e = presentarDeclaracion(e, m.tareas.find((t) => t.tipo === 'declaracion')!, declaracionCorrecta(m));
+    expect(evaluar(e)).toEqual({ registro: { correctas: 3, total: 3 }, control: null, cumplimiento: true, fiscal: { correcta: true, coherente: null }, comunicacion: true });
+  });
+  it('declarar el PPD no cobrado da una declaración incorrecta', () => {
+    const mal = { ...(declaracionCorrecta(m) as Resico), cobrado: 7500000 };
+    const e = presentarDeclaracion(nuevoEstado(m), m.tareas.find((t) => t.tipo === 'declaracion')!, mal);
+    expect(evaluar(e).fiscal.correcta).toBe(false);
+  });
+  it('sin precargados ni pólizas', () => {
+    expect(precargados(m)).toEqual([]);
   });
 });

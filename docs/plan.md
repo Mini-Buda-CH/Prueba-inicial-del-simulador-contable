@@ -212,6 +212,57 @@ Cambios de código:
   - sin scroll horizontal a 390 px.
 - Commit y push a `claude/ecstatic-allen-dlkm3k`.
 
+## 11. Entrega actual: marca "De 0 a CFO", skill de UI, corrección C10 y ruta RESICO
+Contexto: la Fase 1 PyME está en la rama (commit posterior a b69c2c6). El usuario mandó:
+- el nombre "De 0 a CFO" y dos logos PNG de 600×600 (glifo "CH" blanco y negro sobre fondo transparente, en modo P);
+- la guía SAT de pagos mensuales RESICO PF (dic-2024, 46 págs. en PNG);
+- la guía IMSS DAP SUA→IDSE 2026 (42 págs.);
+- una revisión de la PyME (`revision_inicial_pyme_febrero_2026.xlsx`). Confirma banco 62,880, inventario 9,000 e IVA a favor 5,120, y detecta que C10 dice 36 meses pero usa $800, que corresponde a 30 meses.
+
+Pidió instalar la skill nextlevelbuilder/ui-ux-pro-max-skill.
+
+Decisiones del usuario:
+- C10 → **30 meses** (los $800 quedan igual).
+- RESICO → **yo transcribo el art. 113-E desde la LISR y redacto los casos; el usuario valida.**
+
+### 11.1 Skill ui-ux-pro-max
+- `git clone --depth 1` en el scratchpad, fijando el commit 6ae86f6.
+- Revisar todo su contenido (SKILL.md, scripts de Python y CSV) antes de instalar. Si hay instrucciones o scripts que hagan algo más que búsquedas locales de diseño, se reporta y no se instala.
+- Copiar la carpeta de la skill a `.claude/skills/ui-ux-pro-max/` del repo y hacer commit, para que persista en futuras sesiones porque el contenedor es efímero. No se usa `npm -g uipro` para no instalar una CLI global de terceros.
+- Usarla para definir el sistema visual de "De 0 a CFO" (paleta, tipografía) y aplicarlo a `src/estilos.css`, conservando el modo oscuro y la regla de no tener scroll horizontal.
+
+### 11.2 Marca
+- `public/logo-claro.png` (glifo blanco) y `public/logo-oscuro.png` (glifo negro), copiados tal cual. Cada uno se usa según `prefers-color-scheme` con `<picture>`.
+- favicon = logo negro.
+- `<title>`, h1 y README pasan a **De 0 a CFO**; package `de-0-a-cfo`.
+
+### 11.3 Corrección C10
+- Las correcciones al paquete original van en `datos/correcciones.json` (id, campo, antes, después, motivo, origen = "revisión del usuario 2026-11-11"), y `scripts/importar.py` las aplica. `datos/originales/` sigue sin tocarse.
+- C10: en `prompt` y `assumptions`, "36 meses" → "30 meses".
+- En `src/lecciones.ts`, la pregunta de M1-L04-E2 pasa a 30 meses.
+- Prueba nueva: el resultado de C10 = MOI / vida útil del enunciado.
+- La revisión del usuario se guarda en `datos/revisiones/` y sus cifras se usan como prueba: la balanza del mes debe coincidir renglón por renglón con su `Balanza_reconstruida`.
+
+### 11.4 Ruta RESICO (despacho)
+- **Tasas:** transcribir la tabla del art. 113-E (mensual) desde https://www.diputados.gob.mx/LeyesBiblio/pdf/LISR.pdf con el agente web-fetch. Va a `content/parametros/2026.json` como `resico_pf_mensual`, con `fuente_id: LISR`, `estado: PENDIENTE_VALIDACION` y la retención de 1.25 % por PM (art. 113-J).
+- **Motor:** `isrResicoMensual(ingresosCobrados, tabla)` en `src/engine/fiscal.ts`: la tasa se aplica sobre el total, no por excedente. Se resta la retención de PM y da `{ impuesto, retenido, aCargo, aFavor }`. Lleva prueba de fronteras.
+- **Casos:** `content/casos_resico.json` con 4 casos redactados por mí (mismo formato, `estado: PENDIENTE_VALIDACION`):
+  - R01 solo ingresos de PF;
+  - R02 con retención de PM;
+  - R03 nota de crédito que disminuye ingresos;
+  - R04 un mes que cruza de rango de tasa.
+- **Academia:** lección M3-L01 "RESICO personas físicas: pago mensual", con cálculo y opción.
+- **Carrera:** segundo mes, "Despacho: tu primer cliente RESICO", marzo 2026, con el mismo motor de tareas (`src/carrera/estado.ts` pasa a recibir el mes como parámetro, en lugar del `MES` fijo).
+  - Tareas: clasificar CFDI cobrados (opción), calcular ingresos del mes (cálculo) y presentar en un portal RESICO simulado que sigue el flujo de la guía SAT: Ingresos → Determinación → Pago → envío → acuse. Las pantallas son propias; no se copia la marca del SAT.
+  - Selector de ruta en la Carrera: Empleado (PyME) | Despacho (RESICO).
+- **Imágenes:** las PNG de los manuales se guardan en `datos/referencias/` solo como referencia interna, no se publican en la app. La guía IMSS queda para la Fase 2.
+
+### 11.5 Pendientes y verificación
+- Actualizar `docs/pendientes-usuario.md`: logo y nombre RECIBIDO; revisión PyME RECIBIDO con corrección aplicada; RESICO pasa a "redactado, falta validar".
+- `npm test`: todo lo anterior, más las pruebas de RESICO y de la balanza contra la revisión del usuario.
+- Playwright: la marca se ve en claro y oscuro; jugar el mes RESICO completo; sin scroll horizontal a 390 px; captura de pantalla para el usuario.
+- Commit y push a `claude/ecstatic-allen-dlkm3k`.
+
 ## 9. Archivos a crear (Fase 0)
 - `datos/originales/`: el paquete v0.1 tal cual, como fuente de verdad versionada.
 - `scripts/importar.py`: convierte Excel/JSON → `content/*.json` (parámetros, catálogo, casos) y revisa que cada póliza cuadre y cada cuenta exista.

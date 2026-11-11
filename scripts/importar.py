@@ -34,9 +34,16 @@ por_agrupador = collections.defaultdict(list)
 for c in catalogo:
     por_agrupador[c["agrupador"]].append(c["cuenta"])
 
-# --- Casos ---
+# --- Casos (con las correcciones aprobadas por el usuario; el original no se toca) ---
+originales = json.loads((SRC / "03_casos/casos_motor.json").read_text(encoding="utf-8"))
+for cor in json.loads((RAIZ / "datos/correcciones.json").read_text(encoding="utf-8")):
+    caso = next(c for c in originales if c["id"] == cor["caso"])
+    for campo in cor["campos"]:
+        if cor["antes"] not in caso[campo]:
+            sys.exit(f"Corrección {cor['caso']}.{campo}: no se encontró '{cor['antes']}'")
+        caso[campo] = caso[campo].replace(cor["antes"], cor["despues"])
 casos = []
-for c in json.loads((SRC / "03_casos/casos_motor.json").read_text(encoding="utf-8")):
+for c in originales:
     movs, sumas = [], collections.defaultdict(lambda: [0, 0])
     for poliza, agr, cargo, abono in c["entries"]:
         cuentas = por_agrupador.get(agr, [])
@@ -77,6 +84,20 @@ parametros = {
                   "uma_mensual": cent(r["UMA_mensual"]), "porcentaje_uma": r["porcentaje_UMA"],
                   "cuota_publicada": cent(r["cuota_potencial_redondeada"]), "fuente_id": r["fuente_id"],
                   "pendiente": "P08: considerando del decreto menciona 536.22"} for r in hoja(P, "Subsidio")],
+    # Transcrita de la guía SAT de pagos mensuales RESICO PF (dic-2024, p. 22), datos/referencias/sat_resico.
+    # Pendiente: cotejar contra el art. 113-E LISR vigente 2026 (la Cámara de Diputados no fue accesible desde la sesión).
+    "resico_pf_mensual": {
+        "fuente_id": "SAT_GUIA_RESICO_PF_2024_p22",
+        "articulo": "113-E",
+        "estado": "PENDIENTE_VALIDACION",
+        "nota": "La tasa se aplica al total de ingresos cobrados del mes (no por excedente).",
+        "tabla": [{"limite_inferior": cent(li), "limite_superior": cent(ls), "tasa_pct": t} for li, ls, t in [
+            ("0.01", "25000.00", 1.00), ("25000.01", "50000.00", 1.10), ("50000.01", "83333.33", 1.50),
+            ("83333.34", "208333.33", 2.00), ("208333.34", "3500000.00", 2.50), ("3500000.01", None, 2.50)]],
+        "retencion_pm_pct": 1.25,
+        "retencion_pm_articulo": "113-J",
+        "retencion_pm_estado": "PENDIENTE_VALIDACION: no cotejado en esta sesión",
+    },
     "solo_referencia": {
         "nota": "habilitado_calculo=NO o estado pendiente: el motor no usa estas tablas.",
         "cuotas_imss": referencia("Cuotas_IMSS"),
@@ -90,3 +111,10 @@ parametros = {
 for nombre, datos in [("catalogo.json", catalogo), ("casos.json", casos), ("parametros/2026.json", parametros)]:
     (OUT / nombre).write_text(json.dumps(datos, ensure_ascii=False, indent=1, default=str) + "\n", encoding="utf-8")
 print(f"OK: {len(catalogo)} cuentas, {len(casos)} casos, {len(parametros['isr_mensual_art96'])} rangos ISR mensual")
+
+# --- Revisión del usuario de la PyME (fixture de pruebas): saldos en centavos por agrupador ---
+REV = RAIZ / "datos/revisiones/revision_inicial_pyme_febrero_2026.xlsx"
+balanza_rev = {str(r["Cuenta referencia"]): cent(r["Saldo deudor MXN"]) - cent(r["Saldo acreedor MXN"])
+               for r in filas(openpyxl.load_workbook(REV, data_only=True)["Balanza_reconstruida"])}
+(REV.with_suffix(".json")).write_text(json.dumps({"balanza_deudor_menos_acreedor": balanza_rev}, indent=1) + "\n", encoding="utf-8")
+print(f"OK: revisión PyME con {len(balanza_rev)} cuentas")

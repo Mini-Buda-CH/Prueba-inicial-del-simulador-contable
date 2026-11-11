@@ -22,7 +22,13 @@ export default function App() {
   return (
     <div className="app">
       <aside className="lateral">
-        <h1>Simulador Contable MX</h1>
+        <h1 className="marca">
+          <picture>
+            <source srcSet="/logo-claro.png" media="(prefers-color-scheme: dark)" />
+            <img src="/logo-oscuro.png" alt="" width="36" height="36" />
+          </picture>
+          De 0 a CFO
+        </h1>
         <div className="secciones" role="tablist">
           <button role="tab" aria-selected={seccion === 'academia'} onClick={() => setSeccion('academia')}>Academia</button>
           <button role="tab" aria-selected={seccion === 'carrera'} onClick={() => setSeccion('carrera')}>Carrera</button>
@@ -39,7 +45,7 @@ export default function App() {
               {lecciones.filter((l) => l.modulo === m).map((l) => (
                 <li key={l.id}>
                   <button className={seccion === 'academia' && l.id === actual.id ? 'activo' : ''} onClick={() => irA(l)}>
-                    {leccionCompleta(l, progreso) ? '✓' : '○'} {l.examen ? `📝 ${l.titulo}` : l.titulo}
+                    {leccionCompleta(l, progreso) ? '✓' : '○'} {l.examen ? `Examen · ${l.titulo.replace('Examen: ', '')}` : l.titulo}
                   </button>
                 </li>
               ))}

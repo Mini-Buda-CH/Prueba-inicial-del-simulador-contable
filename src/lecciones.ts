@@ -17,6 +17,7 @@ export type Leccion = {
 
 const M1 = 'Módulo 1 · Fundamentos';
 const M2 = 'Módulo 2 · Documentación fiscal';
+const M3 = 'Módulo 3 · Personas físicas';
 const P = 'PENDIENTE_VALIDACION' as const;
 
 export const lecciones: Leccion[] = [
@@ -72,7 +73,7 @@ export const lecciones: Leccion[] = [
     ],
     ejercicios: [
       { id: 'M1-L04-E1', tipo: 'poliza', caso: 'C10', poliza: 'P01' },
-      { id: 'M1-L04-E2', tipo: 'calculo', caso: 'C10', concepto: 'Depreciación contable mensual', pregunta: 'Equipo de $24,000, vida útil de 36 meses y valor residual cero: ¿depreciación contable mensual?' },
+      { id: 'M1-L04-E2', tipo: 'calculo', caso: 'C10', concepto: 'Depreciación contable mensual', pregunta: 'Equipo de $24,000, vida útil de 30 meses y valor residual cero: ¿depreciación contable mensual?' },
       { id: 'M1-L04-E3', tipo: 'poliza', caso: 'C10', poliza: 'P02' },
       { id: 'M1-L04-E4', tipo: 'calculo', caso: 'C10', concepto: 'Deducción fiscal anual nominal 30%', pregunta: 'Con la tasa fiscal de 30 % para equipo de cómputo, ¿deducción fiscal anual nominal?' },
     ],
@@ -288,6 +289,31 @@ export const lecciones: Leccion[] = [
         opciones: ['La extensión .xml', 'El sello digital, el certificado y el timbre fiscal del PAC', 'El logotipo de la empresa', 'Que se envíe por correo'],
         correcta: 1,
         explicacion: 'Sello, certificado y timbre lo hacen verificable.',
+      },
+    ],
+  },
+  {
+    id: 'M3-L01', modulo: M3, estado: P, titulo: 'RESICO personas físicas: el pago mensual',
+    teoria: [
+      'En RESICO la persona física paga ISR mensual sobre los ingresos efectivamente cobrados en el mes, amparados por CFDI, sin IVA y sin restar gastos.',
+      'A esos ingresos se les restan los descuentos, devoluciones y bonificaciones del mes (CFDI de egreso). Una factura PPD que aún no se cobra no cuenta.',
+      'Se aplica una sola tasa (de 1.00 % a 2.50 %) al total del mes, según el rango en que cae. No es escalonada como la tarifa de sueldos.',
+      'Si una persona moral le pagó, le retuvo 1.25 % de ISR: ese importe se resta del impuesto mensual. Si la retención supera al impuesto, queda un saldo a favor.',
+      'El pago vence el día 17 del mes siguiente.',
+    ],
+    ejercicios: [
+      { id: 'M3-L01-E1', tipo: 'calculo', caso: 'R01', concepto: 'Impuesto mensual', pregunta: '¿Impuesto mensual?' },
+      { id: 'M3-L01-E2', tipo: 'calculo', caso: 'R02', concepto: 'ISR retenido por la persona moral', pregunta: '¿Cuánto le retuvo la persona moral?' },
+      { id: 'M3-L01-E3', tipo: 'calculo', caso: 'R02', concepto: 'Impuesto a favor', pregunta: 'Con una tasa de 1.10 %, ¿qué saldo a favor resulta?' },
+      { id: 'M3-L01-E4', tipo: 'calculo', caso: 'R03', concepto: 'Base gravable', pregunta: '¿Base gravable del mes?' },
+      { id: 'M3-L01-E5', tipo: 'calculo', caso: 'R04', concepto: 'Tasa aplicable %', pregunta: '¿Qué tasa aplica (en %)?' },
+      { id: 'M3-L01-E6', tipo: 'calculo', caso: 'R04', concepto: 'Impuesto a cargo', pregunta: '¿Impuesto a cargo después de la retención?' },
+      {
+        id: 'M3-L01-E7', tipo: 'opcion',
+        pregunta: 'Un cliente RESICO facturó $15,000 con método PPD y aún no le pagan. ¿Qué pasa con ese ingreso este mes?',
+        opciones: ['Se declara porque ya se facturó', 'No se declara hasta que se cobre (con su complemento de pago)', 'Se declara la mitad', 'Se declara y se pide devolución si no se cobra'],
+        correcta: 1,
+        explicacion: 'En RESICO cuentan los ingresos efectivamente cobrados.',
       },
     ],
   },

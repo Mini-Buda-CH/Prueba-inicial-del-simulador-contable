@@ -5,36 +5,223 @@
  "regimen": "Persona moral, régimen general",
  "puesto": "Auxiliar contable",
  "jefe": "Contadora general",
- "vencimiento_iva": "2026-03-17",
  "precargados": {
   "fecha": "2026-02-03",
   "nota": "Capturado por el auxiliar anterior: compra de papelería pagada por transferencia. Aparece dos veces en el libro.",
   "polizas": [
-   [{"cuenta": "SIM-601-55", "cargo": 100000, "abono": 0}, {"cuenta": "SIM-118-01", "cargo": 16000, "abono": 0}, {"cuenta": "SIM-102-01", "cargo": 0, "abono": 116000}],
-   [{"cuenta": "SIM-601-55", "cargo": 100000, "abono": 0}, {"cuenta": "SIM-118-01", "cargo": 16000, "abono": 0}, {"cuenta": "SIM-102-01", "cargo": 0, "abono": 116000}]
+   [
+    {
+     "cuenta": "SIM-601-55",
+     "cargo": 100000,
+     "abono": 0
+    },
+    {
+     "cuenta": "SIM-118-01",
+     "cargo": 16000,
+     "abono": 0
+    },
+    {
+     "cuenta": "SIM-102-01",
+     "cargo": 0,
+     "abono": 116000
+    }
+   ],
+   [
+    {
+     "cuenta": "SIM-601-55",
+     "cargo": 100000,
+     "abono": 0
+    },
+    {
+     "cuenta": "SIM-118-01",
+     "cargo": 16000,
+     "abono": 0
+    },
+    {
+     "cuenta": "SIM-102-01",
+     "cargo": 0,
+     "abono": 116000
+    }
+   ]
   ]
  },
  "tareas": [
-  {"id": "T01", "fecha": "2026-02-02", "tipo": "poliza", "caso": "C01", "poliza": "P01", "leccion": "M1-L01", "correo": "Bienvenido. Los socios ya transfirieron su aportación; regístrala para abrir el libro."},
-  {"id": "T02", "fecha": "2026-02-04", "tipo": "poliza", "caso": "C02", "poliza": "P01", "leccion": "M1-L01", "correo": "Llegó la primera mercancía y ya la pagamos. Te paso la factura y la transferencia."},
-  {"id": "T03", "fecha": "2026-02-06", "tipo": "poliza", "caso": "C05", "poliza": "P01", "leccion": "M1-L02", "correo": "Compramos más mercancía a crédito. Registra la factura del proveedor."},
-  {"id": "T04", "fecha": "2026-02-09", "tipo": "poliza", "caso": "C03", "poliza": "P01", "leccion": "M1-L01", "correo": "¡Primera venta de contado! Registra el ingreso."},
-  {"id": "T05", "fecha": "2026-02-09", "tipo": "poliza", "caso": "C03", "poliza": "P02", "leccion": "M1-L05", "correo": "No olvides el costo de lo que vendimos."},
-  {"id": "T06", "fecha": "2026-02-11", "tipo": "poliza", "caso": "C04", "poliza": "P01", "leccion": "M1-L02", "correo": "Vendimos a crédito a un cliente. Registra la factura PPD."},
-  {"id": "T07", "fecha": "2026-02-11", "tipo": "poliza", "caso": "C04", "poliza": "P02", "leccion": "M1-L05", "correo": "Y su costo de ventas."},
-  {"id": "T08", "fecha": "2026-02-13", "tipo": "poliza", "caso": "C05", "poliza": "P02", "leccion": "M1-L02", "correo": "Tesorería pagó la mitad de la factura del proveedor a crédito."},
-  {"id": "T09", "fecha": "2026-02-13", "tipo": "poliza", "caso": "C05", "poliza": "P03", "leccion": "M1-L02", "correo": "Reclasifica el IVA de la parte pagada."},
-  {"id": "T10", "fecha": "2026-02-16", "tipo": "poliza", "caso": "C04", "poliza": "P03", "leccion": "M1-L02", "correo": "El cliente a crédito pagó la mitad. Te mando el complemento de pago."},
-  {"id": "T11", "fecha": "2026-02-16", "tipo": "poliza", "caso": "C04", "poliza": "P04", "leccion": "M1-L02", "correo": "Reclasifica el IVA de lo cobrado."},
-  {"id": "T12", "fecha": "2026-02-18", "tipo": "poliza", "caso": "C06", "poliza": "P01", "leccion": "M1-L03", "correo": "Un cliente de contado devolvió mercancía y le reembolsamos. Ya está la nota de crédito."},
-  {"id": "T13", "fecha": "2026-02-18", "tipo": "poliza", "caso": "C06", "poliza": "P02", "leccion": "M1-L03", "correo": "La mercancía devuelta está en buen estado: regresa al inventario."},
-  {"id": "T14", "fecha": "2026-02-20", "tipo": "poliza", "caso": "C07", "poliza": "P01", "leccion": "M1-L03", "correo": "Pagamos el seguro anual de la bodega."},
-  {"id": "T15", "fecha": "2026-02-20", "tipo": "poliza", "caso": "C10", "poliza": "P01", "leccion": "M1-L04", "correo": "Compramos el equipo de cómputo para la oficina."},
-  {"id": "T16", "fecha": "2026-02-27", "tipo": "poliza", "caso": "C13", "poliza": "P01", "leccion": "M1-L07", "control": true, "correo": "Antes del cierre, compara el libro de bancos con el estado de cuenta: el banco muestra un solo cargo de $1,160 por papelería el 3 de febrero. Corrige lo que haga falta."},
-  {"id": "T17", "fecha": "2026-02-28", "tipo": "poliza", "caso": "C07", "poliza": "P02", "leccion": "M1-L03", "correo": "Cierre de mes: aplica el gasto de seguro de febrero."},
-  {"id": "T18", "fecha": "2026-02-28", "tipo": "poliza", "caso": "C10", "poliza": "P02", "leccion": "M1-L04", "correo": "Cierre de mes: registra la depreciación del equipo."},
-  {"id": "T19", "fecha": "2026-03-10", "tipo": "declaracion", "leccion": "M1-L08", "correo": "Prepara y presenta la declaración mensual de IVA de febrero con lo que tienes en tu libro. Vence el 17 de marzo."},
-  {"id": "T20", "fecha": "2026-03-11", "tipo": "mensaje", "leccion": "M1-L08", "correo": "¿Cómo nos fue de IVA en febrero? Escríbeme qué recomiendas.",
+  {
+   "id": "T01",
+   "fecha": "2026-02-02",
+   "tipo": "poliza",
+   "caso": "C01",
+   "poliza": "P01",
+   "leccion": "M1-L01",
+   "correo": "Bienvenido. Los socios ya transfirieron su aportación; regístrala para abrir el libro."
+  },
+  {
+   "id": "T02",
+   "fecha": "2026-02-04",
+   "tipo": "poliza",
+   "caso": "C02",
+   "poliza": "P01",
+   "leccion": "M1-L01",
+   "correo": "Llegó la primera mercancía y ya la pagamos. Te paso la factura y la transferencia."
+  },
+  {
+   "id": "T03",
+   "fecha": "2026-02-06",
+   "tipo": "poliza",
+   "caso": "C05",
+   "poliza": "P01",
+   "leccion": "M1-L02",
+   "correo": "Compramos más mercancía a crédito. Registra la factura del proveedor."
+  },
+  {
+   "id": "T04",
+   "fecha": "2026-02-09",
+   "tipo": "poliza",
+   "caso": "C03",
+   "poliza": "P01",
+   "leccion": "M1-L01",
+   "correo": "¡Primera venta de contado! Registra el ingreso."
+  },
+  {
+   "id": "T05",
+   "fecha": "2026-02-09",
+   "tipo": "poliza",
+   "caso": "C03",
+   "poliza": "P02",
+   "leccion": "M1-L05",
+   "correo": "No olvides el costo de lo que vendimos."
+  },
+  {
+   "id": "T06",
+   "fecha": "2026-02-11",
+   "tipo": "poliza",
+   "caso": "C04",
+   "poliza": "P01",
+   "leccion": "M1-L02",
+   "correo": "Vendimos a crédito a un cliente. Registra la factura PPD."
+  },
+  {
+   "id": "T07",
+   "fecha": "2026-02-11",
+   "tipo": "poliza",
+   "caso": "C04",
+   "poliza": "P02",
+   "leccion": "M1-L05",
+   "correo": "Y su costo de ventas."
+  },
+  {
+   "id": "T08",
+   "fecha": "2026-02-13",
+   "tipo": "poliza",
+   "caso": "C05",
+   "poliza": "P02",
+   "leccion": "M1-L02",
+   "correo": "Tesorería pagó la mitad de la factura del proveedor a crédito."
+  },
+  {
+   "id": "T09",
+   "fecha": "2026-02-13",
+   "tipo": "poliza",
+   "caso": "C05",
+   "poliza": "P03",
+   "leccion": "M1-L02",
+   "correo": "Reclasifica el IVA de la parte pagada."
+  },
+  {
+   "id": "T10",
+   "fecha": "2026-02-16",
+   "tipo": "poliza",
+   "caso": "C04",
+   "poliza": "P03",
+   "leccion": "M1-L02",
+   "correo": "El cliente a crédito pagó la mitad. Te mando el complemento de pago."
+  },
+  {
+   "id": "T11",
+   "fecha": "2026-02-16",
+   "tipo": "poliza",
+   "caso": "C04",
+   "poliza": "P04",
+   "leccion": "M1-L02",
+   "correo": "Reclasifica el IVA de lo cobrado."
+  },
+  {
+   "id": "T12",
+   "fecha": "2026-02-18",
+   "tipo": "poliza",
+   "caso": "C06",
+   "poliza": "P01",
+   "leccion": "M1-L03",
+   "correo": "Un cliente de contado devolvió mercancía y le reembolsamos. Ya está la nota de crédito."
+  },
+  {
+   "id": "T13",
+   "fecha": "2026-02-18",
+   "tipo": "poliza",
+   "caso": "C06",
+   "poliza": "P02",
+   "leccion": "M1-L03",
+   "correo": "La mercancía devuelta está en buen estado: regresa al inventario."
+  },
+  {
+   "id": "T14",
+   "fecha": "2026-02-20",
+   "tipo": "poliza",
+   "caso": "C07",
+   "poliza": "P01",
+   "leccion": "M1-L03",
+   "correo": "Pagamos el seguro anual de la bodega."
+  },
+  {
+   "id": "T15",
+   "fecha": "2026-02-20",
+   "tipo": "poliza",
+   "caso": "C10",
+   "poliza": "P01",
+   "leccion": "M1-L04",
+   "correo": "Compramos el equipo de cómputo para la oficina."
+  },
+  {
+   "id": "T16",
+   "fecha": "2026-02-27",
+   "tipo": "poliza",
+   "caso": "C13",
+   "poliza": "P01",
+   "leccion": "M1-L07",
+   "control": true,
+   "correo": "Antes del cierre, compara el libro de bancos con el estado de cuenta: el banco muestra un solo cargo de $1,160 por papelería el 3 de febrero. Corrige lo que haga falta."
+  },
+  {
+   "id": "T17",
+   "fecha": "2026-02-28",
+   "tipo": "poliza",
+   "caso": "C07",
+   "poliza": "P02",
+   "leccion": "M1-L03",
+   "correo": "Cierre de mes: aplica el gasto de seguro de febrero."
+  },
+  {
+   "id": "T18",
+   "fecha": "2026-02-28",
+   "tipo": "poliza",
+   "caso": "C10",
+   "poliza": "P02",
+   "leccion": "M1-L04",
+   "correo": "Cierre de mes: registra la depreciación del equipo."
+  },
+  {
+   "id": "T19",
+   "fecha": "2026-03-10",
+   "tipo": "declaracion",
+   "leccion": "M1-L08",
+   "correo": "Prepara y presenta la declaración mensual de IVA de febrero con lo que tienes en tu libro. Vence el 17 de marzo."
+  },
+  {
+   "id": "T20",
+   "fecha": "2026-03-11",
+   "tipo": "mensaje",
+   "leccion": "M1-L08",
+   "correo": "¿Cómo nos fue de IVA en febrero? Escríbeme qué recomiendas.",
    "pregunta": "Elige tu respuesta a la contadora general:",
    "opciones": [
     "Este mes resultó saldo a favor de IVA. Ya presenté la declaración; recomiendo acreditarlo en los próximos meses y conservar el expediente. Si prefieren la devolución la preparo, pero no ambas cosas.",
@@ -43,6 +230,10 @@
     "Todo bien, no hay nada que comentar."
    ],
    "correcta": 0,
-   "explicacion": "La declaración se presenta aunque no haya pago, y el saldo a favor se usa una sola vez (acreditamiento o devolución)."}
- ]
+   "explicacion": "La declaración se presenta aunque no haya pago, y el saldo a favor se usa una sola vez (acreditamiento o devolución)."
+  }
+ ],
+ "titulo": "Empleado · PyME",
+ "declaracion": "iva",
+ "vencimiento": "2026-03-17"
 }

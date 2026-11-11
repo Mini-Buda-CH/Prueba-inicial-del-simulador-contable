@@ -1,4 +1,4 @@
-# Simulador Contable MX
+# De 0 a CFO
 
 Simulador web de la carrera contable en México: de recién egresado sin clientes a jefe de contabilidad o contralor de un corporativo.
 Combina una **Academia** (lecciones, ejercicios, exámenes, progreso) con una **Carrera** (escritorio virtual con clientes, calendario fiscal y consecuencias).
@@ -16,6 +16,12 @@ Combina una **Academia** (lecciones, ejercicios, exámenes, progreso) con una **
 - Carrera: un mes como auxiliar en una PyME ficticia (20 tareas). Las pólizas con errores se arrastran al libro y a la declaración de IVA; los descuadres cuestan días; el cierre se evalúa en registro, control, fiscal, cumplimiento y comunicación.
 - Cada tarea de la Carrera exige haber completado su lección.
 
+**Fase 1, ruta RESICO (redactada por Claude, pendiente de validación):** tasas mensuales del art. 113-E (transcritas de la guía SAT dic-2024, p. 22), motor `isrResicoMensual`, 5 casos (`content/casos_resico.json`), lección M3-L01 y un mes de despacho con portal RESICO simulado (Ingresos → Determinación → Pago → Envío).
+
+**Marca y diseño:** logos en `public/`; sistema visual (pizarra/marino, verde para positivos, Fira Sans + Fira Code) recomendado por la skill `ui-ux-pro-max`, instalada en `.claude/skills/` para futuras sesiones.
+
+**Correcciones al paquete original:** `datos/correcciones.json` (las aplica `scripts/importar.py`; `datos/originales/` no se modifica).
+
 **Lo que necesito de ti para cada fase:** [`docs/pendientes-usuario.md`](docs/pendientes-usuario.md).
 
 ## Datos
@@ -27,6 +33,6 @@ Las tablas marcadas `habilitado_calculo=NO` o pendientes (ISN, CEAV, cuota fija 
 ```bash
 npm install
 npm run dev        # app en http://localhost:5173
-npm test           # 31 pruebas: motores, casos del paquete, lecciones y mes PyME
+npm test           # 46 pruebas: motores, casos, lecciones, meses PyME y RESICO, revisión del usuario
 npm run importar   # regenerar content/ desde datos/originales (requiere Python con openpyxl)
 ```
