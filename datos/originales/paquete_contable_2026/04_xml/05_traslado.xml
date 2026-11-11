@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/4" Version="4.0" Serie="SIM" Folio="T001" Fecha="2026-02-15T12:00:00" Sello="" NoCertificado="00000000000000000000" Certificado="" SubTotal="0" Moneda="MXN" Total="0" TipoDeComprobante="T" Exportacion="01" LugarExpedicion="90000">
+  <!--SIMULACION EDUCATIVA. DATOS SINTETICOS. NO TIMBRADO. SIN VALIDEZ FISCAL. NO ENVIAR A SAT/PAC.-->
+  <cfdi:Emisor Rfc="AAA010101AAA" Nombre="EMISOR FICTICIO SIMULADOR" RegimenFiscal="601" />
+  <cfdi:Receptor Rfc="XAXX010101000" Nombre="PUBLICO EN GENERAL" DomicilioFiscalReceptor="90000" RegimenFiscalReceptor="616" UsoCFDI="S01" />
+  <cfdi:Conceptos>
+    <cfdi:Concepto ClaveProdServ="01010101" Cantidad="1" ClaveUnidad="H87" Descripcion="TRASLADO INTERNO DIDACTICO SIN CARTA PORTE" ValorUnitario="0" Importe="0" ObjetoImp="01" />
+  </cfdi:Conceptos>
+</cfdi:Comprobante>

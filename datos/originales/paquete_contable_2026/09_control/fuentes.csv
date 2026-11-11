@@ -1,0 +1,27 @@
+﻿id,institucion,URL,alcance,tipo,consulta
+ISR_INDETEC,INDETEC,https://pub.indetec.gob.mx/delivery?srv=0&sl=2&route=/noticias_interes/Actualizacion-de-tarifa-ISR-para-personas-fisicas-aplicable-en-2026&ext=.pdf,Tablas 1 y 2; transcripción institucional de Anexo 8 RMF 2026,Institucional,2026-11-10
+ISR_SAT,SAT,https://www.sat.gob.mx/minisitio/NormatividadRMFyRGCE/documentos2026/rmf/anexos/Anexo-8-RMF-2026_DOF-28122025.pdf,Documento localizado; recuperación directa fallida. Cifras cotejadas en INDETEC,Primaria localizada,2026-11-10
+UMA,INEGI,https://www.inegi.org.mx/temas/uma/,Valores 2025 y 2026; vigencia 2026 desde 1 febrero,Primaria,2026-11-10
+SM,CONASAMI,https://www.gob.mx/cms/uploads/attachment/file/1041076/Tabla_de_Salarios_M_nimos_2026.pdf,Salarios generales por zona; no se transcriben 61 salarios profesionales,Primaria,2026-11-10
+SUB,DOF/SAT,https://wwwmat.sat.gob.mx/cs/Satellite?blobcol=urldata&blobkey=id&blobtable=MungoBlobs&blobwhere=1461176519730&ssbinary=true,"Decreto 31 diciembre 2025; reforma subsidio, transitorio segundo",Primaria,2026-11-10
+LISR,Cámara de Diputados,https://www.diputados.gob.mx/LeyesBiblio/pdf/LISR.pdf,"Arts. 31, 34, 36 y disposiciones aplicables",Primaria,2026-11-10
+LIVA,Cámara de Diputados,https://www.diputados.gob.mx/LeyesBiblio/pdf/LIVA.pdf,"Arts. 1, 1-B y 5; casos sujetos a supuestos expresos",Primaria,2026-11-10
+LSS,Cámara de Diputados,https://www.diputados.gob.mx/LeyesBiblio/pdf/LSS.pdf,"Arts. 25, 107, 147, 168, 211; tabla gradual debe cotejarse con decreto 2020",Primaria parcial,2026-11-10
+IMSS_SEC,ContadorMX,https://contadormx.com/cuotas-imss-2026-tablas-porcentajes-y-fechas/,Resumen de cuotas 2026; no sustituye transitorios,Secundaria,2026-11-10
+CEAV,Carbajal Contadores,https://carbajalcontadores.com/2026/09/06/cuotas-imss-2026-tabla-aportaciones-patronales-obreras-sbc-calculo-auditoria/,Tabla gradual CEAV 2026; pendiente cotejo primario completo,Secundaria,2026-11-10
+ISN,El Contribuyente,https://www.elcontribuyente.mx/impuesto-sobre-nominas/,Tabla 32 entidades 2026; no valida leyes locales ni bases,Secundaria no habilitada,2026-11-10
+ISN_CONTRASTE,Cubierto,https://cubierto.mx/datos/impuesto-sobre-nomina-2026,Referencias locales y advertencias sobre adicionales,Secundaria,2026-11-10
+CAT,SAT,http://m.sat.gob.mx/fichas_tematicas/buzon_tributario/Documents/codigo_agrupador.pdf,Código agrupador; fuente histórica sin vigencia 2026 certificada,Primaria histórica,2026-11-10
+CFDI,SAT,https://wwwmat.sat.gob.mx/consultas/35025/formato-de-factura-electronica-(anexo-20),Referencia conceptual; XML didácticos no certificados por XSD,Primaria,2026-11-10
+PROD_FEB,PRODECON,https://www.prodecon.gob.mx/wp-content/uploads/2023/07/Prodecontigo-Febrero-v.5-2022.pdf,"Casos de asesoría, páginas impresas 24–25",Primaria histórica,2026-11-10
+PROD_ADUANA,PRODECON,https://www.prodecon.gob.mx/wp-content/uploads/2023/09/los_derechos_de_los_contribuyentes_frente_a_la_reforma_fiscal_2022_en_materia_de_comercio_exterior.pdf,Casos de queja y acuerdos conclusivos,Primaria histórica,2026-11-10
+PROD_HIST,PRODECON,https://www.prodecon.gob.mx/Documentos/101_historias_final.pdf,Historias divulgativas; no reutilizar nombres como datos reales,Primaria histórica,2026-11-10
+SUELDO_VAC,Michael Page,https://www.michaelpage.com.mx/job-detail/contador-general/ref/jn-052026-7025735,Vacante Guadalajara 45–50 mil mensuales; no media nacional,Oferta observada,2026-11-10
+SUELDO_GUIA,Michael Page vía copia pública Scribd,https://es.scribd.com/document/929138311/Guia-Salarial-2026-Michael-Page-Mexico,"Guía 2026 Finanzas; transcripción indirecta, requiere cotejo original",Secundaria,2026-11-10
+SUELDO_ORIG,Michael Page,https://www.michaelpage.com.mx/seleccion-de-personal/management/tendencias-de-remuneracion-guia-salarial-2026,Página oficial; no se recuperó tabla original completa,Primaria contextual,2026-11-10
+SUELDO_AUX,CiudadTrabajo,https://ciudadtrabajo.com.mx/salarios/auxiliar-contable,"Agregado publicado: promedio 13405, 532 vacantes; rango no usado como sueldo legal",Secundaria,2026-11-10
+SUA,IMSS,https://www.imss.gob.mx/patrones/sua/,SUA es aplicación de escritorio; información de versión 3.7.1,Primaria,2026-11-10
+GUIA_RT,IMSS,https://www.imss.gob.mx/sites/all/statics/detPrima/2026/Guia_para_la_generacion_de_la_Determinacion_de_la_PSRT_SUA_IDSE_2026.pdf,Flujo determinación prima RT SUA → archivo DAP → IDSE → acuse; no flujo general de todas las cuotas,Primaria,2026-11-10
+MOV_AFIL,IMSS,https://www.imss.gob.mx/sites/all/statics/sua/pdf/10_generar_mov_afil.pdf,Generación de movimientos afiliatorios,Primaria,2026-11-10
+DYP,SAT,https://www.sat.gob.mx/cs/Satellite?blobcol=urldata&blobkey=id&blobtable=MungoBlobs&blobwhere=1461175200249&ssbinary=true,Guía pagos provisionales régimen general 2022 en adelante; interfaz debe cotejarse 2026,Primaria histórica,2026-11-10
+CFF,Cámara de Diputados,https://www.diputados.gob.mx/LeyesBiblio/pdf/CFF.pdf,Obligaciones y procedimientos: cotejar versión aplicable,Primaria,2026-11-10

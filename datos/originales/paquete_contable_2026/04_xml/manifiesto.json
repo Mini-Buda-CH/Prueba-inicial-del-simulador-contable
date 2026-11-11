@@ -1,0 +1,38 @@
+[
+  {
+    "archivo": "01_ingreso_PUE.xml",
+    "estado": "SINTETICO_NO_TIMBRADO_NO_VALIDADO_XSD",
+    "nota": "RFC de emisor placeholder; receptor genérico, sin e.firma/CSD ni timbre. Revisar catálogos y reglas antes de usar como prueba de conformidad.",
+    "fuente": "https://wwwmat.sat.gob.mx/consultas/35025/formato-de-factura-electronica-(anexo-20)"
+  },
+  {
+    "archivo": "02_ingreso_PPD.xml",
+    "estado": "SINTETICO_NO_TIMBRADO_NO_VALIDADO_XSD",
+    "nota": "RFC de emisor placeholder; receptor genérico, sin e.firma/CSD ni timbre. Revisar catálogos y reglas antes de usar como prueba de conformidad.",
+    "fuente": "https://wwwmat.sat.gob.mx/consultas/35025/formato-de-factura-electronica-(anexo-20)"
+  },
+  {
+    "archivo": "03_egreso.xml",
+    "estado": "SINTETICO_NO_TIMBRADO_NO_VALIDADO_XSD",
+    "nota": "RFC de emisor placeholder; receptor genérico, sin e.firma/CSD ni timbre. Revisar catálogos y reglas antes de usar como prueba de conformidad.",
+    "fuente": "https://wwwmat.sat.gob.mx/consultas/35025/formato-de-factura-electronica-(anexo-20)"
+  },
+  {
+    "archivo": "04_pago_parcial.xml",
+    "estado": "SINTETICO_NO_TIMBRADO_NO_VALIDADO_XSD",
+    "nota": "UUID relacionado es placeholder, NO timbre. Pago 580 de factura 1160: base 500 IVA80 saldo580.",
+    "fuente": "https://wwwmat.sat.gob.mx/consultas/35025/formato-de-factura-electronica-(anexo-20)"
+  },
+  {
+    "archivo": "05_traslado.xml",
+    "estado": "SINTETICO_NO_TIMBRADO_NO_VALIDADO_XSD",
+    "nota": "No contiene Carta Porte. No representa cumplimiento de un traslado real sujeto a dicho complemento.",
+    "fuente": "https://wwwmat.sat.gob.mx/consultas/35025/formato-de-factura-electronica-(anexo-20)"
+  },
+  {
+    "archivo": "06_nomina_parcial.xml",
+    "estado": "SINTETICO_NO_TIMBRADO_NO_VALIDADO_XSD",
+    "nota": "Ejemplo deliberadamente incompleto/no conforme: receptor y CURP placeholders, sin cuotas IMSS. No nómina integral. Vinculado C11.",
+    "fuente": "https://wwwmat.sat.gob.mx/consultas/35025/formato-de-factura-electronica-(anexo-20)"
+  }
+]

@@ -1,0 +1,261 @@
+[
+  {
+    "test": "intervalos_mensual",
+    "resultado": "PASS",
+    "detalle": "11 rangos, sin huecos en centavos; último superior abierto"
+  },
+  {
+    "test": "intervalos_anual",
+    "resultado": "PASS",
+    "detalle": "11 rangos, sin huecos en centavos; último superior abierto"
+  },
+  {
+    "test": "C01_P01",
+    "resultado": "PASS",
+    "cargos": "100000.00",
+    "abonos": "100000.00"
+  },
+  {
+    "test": "C02_P01",
+    "resultado": "PASS",
+    "cargos": "23200.00",
+    "abonos": "23200.00"
+  },
+  {
+    "test": "C03_P01",
+    "resultado": "PASS",
+    "cargos": "34800.00",
+    "abonos": "34800.00"
+  },
+  {
+    "test": "C03_P02",
+    "resultado": "PASS",
+    "cargos": "18000.00",
+    "abonos": "18000.00"
+  },
+  {
+    "test": "C04_P01",
+    "resultado": "PASS",
+    "cargos": "11600.00",
+    "abonos": "11600.00"
+  },
+  {
+    "test": "C04_P02",
+    "resultado": "PASS",
+    "cargos": "6000.00",
+    "abonos": "6000.00"
+  },
+  {
+    "test": "C04_P03",
+    "resultado": "PASS",
+    "cargos": "5800.00",
+    "abonos": "5800.00"
+  },
+  {
+    "test": "C04_P04",
+    "resultado": "PASS",
+    "cargos": "800.00",
+    "abonos": "800.00"
+  },
+  {
+    "test": "C05_P01",
+    "resultado": "PASS",
+    "cargos": "11600.00",
+    "abonos": "11600.00"
+  },
+  {
+    "test": "C05_P02",
+    "resultado": "PASS",
+    "cargos": "5800.00",
+    "abonos": "5800.00"
+  },
+  {
+    "test": "C05_P03",
+    "resultado": "PASS",
+    "cargos": "800.00",
+    "abonos": "800.00"
+  },
+  {
+    "test": "C06_P01",
+    "resultado": "PASS",
+    "cargos": "5800.00",
+    "abonos": "5800.00"
+  },
+  {
+    "test": "C06_P02",
+    "resultado": "PASS",
+    "cargos": "3000.00",
+    "abonos": "3000.00"
+  },
+  {
+    "test": "C07_P01",
+    "resultado": "PASS",
+    "cargos": "13920.00",
+    "abonos": "13920.00"
+  },
+  {
+    "test": "C07_P02",
+    "resultado": "PASS",
+    "cargos": "1000.00",
+    "abonos": "1000.00"
+  },
+  {
+    "test": "C08_P01",
+    "resultado": "PASS",
+    "cargos": "116.00",
+    "abonos": "116.00"
+  },
+  {
+    "test": "C08_P02",
+    "resultado": "PASS",
+    "cargos": "736.00",
+    "abonos": "736.00"
+  },
+  {
+    "test": "C09_P01",
+    "resultado": "PASS",
+    "cargos": "4800.00",
+    "abonos": "4800.00"
+  },
+  {
+    "test": "C09_P02",
+    "resultado": "PASS",
+    "cargos": "1600.00",
+    "abonos": "1600.00"
+  },
+  {
+    "test": "C10_P01",
+    "resultado": "PASS",
+    "cargos": "27840.00",
+    "abonos": "27840.00"
+  },
+  {
+    "test": "C10_P02",
+    "resultado": "PASS",
+    "cargos": "800.00",
+    "abonos": "800.00"
+  },
+  {
+    "test": "C11_P01",
+    "resultado": "PASS",
+    "cargos": "15000.00",
+    "abonos": "15000.00"
+  },
+  {
+    "test": "C11_P02",
+    "resultado": "PASS",
+    "cargos": "13597.18",
+    "abonos": "13597.18"
+  },
+  {
+    "test": "C12_P01",
+    "resultado": "PASS",
+    "cargos": "10000.00",
+    "abonos": "10000.00"
+  },
+  {
+    "test": "C13_P01",
+    "resultado": "PASS",
+    "cargos": "1160.00",
+    "abonos": "1160.00"
+  },
+  {
+    "test": "C14_P01",
+    "resultado": "PASS",
+    "cargos": "1392.00",
+    "abonos": "1392.00"
+  },
+  {
+    "test": "C14_P02",
+    "resultado": "PASS",
+    "cargos": "2784.00",
+    "abonos": "2784.00"
+  },
+  {
+    "test": "C14_P03",
+    "resultado": "PASS",
+    "cargos": "1240.00",
+    "abonos": "1240.00"
+  },
+  {
+    "test": "C11_ISR_15000",
+    "resultado": "PASS",
+    "valor": "1402.82"
+  },
+  {
+    "test": "C12_ISR_10000",
+    "resultado": "PASS",
+    "valor": "729.02"
+  },
+  {
+    "test": "C12_subsidio_feb",
+    "resultado": "PASS",
+    "valor": "535.65"
+  },
+  {
+    "test": "C08_diferencia_deliberada",
+    "resultado": "PASS",
+    "valor": "1000.00",
+    "nota": "No se debe forzar a cero"
+  },
+  {
+    "test": "XML_parse_01_ingreso_PUE.xml",
+    "resultado": "PASS",
+    "nota": "Solo sintaxis XML, no validación fiscal ni XSD"
+  },
+  {
+    "test": "XML_parse_02_ingreso_PPD.xml",
+    "resultado": "PASS",
+    "nota": "Solo sintaxis XML, no validación fiscal ni XSD"
+  },
+  {
+    "test": "XML_parse_03_egreso.xml",
+    "resultado": "PASS",
+    "nota": "Solo sintaxis XML, no validación fiscal ni XSD"
+  },
+  {
+    "test": "XML_parse_04_pago_parcial.xml",
+    "resultado": "PASS",
+    "nota": "Solo sintaxis XML, no validación fiscal ni XSD"
+  },
+  {
+    "test": "XML_parse_05_traslado.xml",
+    "resultado": "PASS",
+    "nota": "Solo sintaxis XML, no validación fiscal ni XSD"
+  },
+  {
+    "test": "XML_parse_06_nomina_parcial.xml",
+    "resultado": "PASS",
+    "nota": "Solo sintaxis XML, no validación fiscal ni XSD"
+  },
+  {
+    "test": "Excel_abre_catalogo_inicial.xlsx",
+    "resultado": "PASS",
+    "hojas": 2
+  },
+  {
+    "test": "Excel_abre_casos_resueltos.xlsx",
+    "resultado": "PASS",
+    "hojas": 15
+  },
+  {
+    "test": "Excel_abre_papeles_trabajo_checklist.xlsx",
+    "resultado": "PASS",
+    "hojas": 8
+  },
+  {
+    "test": "Excel_abre_parametros_2026.xlsx",
+    "resultado": "PASS",
+    "hojas": 11
+  },
+  {
+    "test": "Excel_abre_pendientes_validacion.xlsx",
+    "resultado": "PASS",
+    "hojas": 1
+  },
+  {
+    "test": "Excel_abre_puestos_funciones_sueldos.xlsx",
+    "resultado": "PASS",
+    "hojas": 3
+  }
+]

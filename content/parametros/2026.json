@@ -1,0 +1,870 @@
+{
+ "ejercicio": 2026,
+ "advertencia": "Material educativo v0.1. No usar para declarar ni pagar.",
+ "isr_mensual_art96": [
+  {
+   "limite_inferior": 1,
+   "limite_superior": 84459,
+   "cuota_fija": 0,
+   "tasa_pct": 1.92,
+   "articulo": "96",
+   "fuente_id": "ISR_INDETEC",
+   "estado": "Transcrito de fuente institucional; revisar Anexo 8 original"
+  },
+  {
+   "limite_inferior": 84460,
+   "limite_superior": 716851,
+   "cuota_fija": 1622,
+   "tasa_pct": 6.4,
+   "articulo": "96",
+   "fuente_id": "ISR_INDETEC",
+   "estado": "Transcrito de fuente institucional; revisar Anexo 8 original"
+  },
+  {
+   "limite_inferior": 716852,
+   "limite_superior": 1259802,
+   "cuota_fija": 42095,
+   "tasa_pct": 10.88,
+   "articulo": "96",
+   "fuente_id": "ISR_INDETEC",
+   "estado": "Transcrito de fuente institucional; revisar Anexo 8 original"
+  },
+  {
+   "limite_inferior": 1259803,
+   "limite_superior": 1464464,
+   "cuota_fija": 101168,
+   "tasa_pct": 16,
+   "articulo": "96",
+   "fuente_id": "ISR_INDETEC",
+   "estado": "Transcrito de fuente institucional; revisar Anexo 8 original"
+  },
+  {
+   "limite_inferior": 1464465,
+   "limite_superior": 1753364,
+   "cuota_fija": 133914,
+   "tasa_pct": 17.92,
+   "articulo": "96",
+   "fuente_id": "ISR_INDETEC",
+   "estado": "Transcrito de fuente institucional; revisar Anexo 8 original"
+  },
+  {
+   "limite_inferior": 1753365,
+   "limite_superior": 3536283,
+   "cuota_fija": 185684,
+   "tasa_pct": 21.36,
+   "articulo": "96",
+   "fuente_id": "ISR_INDETEC",
+   "estado": "Transcrito de fuente institucional; revisar Anexo 8 original"
+  },
+  {
+   "limite_inferior": 3536284,
+   "limite_superior": 5573668,
+   "cuota_fija": 566516,
+   "tasa_pct": 23.52,
+   "articulo": "96",
+   "fuente_id": "ISR_INDETEC",
+   "estado": "Transcrito de fuente institucional; revisar Anexo 8 original"
+  },
+  {
+   "limite_inferior": 5573669,
+   "limite_superior": 10641050,
+   "cuota_fija": 1045709,
+   "tasa_pct": 30,
+   "articulo": "96",
+   "fuente_id": "ISR_INDETEC",
+   "estado": "Transcrito de fuente institucional; revisar Anexo 8 original"
+  },
+  {
+   "limite_inferior": 10641051,
+   "limite_superior": 14188066,
+   "cuota_fija": 2565923,
+   "tasa_pct": 32,
+   "articulo": "96",
+   "fuente_id": "ISR_INDETEC",
+   "estado": "Transcrito de fuente institucional; revisar Anexo 8 original"
+  },
+  {
+   "limite_inferior": 14188067,
+   "limite_superior": 42564199,
+   "cuota_fija": 3700969,
+   "tasa_pct": 34,
+   "articulo": "96",
+   "fuente_id": "ISR_INDETEC",
+   "estado": "Transcrito de fuente institucional; revisar Anexo 8 original"
+  },
+  {
+   "limite_inferior": 42564200,
+   "limite_superior": null,
+   "cuota_fija": 13348854,
+   "tasa_pct": 35,
+   "articulo": "96",
+   "fuente_id": "ISR_INDETEC",
+   "estado": "Transcrito de fuente institucional; revisar Anexo 8 original"
+  }
+ ],
+ "isr_anual": [
+  {
+   "limite_inferior": 1,
+   "limite_superior": 1013511,
+   "cuota_fija": 0,
+   "tasa_pct": 1.92,
+   "articulo": "97 y 152",
+   "fuente_id": "ISR_INDETEC",
+   "estado": "Transcrito de fuente institucional; revisar Anexo 8 original"
+  },
+  {
+   "limite_inferior": 1013512,
+   "limite_superior": 8602211,
+   "cuota_fija": 19459,
+   "tasa_pct": 6.4,
+   "articulo": "97 y 152",
+   "fuente_id": "ISR_INDETEC",
+   "estado": "Transcrito de fuente institucional; revisar Anexo 8 original"
+  },
+  {
+   "limite_inferior": 8602212,
+   "limite_superior": 15117619,
+   "cuota_fija": 505137,
+   "tasa_pct": 10.88,
+   "articulo": "97 y 152",
+   "fuente_id": "ISR_INDETEC",
+   "estado": "Transcrito de fuente institucional; revisar Anexo 8 original"
+  },
+  {
+   "limite_inferior": 15117620,
+   "limite_superior": 17573566,
+   "cuota_fija": 1214013,
+   "tasa_pct": 16,
+   "articulo": "97 y 152",
+   "fuente_id": "ISR_INDETEC",
+   "estado": "Transcrito de fuente institucional; revisar Anexo 8 original"
+  },
+  {
+   "limite_inferior": 17573567,
+   "limite_superior": 21040369,
+   "cuota_fija": 1606964,
+   "tasa_pct": 17.92,
+   "articulo": "97 y 152",
+   "fuente_id": "ISR_INDETEC",
+   "estado": "Transcrito de fuente institucional; revisar Anexo 8 original"
+  },
+  {
+   "limite_inferior": 21040370,
+   "limite_superior": 42435397,
+   "cuota_fija": 2228214,
+   "tasa_pct": 21.36,
+   "articulo": "97 y 152",
+   "fuente_id": "ISR_INDETEC",
+   "estado": "Transcrito de fuente institucional; revisar Anexo 8 original"
+  },
+  {
+   "limite_inferior": 42435398,
+   "limite_superior": 66884014,
+   "cuota_fija": 6798192,
+   "tasa_pct": 23.52,
+   "articulo": "97 y 152",
+   "fuente_id": "ISR_INDETEC",
+   "estado": "Transcrito de fuente institucional; revisar Anexo 8 original"
+  },
+  {
+   "limite_inferior": 66884015,
+   "limite_superior": 127692598,
+   "cuota_fija": 12548507,
+   "tasa_pct": 30,
+   "articulo": "97 y 152",
+   "fuente_id": "ISR_INDETEC",
+   "estado": "Transcrito de fuente institucional; revisar Anexo 8 original"
+  },
+  {
+   "limite_inferior": 127692599,
+   "limite_superior": 170256797,
+   "cuota_fija": 30791081,
+   "tasa_pct": 32,
+   "articulo": "97 y 152",
+   "fuente_id": "ISR_INDETEC",
+   "estado": "Transcrito de fuente institucional; revisar Anexo 8 original"
+  },
+  {
+   "limite_inferior": 170256798,
+   "limite_superior": 510770392,
+   "cuota_fija": 44411623,
+   "tasa_pct": 34,
+   "articulo": "97 y 152",
+   "fuente_id": "ISR_INDETEC",
+   "estado": "Transcrito de fuente institucional; revisar Anexo 8 original"
+  },
+  {
+   "limite_inferior": 510770393,
+   "limite_superior": null,
+   "cuota_fija": 160186246,
+   "tasa_pct": 35,
+   "articulo": "97 y 152",
+   "fuente_id": "ISR_INDETEC",
+   "estado": "Transcrito de fuente institucional; revisar Anexo 8 original"
+  }
+ ],
+ "uma": [
+  {
+   "desde": "2026-01-01",
+   "hasta": "2026-01-31",
+   "diaria": 11314,
+   "mensual": 343946,
+   "anual": 4127352,
+   "fuente_id": "UMA"
+  },
+  {
+   "desde": "2026-02-01",
+   "hasta": "2026-12-31",
+   "diaria": 11731,
+   "mensual": 356622,
+   "anual": 4279464,
+   "fuente_id": "UMA"
+  }
+ ],
+ "salario_minimo": [
+  {
+   "zona": "General",
+   "desde": "2026-01-01",
+   "hasta": "2026-12-31",
+   "diario": 31504,
+   "fuente_id": "SM"
+  },
+  {
+   "zona": "ZLFN",
+   "desde": "2026-01-01",
+   "hasta": "2026-12-31",
+   "diario": 44087,
+   "fuente_id": "SM"
+  }
+ ],
+ "subsidio": [
+  {
+   "desde": "2026-01-01",
+   "hasta": "2026-01-31",
+   "limite_ingreso_mensual": 1149266,
+   "uma_mensual": 343946,
+   "porcentaje_uma": 15.59,
+   "cuota_publicada": 53621,
+   "fuente_id": "SUB",
+   "pendiente": "P08: considerando del decreto menciona 536.22"
+  },
+  {
+   "desde": "2026-02-01",
+   "hasta": "2026-12-31",
+   "limite_ingreso_mensual": 1149266,
+   "uma_mensual": 356622,
+   "porcentaje_uma": 15.02,
+   "cuota_publicada": 53565,
+   "fuente_id": "SUB",
+   "pendiente": "P08: considerando del decreto menciona 536.22"
+  }
+ ],
+ "solo_referencia": {
+  "nota": "habilitado_calculo=NO o estado pendiente: el motor no usa estas tablas.",
+  "cuotas_imss": [
+   {
+    "concepto": "EM cuota fija",
+    "base": "UMA diaria por días cotizados",
+    "patron_pct": 20.4,
+    "obrero_pct": 0,
+    "fundamento": "106 + transitorios",
+    "fuente_id": "IMSS_SEC",
+    "estado": "Pendiente cotejo transitorio primario"
+   },
+   {
+    "concepto": "EM excedente",
+    "base": "MAX(SBC diario - 3 UMA,0) por días",
+    "patron_pct": 1.1,
+    "obrero_pct": 0.4,
+    "fundamento": "106 + transitorios",
+    "fuente_id": "IMSS_SEC",
+    "estado": "Pendiente cotejo transitorio primario"
+   },
+   {
+    "concepto": "EM prestaciones dinero",
+    "base": "SBC por días",
+    "patron_pct": 0.7,
+    "obrero_pct": 0.25,
+    "fundamento": "107",
+    "fuente_id": "LSS",
+    "estado": "Cotejado artículo"
+   },
+   {
+    "concepto": "Gastos médicos pensionados",
+    "base": "SBC por días",
+    "patron_pct": 1.05,
+    "obrero_pct": 0.375,
+    "fundamento": "25",
+    "fuente_id": "LSS",
+    "estado": "Cotejado artículo"
+   },
+   {
+    "concepto": "Invalidez y vida",
+    "base": "SBC por días",
+    "patron_pct": 1.75,
+    "obrero_pct": 0.625,
+    "fundamento": "147",
+    "fuente_id": "LSS",
+    "estado": "Cotejado artículo"
+   },
+   {
+    "concepto": "Guarderías y prestaciones",
+    "base": "SBC por días",
+    "patron_pct": 1,
+    "obrero_pct": 0,
+    "fundamento": "211 y 212",
+    "fuente_id": "LSS",
+    "estado": "Cotejado artículo"
+   },
+   {
+    "concepto": "Retiro",
+    "base": "SBC por días",
+    "patron_pct": 2,
+    "obrero_pct": 0,
+    "fundamento": "168 I",
+    "fuente_id": "LSS",
+    "estado": "Cotejado artículo"
+   },
+   {
+    "concepto": "CEAV obrera",
+    "base": "SBC por días",
+    "patron_pct": null,
+    "obrero_pct": 1.125,
+    "fundamento": "168 II",
+    "fuente_id": "LSS",
+    "estado": "Patronal en hoja CEAV_2026"
+   },
+   {
+    "concepto": "Riesgos de trabajo",
+    "base": "SBC por días",
+    "patron_pct": null,
+    "obrero_pct": 0,
+    "fundamento": "72 a 74",
+    "fuente_id": "LSS",
+    "estado": "Prima variable por patrón: no usar tasa universal"
+   },
+   {
+    "concepto": "INFONAVIT",
+    "base": "Base y días según normativa aplicable",
+    "patron_pct": 5,
+    "obrero_pct": 0,
+    "fundamento": "Aportación vivienda",
+    "fuente_id": "IMSS_SEC",
+    "estado": "No es ramo IMSS; no incluye amortización crédito; cotejar LINFONAVIT"
+   }
+  ],
+  "ceav_2026": [
+   {
+    "rango_literal": "1.00 SM",
+    "patron_pct": 3.15,
+    "obrero_pct": 1.125,
+    "fuente_id": "CEAV",
+    "habilitado_calculo": "NO",
+    "advertencia": "Cotejar tabla transitoria decreto 16-12-2020; no interpretar primer rango como 1 UMA; probar fronteras con SUA."
+   },
+   {
+    "rango_literal": "1.01 SM a 1.50 UMA",
+    "patron_pct": 3.676,
+    "obrero_pct": 1.125,
+    "fuente_id": "CEAV",
+    "habilitado_calculo": "NO",
+    "advertencia": "Cotejar tabla transitoria decreto 16-12-2020; no interpretar primer rango como 1 UMA; probar fronteras con SUA."
+   },
+   {
+    "rango_literal": "1.51 a 2.00 UMA",
+    "patron_pct": 4.851,
+    "obrero_pct": 1.125,
+    "fuente_id": "CEAV",
+    "habilitado_calculo": "NO",
+    "advertencia": "Cotejar tabla transitoria decreto 16-12-2020; no interpretar primer rango como 1 UMA; probar fronteras con SUA."
+   },
+   {
+    "rango_literal": "2.01 a 2.50 UMA",
+    "patron_pct": 5.556,
+    "obrero_pct": 1.125,
+    "fuente_id": "CEAV",
+    "habilitado_calculo": "NO",
+    "advertencia": "Cotejar tabla transitoria decreto 16-12-2020; no interpretar primer rango como 1 UMA; probar fronteras con SUA."
+   },
+   {
+    "rango_literal": "2.51 a 3.00 UMA",
+    "patron_pct": 6.026,
+    "obrero_pct": 1.125,
+    "fuente_id": "CEAV",
+    "habilitado_calculo": "NO",
+    "advertencia": "Cotejar tabla transitoria decreto 16-12-2020; no interpretar primer rango como 1 UMA; probar fronteras con SUA."
+   },
+   {
+    "rango_literal": "3.01 a 3.50 UMA",
+    "patron_pct": 6.361,
+    "obrero_pct": 1.125,
+    "fuente_id": "CEAV",
+    "habilitado_calculo": "NO",
+    "advertencia": "Cotejar tabla transitoria decreto 16-12-2020; no interpretar primer rango como 1 UMA; probar fronteras con SUA."
+   },
+   {
+    "rango_literal": "3.51 a 4.00 UMA",
+    "patron_pct": 6.613,
+    "obrero_pct": 1.125,
+    "fuente_id": "CEAV",
+    "habilitado_calculo": "NO",
+    "advertencia": "Cotejar tabla transitoria decreto 16-12-2020; no interpretar primer rango como 1 UMA; probar fronteras con SUA."
+   },
+   {
+    "rango_literal": "4.01 UMA en adelante",
+    "patron_pct": 7.513,
+    "obrero_pct": 1.125,
+    "fuente_id": "CEAV",
+    "habilitado_calculo": "NO",
+    "advertencia": "Cotejar tabla transitoria decreto 16-12-2020; no interpretar primer rango como 1 UMA; probar fronteras con SUA."
+   }
+  ],
+  "isn": [
+   {
+    "entidad": "Aguascalientes",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 2.5,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   },
+   {
+    "entidad": "Baja California",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 4.25,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   },
+   {
+    "entidad": "Baja California Sur",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 3,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   },
+   {
+    "entidad": "Campeche",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 3,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   },
+   {
+    "entidad": "Chiapas",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 3,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   },
+   {
+    "entidad": "Chihuahua",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 4,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Referencia 4%; adicionales pueden modificar carga efectiva. Cotejar transitorios 2026."
+   },
+   {
+    "entidad": "Ciudad de México",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 4,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   },
+   {
+    "entidad": "Coahuila",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 3,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   },
+   {
+    "entidad": "Colima",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 3,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   },
+   {
+    "entidad": "Durango",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 3,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   },
+   {
+    "entidad": "Estado de México",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 3,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   },
+   {
+    "entidad": "Guanajuato",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 3,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   },
+   {
+    "entidad": "Guerrero",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 3,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   },
+   {
+    "entidad": "Hidalgo",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 3,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   },
+   {
+    "entidad": "Jalisco",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 3,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Fuente secundaria indica 5% asimilados; cotejar ley y supuesto."
+   },
+   {
+    "entidad": "Michoacán",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 3,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   },
+   {
+    "entidad": "Morelos",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 3,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   },
+   {
+    "entidad": "Nayarit",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 3,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   },
+   {
+    "entidad": "Nuevo León",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 3,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   },
+   {
+    "entidad": "Oaxaca",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 3,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   },
+   {
+    "entidad": "Puebla",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 3,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   },
+   {
+    "entidad": "Querétaro",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 3,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   },
+   {
+    "entidad": "Quintana Roo",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 4,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   },
+   {
+    "entidad": "San Luis Potosí",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 3,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   },
+   {
+    "entidad": "Sinaloa",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": null,
+    "min_pct": 2.4,
+    "max_pct": 3,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Tarifa progresiva 2.4%–3%; faltan umbrales oficiales. No tasa única."
+   },
+   {
+    "entidad": "Sonora",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 3,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   },
+   {
+    "entidad": "Tabasco",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 3.5,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   },
+   {
+    "entidad": "Tamaulipas",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 3,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   },
+   {
+    "entidad": "Tlaxcala",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 3,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   },
+   {
+    "entidad": "Veracruz",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 3,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   },
+   {
+    "entidad": "Yucatán",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 3.75,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   },
+   {
+    "entidad": "Zacatecas",
+    "ejercicio": 2026,
+    "tasa_referencia_pct": 3.5,
+    "min_pct": null,
+    "max_pct": null,
+    "habilitado_calculo": "NO",
+    "estado": "SECUNDARIA_PENDIENTE_LEY_LOCAL",
+    "fuente_id": "ISN",
+    "nota": "Validar ley, base, exenciones, adicionales, plazos y reformas 2026."
+   }
+  ],
+  "inversiones_lisr": [
+   {
+    "bien": "Construcciones generales",
+    "maximo_anual_pct": 5,
+    "articulo": "34 I b",
+    "condiciones": "No incluye terreno",
+    "fuente_id": "LISR"
+   },
+   {
+    "bien": "Mobiliario y equipo oficina",
+    "maximo_anual_pct": 10,
+    "articulo": "34 III",
+    "condiciones": null,
+    "fuente_id": "LISR"
+   },
+   {
+    "bien": "Embarcaciones",
+    "maximo_anual_pct": 6,
+    "articulo": "34 IV",
+    "condiciones": null,
+    "fuente_id": "LISR"
+   },
+   {
+    "bien": "Aviones aerofumigación agrícola",
+    "maximo_anual_pct": 25,
+    "articulo": "34 V a",
+    "condiciones": null,
+    "fuente_id": "LISR"
+   },
+   {
+    "bien": "Otros aviones",
+    "maximo_anual_pct": 10,
+    "articulo": "34 V b",
+    "condiciones": "Revisar límites y requisitos art. 36",
+    "fuente_id": "LISR"
+   },
+   {
+    "bien": "Automóviles y vehículos art.34 VI",
+    "maximo_anual_pct": 25,
+    "articulo": "34 VI",
+    "condiciones": "Automóviles: límite MOI 175000; supuestos eléctricos 250000 art.36 II. No extender límite a todo vehículo.",
+    "fuente_id": "LISR"
+   },
+   {
+    "bien": "Equipo cómputo listado legal",
+    "maximo_anual_pct": 30,
+    "articulo": "34 VII",
+    "condiciones": null,
+    "fuente_id": "LISR"
+   },
+   {
+    "bien": "Dados troqueles moldes matrices herramental",
+    "maximo_anual_pct": 35,
+    "articulo": "34 VIII",
+    "condiciones": null,
+    "fuente_id": "LISR"
+   },
+   {
+    "bien": "Semovientes y vegetales",
+    "maximo_anual_pct": 100,
+    "articulo": "34 IX",
+    "condiciones": null,
+    "fuente_id": "LISR"
+   },
+   {
+    "bien": "Adaptaciones para discapacidad",
+    "maximo_anual_pct": 100,
+    "articulo": "34 XII",
+    "condiciones": "Ver supuesto legal",
+    "fuente_id": "LISR"
+   },
+   {
+    "bien": "Energías renovables y cogeneración eficiente",
+    "maximo_anual_pct": 100,
+    "articulo": "34 XIII",
+    "condiciones": "Condición de operación mínima 5 años y excepciones legales",
+    "fuente_id": "LISR"
+   },
+   {
+    "bien": "Bicicletas y motocicletas eléctricas supuesto legal",
+    "maximo_anual_pct": 25,
+    "articulo": "34 XIV",
+    "condiciones": null,
+    "fuente_id": "LISR"
+   },
+   {
+    "bien": "Usufructo sobre inmueble",
+    "maximo_anual_pct": 5,
+    "articulo": "34 XV",
+    "condiciones": null,
+    "fuente_id": "LISR"
+   }
+  ]
+ }
+}

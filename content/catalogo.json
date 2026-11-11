@@ -1,0 +1,513 @@
+[
+ {
+  "cuenta": "SIM-101-01",
+  "nombre": "Caja y efectivo",
+  "agrupador": "101.01",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-102-01",
+  "nombre": "Bancos nacionales",
+  "agrupador": "102.01",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-102-02",
+  "nombre": "Bancos extranjeros",
+  "agrupador": "102.02",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-105-01",
+  "nombre": "Clientes nacionales",
+  "agrupador": "105.01",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-107-01",
+  "nombre": "Funcionarios y empleados",
+  "agrupador": "107.01",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-107-05",
+  "nombre": "Otros deudores diversos",
+  "agrupador": "107.05",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-108-01",
+  "nombre": "Estimación de cuentas incobrables nacional",
+  "agrupador": "108.01",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-109-01",
+  "nombre": "Seguros y fianzas pagados por anticipado nacional",
+  "agrupador": "109.01",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-109-05",
+  "nombre": "Rentas pagadas por anticipado nacional",
+  "agrupador": "109.05",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-113-01",
+  "nombre": "IVA a favor",
+  "agrupador": "113.01",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-113-02",
+  "nombre": "ISR a favor",
+  "agrupador": "113.02",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-114-01",
+  "nombre": "Pagos provisionales de ISR",
+  "agrupador": "114.01",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-115-01",
+  "nombre": "Inventario",
+  "agrupador": "115.01",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-115-02",
+  "nombre": "Materia prima y materiales",
+  "agrupador": "115.02",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-115-03",
+  "nombre": "Producción en proceso",
+  "agrupador": "115.03",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-115-04",
+  "nombre": "Productos terminados",
+  "agrupador": "115.04",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-118-01",
+  "nombre": "IVA acreditable pagado",
+  "agrupador": "118.01",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-119-01",
+  "nombre": "IVA pendiente de pago",
+  "agrupador": "119.01",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-120-01",
+  "nombre": "Anticipo a proveedores nacional",
+  "agrupador": "120.01",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-151-01",
+  "nombre": "Terrenos",
+  "agrupador": "151.01",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-152-01",
+  "nombre": "Edificios",
+  "agrupador": "152.01",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-153-01",
+  "nombre": "Maquinaria y equipo",
+  "agrupador": "153.01",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-154-01",
+  "nombre": "Vehículos art. agrupador 154.01",
+  "agrupador": "154.01",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-155-01",
+  "nombre": "Mobiliario y equipo de oficina",
+  "agrupador": "155.01",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-156-01",
+  "nombre": "Equipo de cómputo",
+  "agrupador": "156.01",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-171-04",
+  "nombre": "Depreciación acumulada mobiliario",
+  "agrupador": "171.04",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-171-05",
+  "nombre": "Depreciación acumulada cómputo",
+  "agrupador": "171.05",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-184-02",
+  "nombre": "Depósitos de arrendamiento de bienes inmuebles",
+  "agrupador": "184.02",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-201-01",
+  "nombre": "Proveedores nacionales",
+  "agrupador": "201.01",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-202-01",
+  "nombre": "Documentos por pagar bancario nacional",
+  "agrupador": "202.01",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-205-02",
+  "nombre": "Acreedores diversos nacional",
+  "agrupador": "205.02",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-206-01",
+  "nombre": "Anticipo de cliente nacional",
+  "agrupador": "206.01",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-208-01",
+  "nombre": "IVA trasladado cobrado",
+  "agrupador": "208.01",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-209-01",
+  "nombre": "IVA trasladado no cobrado",
+  "agrupador": "209.01",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-210-01",
+  "nombre": "Sueldos y salarios por pagar",
+  "agrupador": "210.01",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-210-02",
+  "nombre": "Vacaciones por pagar",
+  "agrupador": "210.02",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-210-03",
+  "nombre": "Aguinaldo por pagar",
+  "agrupador": "210.03",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-211-01",
+  "nombre": "IMSS patronal por pagar",
+  "agrupador": "211.01",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-211-02",
+  "nombre": "SAR por pagar",
+  "agrupador": "211.02",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-211-03",
+  "nombre": "INFONAVIT por pagar",
+  "agrupador": "211.03",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-212-01",
+  "nombre": "Provisión ISN por pagar",
+  "agrupador": "212.01",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-213-01",
+  "nombre": "IVA por pagar",
+  "agrupador": "213.01",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-213-03",
+  "nombre": "ISR por pagar",
+  "agrupador": "213.03",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-215-01",
+  "nombre": "PTU por pagar",
+  "agrupador": "215.01",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-216-01",
+  "nombre": "ISR retenido sueldos",
+  "agrupador": "216.01",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-216-04",
+  "nombre": "ISR retenido honorarios",
+  "agrupador": "216.04",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-216-10",
+  "nombre": "IVA retenido",
+  "agrupador": "216.10",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-216-11",
+  "nombre": "IMSS retenido trabajadores",
+  "agrupador": "216.11",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-301-01",
+  "nombre": "Capital fijo",
+  "agrupador": "301.01",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-301-02",
+  "nombre": "Capital variable",
+  "agrupador": "301.02",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-303-01",
+  "nombre": "Reserva legal",
+  "agrupador": "303.01",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-304-01",
+  "nombre": "Utilidad ejercicios anteriores",
+  "agrupador": "304.01",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-305-01",
+  "nombre": "Utilidad ejercicio",
+  "agrupador": "305.01",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-401-02",
+  "nombre": "Ventas gravadas contado",
+  "agrupador": "401.02",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-401-03",
+  "nombre": "Ventas gravadas crédito",
+  "agrupador": "401.03",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-401-04",
+  "nombre": "Ventas tasa cero",
+  "agrupador": "401.04",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-401-07",
+  "nombre": "Ventas exentas",
+  "agrupador": "401.07",
+  "naturaleza": "A",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-402-01",
+  "nombre": "Devoluciones ventas tasa general",
+  "agrupador": "402.01",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-501-01",
+  "nombre": "Costo de venta",
+  "agrupador": "501.01",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-601-01",
+  "nombre": "Sueldos y salarios",
+  "agrupador": "601.01",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-601-12",
+  "nombre": "Aguinaldo",
+  "agrupador": "601.12",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-601-26",
+  "nombre": "Cuotas al IMSS",
+  "agrupador": "601.26",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-601-27",
+  "nombre": "Aportaciones INFONAVIT",
+  "agrupador": "601.27",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-601-28",
+  "nombre": "Aportaciones SAR",
+  "agrupador": "601.28",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-601-29",
+  "nombre": "ISN gasto",
+  "agrupador": "601.29",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-601-34",
+  "nombre": "Honorarios PF nacionales",
+  "agrupador": "601.34",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-601-38",
+  "nombre": "Honorarios PM nacionales",
+  "agrupador": "601.38",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-601-46",
+  "nombre": "Arrendamiento PM nacionales",
+  "agrupador": "601.46",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-601-50",
+  "nombre": "Teléfono internet",
+  "agrupador": "601.50",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-601-55",
+  "nombre": "Papelería y artículos oficina",
+  "agrupador": "601.55",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-601-57",
+  "nombre": "Seguros y fianzas",
+  "agrupador": "601.57",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-601-83",
+  "nombre": "Gastos no deducibles sin requisitos fiscales",
+  "agrupador": "601.83",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ },
+ {
+  "cuenta": "SIM-601-84",
+  "nombre": "Otros gastos generales",
+  "agrupador": "601.84",
+  "naturaleza": "D",
+  "estado": "PENDIENTE_COTEJO_2026"
+ }
+]

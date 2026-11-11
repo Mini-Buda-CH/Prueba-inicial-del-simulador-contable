@@ -1,0 +1,738 @@
+[
+ {
+  "id": "C01",
+  "titulo": "Aportación inicial",
+  "enunciado": "Socios aportan $100000 por transferencia a una PM.",
+  "movimientos": [
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-102-01",
+    "cargo": 10000000,
+    "abono": 0
+   },
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-301-01",
+    "cargo": 0,
+    "abono": 10000000
+   }
+  ],
+  "resultados": [
+   {
+    "concepto": "Bancos",
+    "valor": 10000000
+   },
+   {
+    "concepto": "Capital",
+    "valor": 10000000
+   }
+  ],
+  "supuestos": "Aportación formalizada; sin venta ni IVA.",
+  "fuente_id": "CAT",
+  "estado": "PENDIENTE_VALIDACION"
+ },
+ {
+  "id": "C02",
+  "titulo": "Compra pagada",
+  "enunciado": "Comprar mercancía por $20000 más IVA 16%, pagada al proveedor PM.",
+  "movimientos": [
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-115-01",
+    "cargo": 2000000,
+    "abono": 0
+   },
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-118-01",
+    "cargo": 320000,
+    "abono": 0
+   },
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-102-01",
+    "cargo": 0,
+    "abono": 2320000
+   }
+  ],
+  "resultados": [
+   {
+    "concepto": "Inventario",
+    "valor": 2000000
+   },
+   {
+    "concepto": "IVA acreditable",
+    "valor": 320000
+   },
+   {
+    "concepto": "Salida banco",
+    "valor": 2320000
+   }
+  ],
+  "supuestos": "Operación nacional; requisitos de acreditamiento satisfechos; sin retenciones.",
+  "fuente_id": "LIVA",
+  "estado": "PENDIENTE_VALIDACION"
+ },
+ {
+  "id": "C03",
+  "titulo": "Venta contado y costo",
+  "enunciado": "Vender mercancía por $30000 más IVA; costo $18000.",
+  "movimientos": [
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-102-01",
+    "cargo": 3480000,
+    "abono": 0
+   },
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-401-02",
+    "cargo": 0,
+    "abono": 3000000
+   },
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-208-01",
+    "cargo": 0,
+    "abono": 480000
+   },
+   {
+    "poliza": "P02",
+    "cuenta": "SIM-501-01",
+    "cargo": 1800000,
+    "abono": 0
+   },
+   {
+    "poliza": "P02",
+    "cuenta": "SIM-115-01",
+    "cargo": 0,
+    "abono": 1800000
+   }
+  ],
+  "resultados": [
+   {
+    "concepto": "Utilidad bruta",
+    "valor": 1200000
+   },
+   {
+    "concepto": "IVA trasladado cobrado",
+    "valor": 480000
+   }
+  ],
+  "supuestos": "Inventario inicial suficiente; operación gravada 16%; sin retenciones.",
+  "fuente_id": "LIVA",
+  "estado": "PENDIENTE_VALIDACION"
+ },
+ {
+  "id": "C04",
+  "titulo": "Venta crédito y cobro parcial",
+  "enunciado": "Venta de $10000 + IVA; costo $6000. Se cobra la mitad de la factura.",
+  "movimientos": [
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-105-01",
+    "cargo": 1160000,
+    "abono": 0
+   },
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-401-03",
+    "cargo": 0,
+    "abono": 1000000
+   },
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-209-01",
+    "cargo": 0,
+    "abono": 160000
+   },
+   {
+    "poliza": "P02",
+    "cuenta": "SIM-501-01",
+    "cargo": 600000,
+    "abono": 0
+   },
+   {
+    "poliza": "P02",
+    "cuenta": "SIM-115-01",
+    "cargo": 0,
+    "abono": 600000
+   },
+   {
+    "poliza": "P03",
+    "cuenta": "SIM-102-01",
+    "cargo": 580000,
+    "abono": 0
+   },
+   {
+    "poliza": "P03",
+    "cuenta": "SIM-105-01",
+    "cargo": 0,
+    "abono": 580000
+   },
+   {
+    "poliza": "P04",
+    "cuenta": "SIM-209-01",
+    "cargo": 80000,
+    "abono": 0
+   },
+   {
+    "poliza": "P04",
+    "cuenta": "SIM-208-01",
+    "cargo": 0,
+    "abono": 80000
+   }
+  ],
+  "resultados": [
+   {
+    "concepto": "Clientes pendiente",
+    "valor": 580000
+   },
+   {
+    "concepto": "IVA cobrado",
+    "valor": 80000
+   },
+   {
+    "concepto": "IVA no cobrado",
+    "valor": 80000
+   }
+  ],
+  "supuestos": "Cobro proporcional; CFDI PPD y complemento simulado; sin descuentos ni retenciones.",
+  "fuente_id": "LIVA",
+  "estado": "PENDIENTE_VALIDACION"
+ },
+ {
+  "id": "C05",
+  "titulo": "Compra crédito y pago parcial",
+  "enunciado": "Compra $10000 más IVA, pagar 50%.",
+  "movimientos": [
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-115-01",
+    "cargo": 1000000,
+    "abono": 0
+   },
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-119-01",
+    "cargo": 160000,
+    "abono": 0
+   },
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-201-01",
+    "cargo": 0,
+    "abono": 1160000
+   },
+   {
+    "poliza": "P02",
+    "cuenta": "SIM-201-01",
+    "cargo": 580000,
+    "abono": 0
+   },
+   {
+    "poliza": "P02",
+    "cuenta": "SIM-102-01",
+    "cargo": 0,
+    "abono": 580000
+   },
+   {
+    "poliza": "P03",
+    "cuenta": "SIM-118-01",
+    "cargo": 80000,
+    "abono": 0
+   },
+   {
+    "poliza": "P03",
+    "cuenta": "SIM-119-01",
+    "cargo": 0,
+    "abono": 80000
+   }
+  ],
+  "resultados": [
+   {
+    "concepto": "Proveedores pendiente",
+    "valor": 580000
+   },
+   {
+    "concepto": "IVA pagado",
+    "valor": 80000
+   },
+   {
+    "concepto": "IVA pendiente",
+    "valor": 80000
+   }
+  ],
+  "supuestos": "Requisitos acreditamiento satisfechos en la porción pagada.",
+  "fuente_id": "LIVA",
+  "estado": "PENDIENTE_VALIDACION"
+ },
+ {
+  "id": "C06",
+  "titulo": "Devolución de venta",
+  "enunciado": "De C03, devolver bienes con precio $5000 + IVA y costo $3000. Reembolsar al cliente.",
+  "movimientos": [
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-402-01",
+    "cargo": 500000,
+    "abono": 0
+   },
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-208-01",
+    "cargo": 80000,
+    "abono": 0
+   },
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-102-01",
+    "cargo": 0,
+    "abono": 580000
+   },
+   {
+    "poliza": "P02",
+    "cuenta": "SIM-115-01",
+    "cargo": 300000,
+    "abono": 0
+   },
+   {
+    "poliza": "P02",
+    "cuenta": "SIM-501-01",
+    "cargo": 0,
+    "abono": 300000
+   }
+  ],
+  "resultados": [
+   {
+    "concepto": "Reducción utilidad bruta",
+    "valor": 200000
+   },
+   {
+    "concepto": "Reembolso",
+    "valor": 580000
+   }
+  ],
+  "supuestos": "Devolución y reembolso mismo periodo; mercancía utilizable; reversión del IVA soportada; CFDI egreso relacionado.",
+  "fuente_id": "LIVA",
+  "estado": "PENDIENTE_VALIDACION"
+ },
+ {
+  "id": "C07",
+  "titulo": "Seguro anticipado",
+  "enunciado": "Pagar seguro anual $12000 + IVA el 1 enero. Aplicar un mes.",
+  "movimientos": [
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-109-01",
+    "cargo": 1200000,
+    "abono": 0
+   },
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-118-01",
+    "cargo": 192000,
+    "abono": 0
+   },
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-102-01",
+    "cargo": 0,
+    "abono": 1392000
+   },
+   {
+    "poliza": "P02",
+    "cuenta": "SIM-601-57",
+    "cargo": 100000,
+    "abono": 0
+   },
+   {
+    "poliza": "P02",
+    "cuenta": "SIM-109-01",
+    "cargo": 0,
+    "abono": 100000
+   }
+  ],
+  "resultados": [
+   {
+    "concepto": "Gasto del mes",
+    "valor": 100000
+   },
+   {
+    "concepto": "Anticipo remanente",
+    "valor": 1100000
+   }
+  ],
+  "supuestos": "Póliza gravada 16% para el ejercicio; cobertura uniforme 12 meses; acreditamiento satisfecho. No generalizar a seguros exentos.",
+  "fuente_id": "LIVA",
+  "estado": "PENDIENTE_VALIDACION"
+ },
+ {
+  "id": "C08",
+  "titulo": "Conciliación bancaria",
+  "enunciado": "Libro banco $50000. Banco $47620. Cheque pendiente $3000; depósito en tránsito $5000; banco cobró comisión $100 + IVA y abonó cobro cliente $736 sin registrar.",
+  "movimientos": [
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-601-84",
+    "cargo": 10000,
+    "abono": 0
+   },
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-118-01",
+    "cargo": 1600,
+    "abono": 0
+   },
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-102-01",
+    "cargo": 0,
+    "abono": 11600
+   },
+   {
+    "poliza": "P02",
+    "cuenta": "SIM-102-01",
+    "cargo": 73600,
+    "abono": 0
+   },
+   {
+    "poliza": "P02",
+    "cuenta": "SIM-105-01",
+    "cargo": 0,
+    "abono": 73600
+   }
+  ],
+  "resultados": [
+   {
+    "concepto": "Libro ajustado",
+    "valor": 5062000
+   },
+   {
+    "concepto": "Banco conciliado 47620+5000-3000",
+    "valor": 4962000
+   },
+   {
+    "concepto": "Diferencia pendiente",
+    "valor": 100000
+   }
+  ],
+  "supuestos": "Caso deliberadamente NO conciliado: solicitar soporte por $1000, no inventar póliza. Cliente proviene de operación sin IVA pendiente en este caso.",
+  "fuente_id": "LIVA",
+  "estado": "PENDIENTE_VALIDACION"
+ },
+ {
+  "id": "C09",
+  "titulo": "Determinación de IVA",
+  "enunciado": "Del mes: IVA cobrado $4800 y acreditable pagado $3200. Sin otras operaciones.",
+  "movimientos": [
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-208-01",
+    "cargo": 480000,
+    "abono": 0
+   },
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-118-01",
+    "cargo": 0,
+    "abono": 320000
+   },
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-213-01",
+    "cargo": 0,
+    "abono": 160000
+   },
+   {
+    "poliza": "P02",
+    "cuenta": "SIM-213-01",
+    "cargo": 160000,
+    "abono": 0
+   },
+   {
+    "poliza": "P02",
+    "cuenta": "SIM-102-01",
+    "cargo": 0,
+    "abono": 160000
+   }
+  ],
+  "resultados": [
+   {
+    "concepto": "IVA a cargo",
+    "valor": 160000
+   },
+   {
+    "concepto": "Pago",
+    "valor": 160000
+   }
+  ],
+  "supuestos": "Saldos previos indicados; todo acreditable; sin retenciones ni saldos a favor.",
+  "fuente_id": "LIVA",
+  "estado": "PENDIENTE_VALIDACION"
+ },
+ {
+  "id": "C10",
+  "titulo": "Equipo y depreciación",
+  "enunciado": "Comprar equipo cómputo por $24000 + IVA. Vida contable propuesta 36 meses y residual cero; aplicar un mes.",
+  "movimientos": [
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-156-01",
+    "cargo": 2400000,
+    "abono": 0
+   },
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-118-01",
+    "cargo": 384000,
+    "abono": 0
+   },
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-102-01",
+    "cargo": 0,
+    "abono": 2784000
+   },
+   {
+    "poliza": "P02",
+    "cuenta": "SIM-601-84",
+    "cargo": 80000,
+    "abono": 0
+   },
+   {
+    "poliza": "P02",
+    "cuenta": "SIM-171-05",
+    "cargo": 0,
+    "abono": 80000
+   }
+  ],
+  "resultados": [
+   {
+    "concepto": "Depreciación contable mensual",
+    "valor": 80000
+   },
+   {
+    "concepto": "Deducción fiscal anual nominal 30%",
+    "valor": 720000
+   },
+   {
+    "concepto": "Equivalente mensual fiscal solo comparativo",
+    "valor": 60000
+   }
+  ],
+  "supuestos": "Subcuenta gasto genérica didáctica: crear cuenta específica antes de publicar. Fiscal anual sin actualización, MOI 24000 y 12 meses completos; no equivale a deducción definitiva.",
+  "fuente_id": "LISR",
+  "estado": "PENDIENTE_VALIDACION"
+ },
+ {
+  "id": "C11",
+  "titulo": "ISR salarios sin subsidio",
+  "enunciado": "Sueldo gravado mensual $15000 en febrero 2026. Calcular ISR y registrar exclusivamente el componente sueldo/ISR.",
+  "movimientos": [
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-601-01",
+    "cargo": 1500000,
+    "abono": 0
+   },
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-216-01",
+    "cargo": 0,
+    "abono": 140282
+   },
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-210-01",
+    "cargo": 0,
+    "abono": 1359718
+   },
+   {
+    "poliza": "P02",
+    "cuenta": "SIM-210-01",
+    "cargo": 1359718,
+    "abono": 0
+   },
+   {
+    "poliza": "P02",
+    "cuenta": "SIM-102-01",
+    "cargo": 0,
+    "abono": 1359718
+   }
+  ],
+  "resultados": [
+   {
+    "concepto": "ISR",
+    "valor": 140282
+   },
+   {
+    "concepto": "Neto antes otras deducciones",
+    "valor": 1359718
+   },
+   {
+    "concepto": "Subsidio",
+    "valor": 0
+   }
+  ],
+  "supuestos": "Ejercicio parcial, no nómina integral: excluye IMSS y otras deducciones; ingreso excede límite subsidio.",
+  "fuente_id": "ISR_INDETEC",
+  "estado": "PENDIENTE_VALIDACION"
+ },
+ {
+  "id": "C12",
+  "titulo": "ISR con subsidio",
+  "enunciado": "Sueldo gravado mensual $10000 febrero 2026, trabajador elegible para subsidio. Determinar retención.",
+  "movimientos": [
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-601-01",
+    "cargo": 1000000,
+    "abono": 0
+   },
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-216-01",
+    "cargo": 0,
+    "abono": 19337
+   },
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-210-01",
+    "cargo": 0,
+    "abono": 980663
+   }
+  ],
+  "resultados": [
+   {
+    "concepto": "ISR antes subsidio",
+    "valor": 72902
+   },
+   {
+    "concepto": "Subsidio potencial",
+    "valor": 53565
+   },
+   {
+    "concepto": "ISR retenido",
+    "valor": 19337
+   },
+   {
+    "concepto": "Neto antes IMSS",
+    "valor": 980663
+   }
+  ],
+  "supuestos": "No nómina integral; un patrón, mes completo; sin pagos excluidos. La diferencia no se entrega como efectivo.",
+  "fuente_id": "SUB",
+  "estado": "PENDIENTE_VALIDACION"
+ },
+ {
+  "id": "C13",
+  "titulo": "Corrección de duplicado",
+  "enunciado": "Se capturó dos veces un gasto de papelería $1000+IVA pagado. Revertir el duplicado en el mismo periodo antes de declarar.",
+  "movimientos": [
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-102-01",
+    "cargo": 116000,
+    "abono": 0
+   },
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-601-55",
+    "cargo": 0,
+    "abono": 100000
+   },
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-118-01",
+    "cargo": 0,
+    "abono": 16000
+   }
+  ],
+  "resultados": [
+   {
+    "concepto": "Disminución gasto duplicado",
+    "valor": 100000
+   },
+   {
+    "concepto": "Disminución IVA indebido",
+    "valor": 16000
+   }
+  ],
+  "supuestos": "El pago duplicado solo fue registral, no bancario. No borrar evidencia ni aplicar esto a pago real duplicado.",
+  "fuente_id": "LIVA",
+  "estado": "PENDIENTE_VALIDACION"
+ },
+ {
+  "id": "C14",
+  "titulo": "Inventario PEPS",
+  "enunciado": "Inventario inicial 10 unidades a $100; comprar 10 a $120 + IVA, pagado. Vender 12 unidades a $200 + IVA contado; usar PEPS.",
+  "movimientos": [
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-115-01",
+    "cargo": 120000,
+    "abono": 0
+   },
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-118-01",
+    "cargo": 19200,
+    "abono": 0
+   },
+   {
+    "poliza": "P01",
+    "cuenta": "SIM-102-01",
+    "cargo": 0,
+    "abono": 139200
+   },
+   {
+    "poliza": "P02",
+    "cuenta": "SIM-102-01",
+    "cargo": 278400,
+    "abono": 0
+   },
+   {
+    "poliza": "P02",
+    "cuenta": "SIM-401-02",
+    "cargo": 0,
+    "abono": 240000
+   },
+   {
+    "poliza": "P02",
+    "cuenta": "SIM-208-01",
+    "cargo": 0,
+    "abono": 38400
+   },
+   {
+    "poliza": "P03",
+    "cuenta": "SIM-501-01",
+    "cargo": 124000,
+    "abono": 0
+   },
+   {
+    "poliza": "P03",
+    "cuenta": "SIM-115-01",
+    "cargo": 0,
+    "abono": 124000
+   }
+  ],
+  "resultados": [
+   {
+    "concepto": "Costo 10x100+2x120",
+    "valor": 124000
+   },
+   {
+    "concepto": "Inventario final 8x120",
+    "valor": 96000
+   },
+   {
+    "concepto": "Utilidad bruta",
+    "valor": 116000
+   }
+  ],
+  "supuestos": "Saldo inicial inventario $1000 y banco suficiente; sin fletes ni devoluciones.",
+  "fuente_id": "LIVA",
+  "estado": "PENDIENTE_VALIDACION"
+ }
+]

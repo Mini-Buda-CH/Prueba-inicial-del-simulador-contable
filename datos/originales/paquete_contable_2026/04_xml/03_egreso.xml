@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/4" Version="4.0" Serie="SIM" Folio="E001" Fecha="2026-02-15T12:00:00" Sello="" NoCertificado="00000000000000000000" Certificado="" SubTotal="200.00" Moneda="MXN" Total="232.00" TipoDeComprobante="E" Exportacion="01" LugarExpedicion="90000" MetodoPago="PUE" FormaPago="03">
+  <!--SIMULACION EDUCATIVA. DATOS SINTETICOS. NO TIMBRADO. SIN VALIDEZ FISCAL. NO ENVIAR A SAT/PAC.-->
+  <cfdi:Emisor Rfc="AAA010101AAA" Nombre="EMISOR FICTICIO SIMULADOR" RegimenFiscal="601" />
+  <cfdi:Receptor Rfc="XAXX010101000" Nombre="PUBLICO EN GENERAL" DomicilioFiscalReceptor="90000" RegimenFiscalReceptor="616" UsoCFDI="S01" />
+  <cfdi:CfdiRelacionados TipoRelacion="01">
+    <cfdi:CfdiRelacionado UUID="00000000-0000-4000-8000-000000000001" />
+  </cfdi:CfdiRelacionados>
+  <cfdi:Conceptos>
+    <cfdi:Concepto ClaveProdServ="01010101" Cantidad="1" ClaveUnidad="ACT" Descripcion="OPERACION DIDACTICA NO FISCAL" ValorUnitario="200.00" Importe="200.00" ObjetoImp="02">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="200.00" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="32.00" />
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+  </cfdi:Conceptos>
+  <cfdi:Impuestos TotalImpuestosTrasladados="32.00">
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="200.00" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="32.00" />
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+</cfdi:Comprobante>

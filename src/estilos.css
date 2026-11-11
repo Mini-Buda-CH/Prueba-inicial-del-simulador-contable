@@ -1,0 +1,46 @@
+:root {
+  --fondo: #f4f5f2; --panel: #ffffff; --texto: #1d2420; --suave: #5b665f; --borde: #d6dbd5;
+  --acento: #1f6f4a; --acento-texto: #ffffff; --ok: #e3f3e8; --error: #fbe7e4;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; color: var(--texto); background: var(--fondo);
+}
+@media (prefers-color-scheme: dark) {
+  :root { --fondo: #141816; --panel: #1d2320; --texto: #e6ebe7; --suave: #9aa59e; --borde: #333c37;
+    --acento: #4fbf86; --acento-texto: #0d130f; --ok: #1f3a2a; --error: #4a2420; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--fondo); }
+.app { display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; }
+.lateral { background: var(--panel); border-right: 1px solid var(--borde); padding: 20px 16px; }
+.lateral h1 { font-size: 1.15rem; margin: 0 0 16px; }
+.lateral h2 { font-size: .8rem; text-transform: uppercase; letter-spacing: .05em; color: var(--suave); margin: 24px 0 4px; }
+.titulo-leccion { margin: 0 0 8px; font-weight: 600; }
+.lateral ol { list-style: none; padding: 0; margin: 0; }
+.lateral li button { width: 100%; text-align: left; background: none; border: 0; padding: 6px 8px; border-radius: 6px; color: inherit; font: inherit; cursor: pointer; }
+.lateral li button.activo { background: var(--fondo); font-weight: 600; }
+.barra { height: 8px; background: var(--borde); border-radius: 4px; overflow: hidden; }
+.barra span { display: block; height: 100%; background: var(--acento); transition: width .3s; }
+.avance p { font-size: .85rem; color: var(--suave); margin: 6px 0 12px; }
+.aviso { font-size: .75rem; color: var(--suave); margin-top: 32px; }
+main { padding: 24px; max-width: 900px; }
+section { background: var(--panel); border: 1px solid var(--borde); border-radius: 10px; padding: 20px; margin-bottom: 20px; }
+section h2, section h3 { margin-top: 0; }
+.supuestos { color: var(--suave); font-size: .9rem; }
+.insignia { font-size: .75rem; background: var(--ok); padding: 2px 8px; border-radius: 99px; margin-left: 8px; vertical-align: middle; }
+table { width: 100%; border-collapse: collapse; }
+th { text-align: left; font-size: .8rem; color: var(--suave); padding: 4px; }
+td { padding: 4px; }
+select, input { width: 100%; padding: 8px; border: 1px solid var(--borde); border-radius: 6px; background: var(--fondo); color: inherit; font: inherit; }
+td:nth-child(2), td:nth-child(3) { width: 130px; }
+button { padding: 8px 14px; border: 1px solid var(--borde); border-radius: 6px; background: var(--panel); color: inherit; font: inherit; cursor: pointer; }
+button.primario { background: var(--acento); color: var(--acento-texto); border-color: var(--acento); }
+button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--acento); outline-offset: 2px; }
+.acciones { display: flex; gap: 8px; margin-top: 12px; }
+.ok, .error { margin-top: 12px; padding: 10px 14px; border-radius: 8px; }
+.ok { background: var(--ok); } .error { background: var(--error); }
+.ok p, .error p { margin: 4px 0; }
+@media (max-width: 720px) {
+  .app { grid-template-columns: 1fr; }
+  .lateral { border-right: 0; border-bottom: 1px solid var(--borde); }
+  main { padding: 16px; }
+  td:nth-child(2), td:nth-child(3) { width: 90px; }
+}

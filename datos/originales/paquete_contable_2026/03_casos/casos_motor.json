@@ -1,0 +1,724 @@
+[
+  {
+    "id": "C01",
+    "title": "Aportación inicial",
+    "prompt": "Socios aportan $100000 por transferencia a una PM.",
+    "entries": [
+      [
+        "P01",
+        "102.01",
+        100000,
+        0
+      ],
+      [
+        "P01",
+        "301.01",
+        0,
+        100000
+      ]
+    ],
+    "results": [
+      [
+        "Bancos",
+        100000
+      ],
+      [
+        "Capital",
+        100000
+      ]
+    ],
+    "assumptions": "Aportación formalizada; sin venta ni IVA.",
+    "source": "CAT"
+  },
+  {
+    "id": "C02",
+    "title": "Compra pagada",
+    "prompt": "Comprar mercancía por $20000 más IVA 16%, pagada al proveedor PM.",
+    "entries": [
+      [
+        "P01",
+        "115.01",
+        20000,
+        0
+      ],
+      [
+        "P01",
+        "118.01",
+        3200,
+        0
+      ],
+      [
+        "P01",
+        "102.01",
+        0,
+        23200
+      ]
+    ],
+    "results": [
+      [
+        "Inventario",
+        20000
+      ],
+      [
+        "IVA acreditable",
+        3200
+      ],
+      [
+        "Salida banco",
+        23200
+      ]
+    ],
+    "assumptions": "Operación nacional; requisitos de acreditamiento satisfechos; sin retenciones.",
+    "source": "LIVA"
+  },
+  {
+    "id": "C03",
+    "title": "Venta contado y costo",
+    "prompt": "Vender mercancía por $30000 más IVA; costo $18000.",
+    "entries": [
+      [
+        "P01",
+        "102.01",
+        34800,
+        0
+      ],
+      [
+        "P01",
+        "401.02",
+        0,
+        30000
+      ],
+      [
+        "P01",
+        "208.01",
+        0,
+        4800
+      ],
+      [
+        "P02",
+        "501.01",
+        18000,
+        0
+      ],
+      [
+        "P02",
+        "115.01",
+        0,
+        18000
+      ]
+    ],
+    "results": [
+      [
+        "Utilidad bruta",
+        12000
+      ],
+      [
+        "IVA trasladado cobrado",
+        4800
+      ]
+    ],
+    "assumptions": "Inventario inicial suficiente; operación gravada 16%; sin retenciones.",
+    "source": "LIVA"
+  },
+  {
+    "id": "C04",
+    "title": "Venta crédito y cobro parcial",
+    "prompt": "Venta de $10000 + IVA; costo $6000. Se cobra la mitad de la factura.",
+    "entries": [
+      [
+        "P01",
+        "105.01",
+        11600,
+        0
+      ],
+      [
+        "P01",
+        "401.03",
+        0,
+        10000
+      ],
+      [
+        "P01",
+        "209.01",
+        0,
+        1600
+      ],
+      [
+        "P02",
+        "501.01",
+        6000,
+        0
+      ],
+      [
+        "P02",
+        "115.01",
+        0,
+        6000
+      ],
+      [
+        "P03",
+        "102.01",
+        5800,
+        0
+      ],
+      [
+        "P03",
+        "105.01",
+        0,
+        5800
+      ],
+      [
+        "P04",
+        "209.01",
+        800,
+        0
+      ],
+      [
+        "P04",
+        "208.01",
+        0,
+        800
+      ]
+    ],
+    "results": [
+      [
+        "Clientes pendiente",
+        5800
+      ],
+      [
+        "IVA cobrado",
+        800
+      ],
+      [
+        "IVA no cobrado",
+        800
+      ]
+    ],
+    "assumptions": "Cobro proporcional; CFDI PPD y complemento simulado; sin descuentos ni retenciones.",
+    "source": "LIVA"
+  },
+  {
+    "id": "C05",
+    "title": "Compra crédito y pago parcial",
+    "prompt": "Compra $10000 más IVA, pagar 50%.",
+    "entries": [
+      [
+        "P01",
+        "115.01",
+        10000,
+        0
+      ],
+      [
+        "P01",
+        "119.01",
+        1600,
+        0
+      ],
+      [
+        "P01",
+        "201.01",
+        0,
+        11600
+      ],
+      [
+        "P02",
+        "201.01",
+        5800,
+        0
+      ],
+      [
+        "P02",
+        "102.01",
+        0,
+        5800
+      ],
+      [
+        "P03",
+        "118.01",
+        800,
+        0
+      ],
+      [
+        "P03",
+        "119.01",
+        0,
+        800
+      ]
+    ],
+    "results": [
+      [
+        "Proveedores pendiente",
+        5800
+      ],
+      [
+        "IVA pagado",
+        800
+      ],
+      [
+        "IVA pendiente",
+        800
+      ]
+    ],
+    "assumptions": "Requisitos acreditamiento satisfechos en la porción pagada.",
+    "source": "LIVA"
+  },
+  {
+    "id": "C06",
+    "title": "Devolución de venta",
+    "prompt": "De C03, devolver bienes con precio $5000 + IVA y costo $3000. Reembolsar al cliente.",
+    "entries": [
+      [
+        "P01",
+        "402.01",
+        5000,
+        0
+      ],
+      [
+        "P01",
+        "208.01",
+        800,
+        0
+      ],
+      [
+        "P01",
+        "102.01",
+        0,
+        5800
+      ],
+      [
+        "P02",
+        "115.01",
+        3000,
+        0
+      ],
+      [
+        "P02",
+        "501.01",
+        0,
+        3000
+      ]
+    ],
+    "results": [
+      [
+        "Reducción utilidad bruta",
+        2000
+      ],
+      [
+        "Reembolso",
+        5800
+      ]
+    ],
+    "assumptions": "Devolución y reembolso mismo periodo; mercancía utilizable; reversión del IVA soportada; CFDI egreso relacionado.",
+    "source": "LIVA"
+  },
+  {
+    "id": "C07",
+    "title": "Seguro anticipado",
+    "prompt": "Pagar seguro anual $12000 + IVA el 1 enero. Aplicar un mes.",
+    "entries": [
+      [
+        "P01",
+        "109.01",
+        12000,
+        0
+      ],
+      [
+        "P01",
+        "118.01",
+        1920,
+        0
+      ],
+      [
+        "P01",
+        "102.01",
+        0,
+        13920
+      ],
+      [
+        "P02",
+        "601.57",
+        1000,
+        0
+      ],
+      [
+        "P02",
+        "109.01",
+        0,
+        1000
+      ]
+    ],
+    "results": [
+      [
+        "Gasto del mes",
+        1000
+      ],
+      [
+        "Anticipo remanente",
+        11000
+      ]
+    ],
+    "assumptions": "Póliza gravada 16% para el ejercicio; cobertura uniforme 12 meses; acreditamiento satisfecho. No generalizar a seguros exentos.",
+    "source": "LIVA"
+  },
+  {
+    "id": "C08",
+    "title": "Conciliación bancaria",
+    "prompt": "Libro banco $50000. Banco $47620. Cheque pendiente $3000; depósito en tránsito $5000; banco cobró comisión $100 + IVA y abonó cobro cliente $736 sin registrar.",
+    "entries": [
+      [
+        "P01",
+        "601.84",
+        100,
+        0
+      ],
+      [
+        "P01",
+        "118.01",
+        16,
+        0
+      ],
+      [
+        "P01",
+        "102.01",
+        0,
+        116
+      ],
+      [
+        "P02",
+        "102.01",
+        736,
+        0
+      ],
+      [
+        "P02",
+        "105.01",
+        0,
+        736
+      ]
+    ],
+    "results": [
+      [
+        "Libro ajustado",
+        50620
+      ],
+      [
+        "Banco conciliado 47620+5000-3000",
+        49620
+      ],
+      [
+        "Diferencia pendiente",
+        1000
+      ]
+    ],
+    "assumptions": "Caso deliberadamente NO conciliado: solicitar soporte por $1000, no inventar póliza. Cliente proviene de operación sin IVA pendiente en este caso.",
+    "source": "LIVA"
+  },
+  {
+    "id": "C09",
+    "title": "Determinación de IVA",
+    "prompt": "Del mes: IVA cobrado $4800 y acreditable pagado $3200. Sin otras operaciones.",
+    "entries": [
+      [
+        "P01",
+        "208.01",
+        4800,
+        0
+      ],
+      [
+        "P01",
+        "118.01",
+        0,
+        3200
+      ],
+      [
+        "P01",
+        "213.01",
+        0,
+        1600
+      ],
+      [
+        "P02",
+        "213.01",
+        1600,
+        0
+      ],
+      [
+        "P02",
+        "102.01",
+        0,
+        1600
+      ]
+    ],
+    "results": [
+      [
+        "IVA a cargo",
+        1600
+      ],
+      [
+        "Pago",
+        1600
+      ]
+    ],
+    "assumptions": "Saldos previos indicados; todo acreditable; sin retenciones ni saldos a favor.",
+    "source": "LIVA"
+  },
+  {
+    "id": "C10",
+    "title": "Equipo y depreciación",
+    "prompt": "Comprar equipo cómputo por $24000 + IVA. Vida contable propuesta 36 meses y residual cero; aplicar un mes.",
+    "entries": [
+      [
+        "P01",
+        "156.01",
+        24000,
+        0
+      ],
+      [
+        "P01",
+        "118.01",
+        3840,
+        0
+      ],
+      [
+        "P01",
+        "102.01",
+        0,
+        27840
+      ],
+      [
+        "P02",
+        "601.84",
+        800,
+        0
+      ],
+      [
+        "P02",
+        "171.05",
+        0,
+        800
+      ]
+    ],
+    "results": [
+      [
+        "Depreciación contable mensual",
+        800
+      ],
+      [
+        "Deducción fiscal anual nominal 30%",
+        7200
+      ],
+      [
+        "Equivalente mensual fiscal solo comparativo",
+        600
+      ]
+    ],
+    "assumptions": "Subcuenta gasto genérica didáctica: crear cuenta específica antes de publicar. Fiscal anual sin actualización, MOI 24000 y 12 meses completos; no equivale a deducción definitiva.",
+    "source": "LISR"
+  },
+  {
+    "id": "C11",
+    "title": "ISR salarios sin subsidio",
+    "prompt": "Sueldo gravado mensual $15000 en febrero 2026. Calcular ISR y registrar exclusivamente el componente sueldo/ISR.",
+    "entries": [
+      [
+        "P01",
+        "601.01",
+        15000,
+        0
+      ],
+      [
+        "P01",
+        "216.01",
+        0,
+        1402.82
+      ],
+      [
+        "P01",
+        "210.01",
+        0,
+        13597.18
+      ],
+      [
+        "P02",
+        "210.01",
+        13597.18,
+        0
+      ],
+      [
+        "P02",
+        "102.01",
+        0,
+        13597.18
+      ]
+    ],
+    "results": [
+      [
+        "ISR",
+        1402.82
+      ],
+      [
+        "Neto antes otras deducciones",
+        13597.18
+      ],
+      [
+        "Subsidio",
+        0
+      ]
+    ],
+    "assumptions": "Ejercicio parcial, no nómina integral: excluye IMSS y otras deducciones; ingreso excede límite subsidio.",
+    "source": "ISR_INDETEC"
+  },
+  {
+    "id": "C12",
+    "title": "ISR con subsidio",
+    "prompt": "Sueldo gravado mensual $10000 febrero 2026, trabajador elegible para subsidio. Determinar retención.",
+    "entries": [
+      [
+        "P01",
+        "601.01",
+        10000,
+        0
+      ],
+      [
+        "P01",
+        "216.01",
+        0,
+        193.37
+      ],
+      [
+        "P01",
+        "210.01",
+        0,
+        9806.63
+      ]
+    ],
+    "results": [
+      [
+        "ISR antes subsidio",
+        729.02
+      ],
+      [
+        "Subsidio potencial",
+        535.65
+      ],
+      [
+        "ISR retenido",
+        193.37
+      ],
+      [
+        "Neto antes IMSS",
+        9806.63
+      ]
+    ],
+    "assumptions": "No nómina integral; un patrón, mes completo; sin pagos excluidos. La diferencia no se entrega como efectivo.",
+    "source": "SUB"
+  },
+  {
+    "id": "C13",
+    "title": "Corrección de duplicado",
+    "prompt": "Se capturó dos veces un gasto de papelería $1000+IVA pagado. Revertir el duplicado en el mismo periodo antes de declarar.",
+    "entries": [
+      [
+        "P01",
+        "102.01",
+        1160,
+        0
+      ],
+      [
+        "P01",
+        "601.55",
+        0,
+        1000
+      ],
+      [
+        "P01",
+        "118.01",
+        0,
+        160
+      ]
+    ],
+    "results": [
+      [
+        "Disminución gasto duplicado",
+        1000
+      ],
+      [
+        "Disminución IVA indebido",
+        160
+      ]
+    ],
+    "assumptions": "El pago duplicado solo fue registral, no bancario. No borrar evidencia ni aplicar esto a pago real duplicado.",
+    "source": "LIVA"
+  },
+  {
+    "id": "C14",
+    "title": "Inventario PEPS",
+    "prompt": "Inventario inicial 10 unidades a $100; comprar 10 a $120 + IVA, pagado. Vender 12 unidades a $200 + IVA contado; usar PEPS.",
+    "entries": [
+      [
+        "P01",
+        "115.01",
+        1200,
+        0
+      ],
+      [
+        "P01",
+        "118.01",
+        192,
+        0
+      ],
+      [
+        "P01",
+        "102.01",
+        0,
+        1392
+      ],
+      [
+        "P02",
+        "102.01",
+        2784,
+        0
+      ],
+      [
+        "P02",
+        "401.02",
+        0,
+        2400
+      ],
+      [
+        "P02",
+        "208.01",
+        0,
+        384
+      ],
+      [
+        "P03",
+        "501.01",
+        1240,
+        0
+      ],
+      [
+        "P03",
+        "115.01",
+        0,
+        1240
+      ]
+    ],
+    "results": [
+      [
+        "Costo 10x100+2x120",
+        1240
+      ],
+      [
+        "Inventario final 8x120",
+        960
+      ],
+      [
+        "Utilidad bruta",
+        1160
+      ]
+    ],
+    "assumptions": "Saldo inicial inventario $1000 y banco suficiente; sin fletes ni devoluciones.",
+    "source": "LIVA"
+  }
+]

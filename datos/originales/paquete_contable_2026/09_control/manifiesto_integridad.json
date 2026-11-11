@@ -1,0 +1,132 @@
+[
+  {
+    "archivo": "01_parametros/parametros_2026.xlsx",
+    "bytes": 22239,
+    "sha256": "3404087c683c00e741e27be5460de4d3118ba3634cbe12dae0e0b46e87ae933f"
+  },
+  {
+    "archivo": "02_catalogo/catalogo_inicial.xlsx",
+    "bytes": 9586,
+    "sha256": "66a46a163195103e2233795d04ecc377b3583a3521b651050455c8fb13ad846e"
+  },
+  {
+    "archivo": "03_casos/casos_motor.json",
+    "bytes": 12437,
+    "sha256": "938cbad68e8a14b664bf9c294828c6692a04a7aac36be1984896dd1b285b039f"
+  },
+  {
+    "archivo": "03_casos/casos_resueltos.xlsx",
+    "bytes": 24302,
+    "sha256": "b0479e8d83b3fad2ced17a2d03d19ca656f2e3f8f8f1bbba91f5f295775d539f"
+  },
+  {
+    "archivo": "04_xml/01_ingreso_PUE.xml",
+    "bytes": 1404,
+    "sha256": "f3c6112ecb7258247a71260e1062dd77e216f89487f53ef137c342f91dbdf849"
+  },
+  {
+    "archivo": "04_xml/02_ingreso_PPD.xml",
+    "bytes": 1404,
+    "sha256": "470627ce6ff4d54775f0fac6d0d1d020130c8453e3d0eaea0dd6e33889448c7c"
+  },
+  {
+    "archivo": "04_xml/03_egreso.xml",
+    "bytes": 1539,
+    "sha256": "9588da8289a80f5ab4c4afe9ce39d7b4995a046366e0442cf7272709eec09862"
+  },
+  {
+    "archivo": "04_xml/04_pago_parcial.xml",
+    "bytes": 2019,
+    "sha256": "c36c73108beff960d3b1706217cbdd660016d60da68f21af919871cb6d140416"
+  },
+  {
+    "archivo": "04_xml/05_traslado.xml",
+    "bytes": 901,
+    "sha256": "ba84e8005ad83fc0468e94b4a7c48e922e7681c8fe203a8e789f88dff9b1bb8a"
+  },
+  {
+    "archivo": "04_xml/06_nomina_parcial.xml",
+    "bytes": 2044,
+    "sha256": "49b13e8835fe8d2c93c5de892db9a7894a5bab0fe0148df6ae7103ff41c59255"
+  },
+  {
+    "archivo": "04_xml/LEEME.md",
+    "bytes": 811,
+    "sha256": "86703889658f26dde6d22a272ea7ac37d9b6b22594edbd8b7878176b3b915653"
+  },
+  {
+    "archivo": "04_xml/manifiesto.json",
+    "bytes": 2052,
+    "sha256": "ea4ec7279859aa53e0df9f931ca6108c485b959dda0a583a420ef86ec6a550be"
+  },
+  {
+    "archivo": "05_anecdotas/anecdotas_reales.txt",
+    "bytes": 3750,
+    "sha256": "776122f54c917d4267d419efff180e5fae72cd95326d9743d9cff49adb5146a7"
+  },
+  {
+    "archivo": "05_anecdotas/dilemas_ficticios_separados.txt",
+    "bytes": 989,
+    "sha256": "03c5fc7f53791933ee600c17cbe5ed3047b99b2975e5cf61447f44dcbafd2f33"
+  },
+  {
+    "archivo": "06_carrera/puestos_funciones_sueldos.xlsx",
+    "bytes": 8600,
+    "sha256": "867651800f06924ac8c907f6ebb35760267fffd8cba2410e9b042dd6617ce24f"
+  },
+  {
+    "archivo": "07_plantillas/carta_de_encargo.docx",
+    "bytes": 37879,
+    "sha256": "5d92774622cf1ce80ede496b63f74dd7e62c72c7668bd71381ab282edb43d6db"
+  },
+  {
+    "archivo": "07_plantillas/contrato_iguala.docx",
+    "bytes": 38065,
+    "sha256": "6d6a0ea02c981cd2d756b93d74a2fe23d2ca44a1c780e7dd093e4811941fb0ea"
+  },
+  {
+    "archivo": "07_plantillas/papeles_trabajo_checklist.xlsx",
+    "bytes": 12272,
+    "sha256": "89ed61619d126a45ef1eebdeafc8103f50f9c71070c5b742693ac3b470d5b770"
+  },
+  {
+    "archivo": "08_flujos/capturas_PENDIENTES.md",
+    "bytes": 2045,
+    "sha256": "9d2da9329bbd4e0f888736fb4d2f05db9c83aeda6c5ae548ea36af97f1b2cb56"
+  },
+  {
+    "archivo": "08_flujos/flujo_IDSE_DAP.png",
+    "bytes": 91635,
+    "sha256": "987841be19f07711556a85aa04e6865be602b8c9a77f01994e7ecd9ffeb40f01"
+  },
+  {
+    "archivo": "08_flujos/flujo_SUA_RT.png",
+    "bytes": 95807,
+    "sha256": "a489d90c3030aff0c161d8f7b0e13f01665d83ab4823e3cac4acfb424c70106e"
+  },
+  {
+    "archivo": "08_flujos/flujo_declaraciones.png",
+    "bytes": 95529,
+    "sha256": "8333319f5d295f58e9c74c37545036f7895bbb70bb41a069511b5ebd39832b0e"
+  },
+  {
+    "archivo": "09_control/fuentes.csv",
+    "bytes": 5062,
+    "sha256": "9c011bb3e42490d68544e722538ababf16928b3e3897746b3ef5b285183b790c"
+  },
+  {
+    "archivo": "09_control/pendientes_validacion.xlsx",
+    "bytes": 6888,
+    "sha256": "02796e4e6fc549f679681475179b8cdc00e901211f9cacfb411af160e4ffb667"
+  },
+  {
+    "archivo": "09_control/pruebas_ejecutadas.json",
+    "bytes": 5110,
+    "sha256": "fb932d8c658f5dc870bd13d0b40ac6507890da0225587a7bf924d84cb609bc62"
+  },
+  {
+    "archivo": "LEEME.md",
+    "bytes": 4131,
+    "sha256": "1387bc9273f6a0195f3ecbe68fa97418444a6ca279aeeed3125e947b5059196e"
+  }
+]

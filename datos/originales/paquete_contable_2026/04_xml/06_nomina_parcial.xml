@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/4" xmlns:nomina12="http://www.sat.gob.mx/nomina12" Version="4.0" Serie="SIM" Folio="N001" Fecha="2026-02-15T12:00:00" Sello="" NoCertificado="00000000000000000000" Certificado="" SubTotal="15000.00" Moneda="MXN" Total="13597.18" TipoDeComprobante="N" Exportacion="01" LugarExpedicion="90000" MetodoPago="PUE" Descuento="1402.82">
+  <!--SIMULACION EDUCATIVA. DATOS SINTETICOS. NO TIMBRADO. SIN VALIDEZ FISCAL. NO ENVIAR A SAT/PAC.-->
+  <cfdi:Emisor Rfc="AAA010101AAA" Nombre="EMISOR FICTICIO SIMULADOR" RegimenFiscal="601" />
+  <cfdi:Receptor Rfc="XAXX010101000" Nombre="PUBLICO EN GENERAL" DomicilioFiscalReceptor="90000" RegimenFiscalReceptor="605" UsoCFDI="CN01" />
+  <cfdi:Conceptos>
+    <cfdi:Concepto ClaveProdServ="84111505" Cantidad="1" ClaveUnidad="ACT" Descripcion="Pago de nómina DIDACTICO" ValorUnitario="15000.00" Importe="15000.00" Descuento="1402.82" ObjetoImp="01" />
+  </cfdi:Conceptos>
+  <cfdi:Complemento>
+    <nomina12:Nomina Version="1.2" TipoNomina="O" FechaPago="2026-02-28" FechaInicialPago="2026-02-01" FechaFinalPago="2026-02-28" NumDiasPagados="28" TotalPercepciones="15000.00" TotalDeducciones="1402.82">
+      <nomina12:Emisor RegistroPatronal="SIMULADO000" />
+      <nomina12:Receptor Curp="CURP_SINTETICA_NO_VALIDA" NumSeguridadSocial="00000000000" FechaInicioRelLaboral="2026-01-01" Antigüedad="P8W" TipoContrato="01" TipoRegimen="02" NumEmpleado="SIM001" PeriodicidadPago="05" ClaveEntFed="TLA" />
+      <nomina12:Percepciones TotalSueldos="15000.00" TotalGravado="15000.00" TotalExento="0.00">
+        <nomina12:Percepcion TipoPercepcion="001" Clave="SIM001" Concepto="Sueldo" ImporteGravado="15000.00" ImporteExento="0.00" />
+      </nomina12:Percepciones>
+      <nomina12:Deducciones TotalImpuestosRetenidos="1402.82">
+        <nomina12:Deduccion TipoDeduccion="002" Clave="SIMISR" Concepto="ISR" Importe="1402.82" />
+      </nomina12:Deducciones>
+    </nomina12:Nomina>
+  </cfdi:Complemento>
+</cfdi:Comprobante>
