@@ -33,6 +33,6 @@ Las tablas marcadas `habilitado_calculo=NO` o pendientes (ISN, CEAV, cuota fija 
 ```bash
 npm install
 npm run dev        # app en http://localhost:5173
-npm test           # 57 pruebas: motores, casos, lecciones, meses PyME y RESICO, revisiones del usuario
+npm test           # 59 pruebas: motores, casos, lecciones, meses PyME y RESICO, revisiones del usuario
 npm run importar   # regenerar content/ desde datos/originales (requiere Python con openpyxl)
 ```

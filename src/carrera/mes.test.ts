@@ -170,3 +170,23 @@ describe('revisión v0.2: candados y persistencia', () => {
     expect(guardarMes(e)).toBe(false);
   });
 });
+
+describe('conciliación del IVA por componente (docs/conciliacion-iva-pyme.md)', () => {
+  it('cada póliza aporta lo que dice la tabla y suma 4,800 / 9,920', () => {
+    const aporte = (cuenta: string, signo: 1 | -1) => {
+      const r: Record<string, number> = {};
+      for (const m of libroSolucion().filter((x) => x.cuenta === cuenta)) r[m.poliza] = (r[m.poliza] ?? 0) + signo * (m.cargo - m.abono);
+      return r;
+    };
+    expect(aporte('SIM-208-01', -1)).toEqual({ T04: 480000, T11: 80000, T12: -80000 });
+    expect(aporte('SIM-118-01', 1)).toEqual({ 'PRE-1': 16000, 'PRE-2': 16000, T02: 320000, T09: 80000, T14: 192000, T15: 384000, T16: -16000 });
+  });
+});
+
+describe('docs/lecciones.txt', () => {
+  it('es copia exacta de src/lecciones.ts (para revisión externa)', async () => {
+    const copia = (await import('../../docs/lecciones.txt?raw')).default;
+    const fuente = (await import('../lecciones.ts?raw')).default;
+    expect(copia).toBe(fuente);
+  });
+});

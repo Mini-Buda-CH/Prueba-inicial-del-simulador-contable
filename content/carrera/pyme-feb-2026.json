@@ -1,7 +1,7 @@
 {
  "id": "pyme-feb-2026",
  "estado": "PENDIENTE_VALIDACION",
- "empresa": "Comercializadora Escuela S.A. de C.V. (ficticia)",
+ "empresa": "Comercial X, S.A. de C.V. (ficticia)",
  "regimen": "Persona moral, régimen general",
  "puesto": "Auxiliar contable",
  "jefe": "Contadora general",
@@ -170,7 +170,7 @@
    "caso": "C07",
    "poliza": "P01",
    "leccion": "M1-L03",
-   "correo": "Pagamos hoy el seguro anual de la bodega; la póliza cubre del 1 de febrero de 2026 al 31 de enero de 2027."
+   "correo": "Pagamos hoy el seguro anual de la bodega (cobertura gravada con IVA); la póliza cubre del 1 de febrero de 2026 al 31 de enero de 2027."
   },
   {
    "id": "T15",
@@ -179,7 +179,7 @@
    "caso": "C10",
    "poliza": "P01",
    "leccion": "M1-L04",
-   "correo": "Compramos el equipo de cómputo para la oficina."
+   "correo": "Compramos el equipo de cómputo para la oficina. Se destina exclusivamente a nuestras actividades gravadas y está disponible para uso desde hoy."
   },
   {
    "id": "T16",
@@ -237,9 +237,10 @@
  "declaracion": "iva",
  "vencimiento": "2026-03-17",
  "supuestos": [
-  "El saldo a favor de IVA de $5,120 supone que se cumplen los requisitos de acreditamiento (CFDI, pago efectivo, operaciones gravadas y estrictamente indispensables); no es un resultado aprobado sin esa revisión.",
-  "Seguro: vigencia del 1-feb-2026 al 31-ene-2027, pagado el 20-feb; en febrero se aplica 1/12 como gasto.",
-  "Depreciación: por política del caso se reconoce el mes completo en el mes de adquisición (convención del ejercicio, a validar).",
+  "IVA: el saldo a favor de $5,120 NO está validado. Es el resultado aritmético del libro (conciliación por componente en docs/conciliacion-iva-pyme.md); falta comprobar en cada componente los requisitos de acreditamiento (CFDI, pago efectivo, destino a actividades gravadas).",
+  "Seguro: cobertura gravada de la bodega, vigencia del 1-feb-2026 al 31-ene-2027, pagada el 20-feb; en febrero se aplica 1/12 como gasto.",
+  "Equipo de cómputo: destinado exclusivamente a actividades gravadas y disponible para uso desde su adquisición. El acreditamiento de su IVA y su depreciación son cuestiones distintas.",
+  "Depreciación: se reconoce el mes completo en el mes de adquisición como simplificación del ejercicio, no como regla general.",
   "El gasto de papelería duplicado lo capturó el auxiliar anterior; el banco muestra un solo cargo."
  ]
 }

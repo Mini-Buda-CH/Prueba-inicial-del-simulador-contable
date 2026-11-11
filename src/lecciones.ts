@@ -26,8 +26,8 @@ export const lecciones: Leccion[] = [
     teoria: [
       'Toda operación afecta al menos dos cuentas: lo que se carga en unas se abona en otras, por el mismo importe total.',
       'Las cuentas de naturaleza deudora (activo, costos, gastos) aumentan con cargos; las acreedoras (pasivo, capital, ingresos) aumentan con abonos.',
-      'En una venta o compra gravada, el IVA va en su propia cuenta: trasladado cobrado si es venta y acreditable pagado si es compra.',
-      'Una póliza solo es válida si cargos = abonos y cada renglón lleva cargo o abono, nunca ambos.',
+      'En las operaciones gravadas de este módulo, registra el IVA por separado. Distingue el trasladado cobrado del pendiente de cobro, y el acreditable pagado del pendiente de pago. El acreditamiento exige además cumplir los requisitos fiscales aplicables; pagar una compra no basta por sí solo.',
+      'Una póliza debe cuadrar y cada renglón debe contener cargo o abono, no ambos. Estas comprobaciones son necesarias, pero no sustituyen revisar cuentas, importes, soporte y tratamiento contable.',
     ],
     ejercicios: [
       { id: 'M1-L01-E1', tipo: 'poliza', caso: 'C01', poliza: 'P01' },
@@ -41,6 +41,7 @@ export const lecciones: Leccion[] = [
       'En una venta a crédito el IVA nace como "trasladado no cobrado". Solo al cobrar se convierte en "trasladado cobrado", en proporción a lo cobrado.',
       'En una compra a crédito el IVA queda "pendiente de pago" y pasa a "acreditable pagado" en la proporción efectivamente pagada.',
       'El cobro o el pago son una póliza; la reclasificación del IVA es otra. Así el libro refleja cuánto IVA ya es exigible o acreditable en el mes.',
+      'En este simulador el cobro o pago y la reclasificación del IVA se registran en pólizas separadas para facilitar el aprendizaje. Esta separación es una convención del ejercicio.',
     ],
     ejercicios: [
       { id: 'M1-L02-E1', tipo: 'poliza', caso: 'C04', poliza: 'P01' },
@@ -70,6 +71,7 @@ export const lecciones: Leccion[] = [
       'El equipo que se usará más de un periodo se registra como activo (monto original de la inversión) y su costo se distribuye con la depreciación.',
       'La depreciación contable sigue la vida útil estimada; la deducción fiscal usa los porcentajes máximos de la LISR (art. 34). Son cálculos distintos y conviven.',
       'La depreciación se abona a una cuenta complementaria (depreciación acumulada), nunca directamente al activo.',
+      'El caso supone que el equipo está disponible para uso desde su adquisición. Para este ejercicio se utilizan costo de $24,000, valor residual cero y vida útil de 30 meses: la depreciación mensual es $800. Se reconoce el mes completo como simplificación didáctica, no como regla general aplicable a cualquier activo. La depreciación contable se distingue de la deducción fiscal.',
     ],
     ejercicios: [
       { id: 'M1-L04-E1', tipo: 'poliza', caso: 'C10', poliza: 'P01' },
@@ -83,7 +85,8 @@ export const lecciones: Leccion[] = [
     teoria: [
       'PEPS (primeras entradas, primeras salidas): el costo de lo vendido se toma de las capas más antiguas del inventario.',
       'El inventario final queda valuado con las compras más recientes.',
-      'La venta genera dos pólizas: el ingreso (con su IVA) y el costo de ventas contra inventario.',
+      'La venta tiene dos efectos: el ingreso (con su IVA) y el costo de ventas contra inventario.',
+      'En este simulador la venta y su costo se trabajan en pólizas separadas para distinguir ambos efectos. Esta separación es una convención del ejercicio.',
     ],
     ejercicios: [
       { id: 'M1-L05-E1', tipo: 'calculo', caso: 'C14', concepto: 'Costo 10x100+2x120', pregunta: 'Inventario inicial: 10 unidades a $100; compras: 10 a $120. Se venden 12. ¿Costo de ventas con PEPS?' },
@@ -244,10 +247,10 @@ export const lecciones: Leccion[] = [
       },
       {
         id: 'M2-L03-E2', tipo: 'opcion', xml: '06_nomina_parcial.xml',
-        pregunta: '¿Por qué este recibo de nómina no sirve como nómina integral?',
-        opciones: ['Porque es de febrero', 'Tiene CURP y NSS genéricos y no incluye cuotas IMSS: es un ejemplo parcial', 'Porque el ISR es muy alto', 'Porque la nómina no lleva XML'],
+        pregunta: '¿Por qué este archivo no basta para comprobar una nómina integral?',
+        opciones: ['Porque es de febrero', 'Es un XML sintético y parcial: no acredita timbrado ni reúne los datos y cálculos necesarios para comprobar una nómina integral', 'Porque el ISR es muy alto', 'Porque la nómina no lleva XML'],
         correcta: 1,
-        explicacion: 'Faltan datos reales del trabajador y deducciones como la cuota obrera del IMSS.',
+        explicacion: 'El archivo sirve para practicar la lectura de algunos campos. No permite validar por sí solo trabajador, salario base de cotización, ISR, subsidio, cuotas y demás conceptos aplicables. La procedencia de cada deducción depende de los supuestos del caso.',
       },
     ],
   },
@@ -296,7 +299,7 @@ export const lecciones: Leccion[] = [
     id: 'M3-L01', modulo: M3, estado: P, titulo: 'RESICO personas físicas: el pago mensual',
     teoria: [
       'En RESICO la persona física paga ISR mensual sobre los ingresos efectivamente cobrados en el mes, amparados por CFDI, sin IVA y sin restar gastos.',
-      'A esos ingresos se les restan los descuentos, devoluciones y bonificaciones del mes cuando son procedentes y están documentados (CFDI de egreso relacionado con el ingreso y soporte del reembolso). Una factura PPD sin pago ni complemento no cuenta.',
+      'A esos ingresos se les restan los descuentos, devoluciones y bonificaciones del mes cuando son procedentes y están documentados (CFDI de egreso relacionado con el ingreso y soporte del reembolso). En el caso de la factura PPD, no se incluye porque no hubo cobro. Si existió cobro, la falta del complemento debe corregirse y no justifica omitir el ingreso efectivamente recibido.',
       'Se aplica una sola tasa (de 1.00 % a 2.50 %) al total del mes, según el rango en que cae. No es escalonada como la tarifa de sueldos.',
       'Si una persona moral le pagó, le retuvo 1.25 % de ISR (sobre el pago sin IVA): ese importe se resta del impuesto mensual. Si la retención supera al impuesto, el excedente es solo un resultado aritmético: no es una devolución autorizada ni se traslada automáticamente a otro mes.',
       'El pago vence el día 17 del mes siguiente.',
@@ -311,9 +314,9 @@ export const lecciones: Leccion[] = [
       {
         id: 'M3-L01-E7', tipo: 'opcion',
         pregunta: 'Un cliente RESICO facturó $15,000 con método PPD y aún no le pagan. ¿Qué pasa con ese ingreso este mes?',
-        opciones: ['Se declara porque ya se facturó', 'No se declara hasta que se cobre (con su complemento de pago)', 'Se declara la mitad', 'Se declara y se pide devolución si no se cobra'],
+        opciones: ['Se declara porque ya se facturó', 'No se incluye este mes porque aún no se ha cobrado; al cobrar debe atenderse también la documentación del pago', 'Se declara la mitad', 'Se declara y se pide devolución si no se cobra'],
         correcta: 1,
-        explicacion: 'En RESICO cuentan los ingresos efectivamente cobrados.',
+        explicacion: 'El hecho determinante del caso es que no hubo cobro. No debe confundirse esa situación con un cobro recibido cuyo complemento se omitió.',
       },
     ],
   },

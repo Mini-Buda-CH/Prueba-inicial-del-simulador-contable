@@ -155,7 +155,7 @@ Cambios de código:
 - La teoría y las preguntas que yo redacte llevan `estado: 'PENDIENTE_VALIDACION'` y la UI lo muestra.
 
 ### 10.2 Carrera PyME: un mes persistente (Mejoras §10.1)
-- Empresa ficticia "Comercializadora Escuela S.A. de C.V." (PM, régimen general), febrero 2026.
+- Empresa ficticia "Comercial X, S.A. de C.V." (PM, régimen general), febrero 2026.
 - `content/carrera/pyme-feb-2026.json`: tareas fechadas en la bandeja que encadenan los casos en un orden con saldos coherentes: C01 aportación → C02 compra → C05 compra a crédito → C03 venta → C04 venta a crédito → C06 devolución → C07 seguro → C10 equipo → (documento duplicado precargado "del auxiliar anterior") C13 corrección.
   - Cada tarea exige haber aprobado la lección correspondiente (regla de oro).
   - Los documentos incluyen el XML cuando aplica.
