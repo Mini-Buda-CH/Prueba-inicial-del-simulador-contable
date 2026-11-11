@@ -9,7 +9,7 @@
 }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--fondo); }
-.app { display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; }
+.app { display: grid; grid-template-columns: 280px minmax(0, 1fr); min-height: 100vh; }
 .lateral { background: var(--panel); border-right: 1px solid var(--borde); padding: 20px 16px; }
 .lateral h1 { font-size: 1.15rem; margin: 0 0 16px; }
 .lateral h2 { font-size: .8rem; text-transform: uppercase; letter-spacing: .05em; color: var(--suave); margin: 24px 0 4px; }
@@ -39,8 +39,36 @@ button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px s
 .ok { background: var(--ok); } .error { background: var(--error); }
 .ok p, .error p { margin: 4px 0; }
 @media (max-width: 720px) {
-  .app { grid-template-columns: 1fr; }
+  .app { grid-template-columns: minmax(0, 1fr); }
   .lateral { border-right: 0; border-bottom: 1px solid var(--borde); }
   main { padding: 16px; }
   td:nth-child(2), td:nth-child(3) { width: 90px; }
 }
+.secciones, .pestanas { display: flex; gap: 4px; margin-bottom: 16px; }
+.secciones button, .pestanas button { flex: 1; }
+[role=tab][aria-selected=true] { background: var(--acento); color: var(--acento-texto); border-color: var(--acento); }
+.lateral nav li button { font-size: .9rem; }
+.pregunta { display: block; margin: 8px 0; font-weight: 500; }
+.pregunta input { margin-top: 6px; max-width: 240px; display: block; }
+.opciones { border: 0; padding: 0; margin: 0; }
+.opciones legend { font-weight: 600; margin-bottom: 8px; }
+.opciones label { display: flex; gap: 8px; align-items: flex-start; padding: 6px 0; }
+.opciones input[type=radio] { width: auto; margin-top: 4px; }
+.xml { background: var(--fondo); border: 1px solid var(--borde); border-radius: 8px; padding: 12px; font-size: .75rem; overflow: auto; max-height: 260px; white-space: pre; }
+main { max-width: 1100px; }
+.barra-escritorio { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; background: var(--panel); border: 1px solid var(--borde); border-radius: 10px; padding: 12px 16px; margin-bottom: 16px; font-size: .9rem; }
+.escritorio-cuerpo { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 16px; align-items: start; }
+.bandeja ol { list-style: none; padding: 0; margin: 0; font-size: .8rem; }
+.bandeja li { padding: 6px 4px; border-bottom: 1px solid var(--borde); color: var(--suave); }
+.bandeja li.activo { color: var(--texto); font-weight: 600; }
+.bandeja li.hecha { color: var(--acento); }
+.correo .de { color: var(--suave); font-size: .85rem; margin-top: 0; }
+.libro { font-size: .85rem; }
+.libro td:nth-child(n+2), .libro th:nth-child(n+2) { text-align: right; }
+.libro td:nth-child(2) { text-align: left; }
+.evaluacion { list-style: none; padding: 0; }
+.evaluacion li { padding: 8px 12px; border-radius: 6px; margin-bottom: 6px; }
+.evaluacion .pendiente { color: var(--suave); }
+section.ok, section.error { border: 0; }
+@media (max-width: 900px) { .escritorio-cuerpo { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 720px) { .libro { display: block; overflow-x: auto; } }

@@ -127,6 +127,91 @@ Mejoras.md se integra así:
   - evaluación en 6 dimensiones: registro, fiscal, evidencia, cumplimiento, control y comunicación;
   - criterio de aceptación por tema: decisión + documento + registro + cálculo + consecuencia.
 
+## 10. FASE 1 – Ruta PyME "Tu primer mes" (siguiente trabajo)
+Contexto: la Fase 0 está en la rama (commit b69c2c6): motores, 23 pruebas, lección M1-L01 (C01–C03) y progreso local. El usuario prepara RESICO y pide avanzar con la PyME y mantener al día lo que se le necesita.
+
+### 10.1 Academia (módulos 1 y 2), reutilizando los casos y XML ya entregados
+| Lección | Casos / material | Tipo de ejercicio |
+|---|---|---|
+| M1-L01 Partida doble (ya existe) | C01–C03 | póliza |
+| M1-L02 Crédito, cobros y pagos parciales | C04, C05 | póliza (IVA trasladado no cobrado → cobrado; pendiente → pagado) |
+| M1-L03 Devoluciones y pagos anticipados | C06, C07 | póliza |
+| M1-L04 Activos y depreciación | C10 | póliza + cálculo (800 contable vs 600 fiscal comparativo) |
+| M1-L05 Inventarios PEPS | C14 | póliza + cálculo (costo 1,240) |
+| M1-L06 Conciliación bancaria | C08 | cálculo + **decisión**: la respuesta correcta es "pedir soporte", no forzar el cuadre |
+| M1-L07 Corrección de errores | C13 | póliza de reversión + decisión (no borrar evidencia) |
+| M1-L08 IVA del mes | C09 | cálculo (IVA a cargo 1,600) |
+| Examen M1 | mezcla sin teoría visible, se aprueba con 80 % | todos |
+| M2-L01 Leer un CFDI | 6 XML, mostrados con `DOMParser` (nativo) | opción múltiple: tipo, PUE/PPD, IVA |
+| M2-L02 PPD y complemento de pago | 02 + 04 (pago parcial 580 de 1,160) | opción múltiple + cálculo del saldo insoluto |
+| M2-L03 XML legible ≠ CFDI válido | manifiesto (sin sello ni timbre) | decisión |
+| Examen M2 | | |
+
+Cambios de código:
+- `src/lecciones.ts` pasa a tener tres tipos de ejercicio: `poliza` (ya existe), `calculo` (importe vs `resultados` del caso) y `opcion` (pregunta, opciones, índice correcto, explicación).
+- `App.tsx`: un componente por tipo, reutilizando `Captura`.
+- Exámenes: misma estructura con `examen: true` (oculta la teoría y exige 80 %).
+- Progreso: se agrega `examenes` al mismo objeto v1, con migración trivial.
+- La teoría y las preguntas que yo redacte llevan `estado: 'PENDIENTE_VALIDACION'` y la UI lo muestra.
+
+### 10.2 Carrera PyME: un mes persistente (Mejoras §10.1)
+- Empresa ficticia "Comercializadora Escuela S.A. de C.V." (PM, régimen general), febrero 2026.
+- `content/carrera/pyme-feb-2026.json`: tareas fechadas en la bandeja que encadenan los casos en un orden con saldos coherentes: C01 aportación → C02 compra → C05 compra a crédito → C03 venta → C04 venta a crédito → C06 devolución → C07 seguro → C10 equipo → (documento duplicado precargado "del auxiliar anterior") C13 corrección.
+  - Cada tarea exige haber aprobado la lección correspondiente (regla de oro).
+  - Los documentos incluyen el XML cuando aplica.
+- Al final, **declaración mensual de IVA en un portal genérico** con vencimiento el 17 de marzo:
+  - el IVA a cargo se calcula con el motor a partir del libro del propio jugador (`balanza()`: 208.01 − 118.01);
+  - si su libro tiene errores, la declaración "correcta según tu libro" difiere de la correcta, y eso se muestra.
+- Vista del escritorio con:
+  - bandeja (tareas con fecha);
+  - libro diario;
+  - balanza (con `balanza()` existente);
+  - calendario con días que avanzan al completar tareas.
+- Evaluación al cerrar el mes, en 4 de las 6 dimensiones (el resto llega en fases posteriores):
+  - **registro:** pólizas correctas al primer intento;
+  - **cumplimiento:** declaración en plazo;
+  - **control:** se detectó el duplicado;
+  - **comunicación:** mensaje elegido al jefe sobre la diferencia.
+- Las consecuencias son cualitativas (reputación con el jefe). No se calculan recargos porque no hay tabla de INPC/recargos validada.
+- Estado en `localStorage` con su propia clave (`simcont.carrera.v1`), con try/catch igual que `src/progreso.ts`.
+- Archivos nuevos: `src/carrera/Escritorio.tsx`, `src/carrera/estado.ts` y la navegación Academia | Carrera en `App.tsx`.
+- Motor: `ivaDelMes(movs)` en `src/engine/fiscal.ts`, el único cálculo nuevo, con prueba.
+
+### 10.3 Lista viva de lo que se necesita del usuario
+`docs/pendientes-usuario.md`, actualizada en cada commit, por fase y con estado (falta / recibido / validado):
+- **F1 PyME (no bloquea):** validar teoría y preguntas redactadas; validar la narrativa del mes y su orden; confirmar el nombre de la empresa ficticia.
+- **F1 RESICO (bloquea esa ruta):** tasas RESICO PF 2026 (art. 113-E); 3–5 casos resueltos; reglas de pagos mensuales y la anual RESICO.
+- **F2 (nómina e IMSS):**
+  - casos de nómina integral (SBC, cuotas, prestaciones; tu P13);
+  - tablas IMSS y CEAV cotejadas (P02, P03);
+  - ISN de al menos 1 estado validado (P01);
+  - prima de RT de ejemplo;
+  - 3 eventos/dilemas más.
+- **F3 (PM, cierre, cumplimiento):**
+  - casos de pagos provisionales PM (coeficiente de utilidad);
+  - conciliación contable-fiscal y anual PM (Mejoras §2);
+  - IVA mixto (§3);
+  - DIOT;
+  - INPC y tasa de recargos 2026;
+  - catálogo cotejado con el Anexo 24 (P04);
+  - casos de regularización (§7).
+- **F4 (corporativo):** casos de consolidación, presupuesto, NIF D-4 diferidos y auditoría; perfiles de puesto faltantes (P07).
+- **F5:** hosting, proveedor de inicio de sesión, diseño del certificado, requisitos del panel de profesor.
+
+### 10.4 Verificación de la Fase 1 PyME
+- `npm test`:
+  - pruebas existentes;
+  - el mes encadenado deja saldos esperados (banco, inventario, IVA) calculados con `balanza()` y escritos a mano en la prueba;
+  - `ivaDelMes`;
+  - cada ejercicio `calculo` apunta a un resultado existente del caso;
+  - cada tarea de la Carrera apunta a una lección existente.
+- Playwright:
+  - aprobar M1-L02 y fallar y aprobar el examen M1;
+  - en la Carrera, completar 2 tareas, ver la balanza actualizada, presentar la declaración y ver la evaluación;
+  - recargar y confirmar que todo persiste;
+  - sin scroll horizontal a 390 px.
+- Commit y push a `claude/ecstatic-allen-dlkm3k`.
+
 ## 9. Archivos a crear (Fase 0)
 - `datos/originales/`: el paquete v0.1 tal cual, como fuente de verdad versionada.
 - `scripts/importar.py`: convierte Excel/JSON → `content/*.json` (parámetros, catálogo, casos) y revisa que cada póliza cuadre y cada cuenta exista.

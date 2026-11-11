@@ -1,46 +1,45 @@
 import { useState } from 'react';
-import casos from '../content/casos.json';
-import catalogo from '../content/catalogo.json';
-import { mismaPoliza, validarPoliza, type Cuenta, type Movimiento } from './engine/contable';
-import { lecciones, totalEjercicios, type Ejercicio } from './lecciones';
-import { aCentavos, cargar, guardar } from './progreso';
+import Escritorio from './carrera/Escritorio';
+import { EjercicioVista } from './ejercicios';
+import { APROBATORIO, leccionCompleta, lecciones, type Leccion } from './lecciones';
+import { cargar, guardar, type Progreso } from './progreso';
 
-const cat = catalogo as Cuenta[];
-type Renglon = { cuenta: string; cargo: string; abono: string };
-const vacio = (): Renglon => ({ cuenta: '', cargo: '', abono: '' });
+const practicas = lecciones.filter((l) => !l.examen).flatMap((l) => l.ejercicios);
+const examenes = lecciones.filter((l) => l.examen);
 
 export default function App() {
   const [progreso, setProgreso] = useState(cargar);
-  const todos = lecciones.flatMap((l) => l.ejercicios);
-  const siguiente = todos.find((e) => !progreso.completados[e.id]) ?? todos[0];
-  const [actual, setActual] = useState<Ejercicio>(siguiente);
-  const hechos = Object.keys(progreso.completados).length;
-  const leccion = lecciones.find((l) => l.ejercicios.includes(actual))!;
+  const [seccion, setSeccion] = useState<'academia' | 'carrera'>('academia');
+  const pendiente = lecciones.find((l) => !leccionCompleta(l, progreso)) ?? lecciones[0];
+  const [actual, setActual] = useState<Leccion>(pendiente);
+  const hechos = practicas.filter((e) => progreso.completados[e.id]).length;
+  const aprobados = examenes.filter((l) => leccionCompleta(l, progreso)).length;
+  const pct = Math.round(((hechos + aprobados) / (practicas.length + examenes.length)) * 100);
 
-  function completar(id: string) {
-    const p = { ...progreso, completados: { ...progreso.completados, [id]: new Date().toISOString() } };
-    guardar(p);
-    setProgreso(p);
-  }
+  const actualizar = (p: Progreso) => { guardar(p); setProgreso(p); };
+  const irA = (l: Leccion) => { setActual(l); setSeccion('academia'); };
 
   return (
     <div className="app">
       <aside className="lateral">
         <h1>Simulador Contable MX</h1>
-        <div className="avance" aria-label="Avance del curso">
-          <div className="barra"><span style={{ width: `${(hechos / totalEjercicios) * 100}%` }} /></div>
-          <p>{Math.round((hechos / totalEjercicios) * 100)}% · {hechos} de {totalEjercicios} ejercicios</p>
+        <div className="secciones" role="tablist">
+          <button role="tab" aria-selected={seccion === 'academia'} onClick={() => setSeccion('academia')}>Academia</button>
+          <button role="tab" aria-selected={seccion === 'carrera'} onClick={() => setSeccion('carrera')}>Carrera</button>
         </div>
-        <button className="primario" onClick={() => setActual(siguiente)}>Continuar →</button>
-        {lecciones.map((l) => (
-          <nav key={l.id}>
-            <h2>{l.modulo}</h2>
-            <p className="titulo-leccion">{l.titulo}</p>
+        <div className="avance" aria-label="Avance del curso">
+          <div className="barra"><span style={{ width: `${pct}%` }} /></div>
+          <p>{pct}% · {hechos} ejercicios · {aprobados} exámenes</p>
+        </div>
+        <button className="primario" onClick={() => irA(pendiente)}>Continuar →</button>
+        {[...new Set(lecciones.map((l) => l.modulo))].map((m) => (
+          <nav key={m} aria-label={m}>
+            <h2>{m}</h2>
             <ol>
-              {l.ejercicios.map((e, i) => (
-                <li key={e.id}>
-                  <button className={e.id === actual.id ? 'activo' : ''} onClick={() => setActual(e)}>
-                    {progreso.completados[e.id] ? '✓' : '○'} Ejercicio {i + 1}
+              {lecciones.filter((l) => l.modulo === m).map((l) => (
+                <li key={l.id}>
+                  <button className={seccion === 'academia' && l.id === actual.id ? 'activo' : ''} onClick={() => irA(l)}>
+                    {leccionCompleta(l, progreso) ? '✓' : '○'} {l.examen ? `📝 ${l.titulo}` : l.titulo}
                   </button>
                 </li>
               ))}
@@ -51,76 +50,62 @@ export default function App() {
       </aside>
 
       <main>
-        <section className="teoria">
-          <h2>{leccion.titulo}</h2>
-          {leccion.teoria.map((t) => <p key={t}>{t}</p>)}
-        </section>
-        <Captura key={actual.id} ejercicio={actual} hecho={!!progreso.completados[actual.id]} onCorrecto={() => completar(actual.id)} />
+        {seccion === 'carrera'
+          ? <Escritorio progreso={progreso} irALeccion={(id) => irA(lecciones.find((l) => l.id === id)!)} />
+          : actual.examen
+            ? <Examen key={actual.id} leccion={actual} mejor={progreso.examenes[actual.id]} onTerminar={(pctEx) =>
+                actualizar({ ...progreso, examenes: { ...progreso.examenes, [actual.id]: Math.max(pctEx, progreso.examenes[actual.id] ?? 0) } })} />
+            : <LeccionVista key={actual.id} leccion={actual} progreso={progreso} onCompletar={(id) =>
+                actualizar({ ...progreso, completados: { ...progreso.completados, [id]: new Date().toISOString() } })} />}
       </main>
     </div>
   );
 }
 
-function Captura({ ejercicio, hecho, onCorrecto }: { ejercicio: Ejercicio; hecho: boolean; onCorrecto: () => void }) {
-  const caso = casos.find((c) => c.id === ejercicio.caso)!;
-  const solucion = (caso.movimientos as Movimiento[]).filter((m) => m.poliza === ejercicio.poliza);
-  const [renglones, setRenglones] = useState<Renglon[]>([vacio(), vacio()]);
-  const [mensajes, setMensajes] = useState<{ ok: boolean; textos: string[] } | null>(null);
+function LeccionVista({ leccion, progreso, onCompletar }: { leccion: Leccion; progreso: Progreso; onCompletar: (id: string) => void }) {
+  return (
+    <>
+      <section className="teoria">
+        <p className="supuestos">{leccion.modulo}{leccion.estado === 'PENDIENTE_VALIDACION' && ' · Contenido pendiente de validación'}</p>
+        <h2>{leccion.titulo}</h2>
+        {leccion.teoria.map((t) => <p key={t}>{t}</p>)}
+      </section>
+      {leccion.ejercicios.map((ej) => (
+        <EjercicioVista key={ej.id} ej={ej} hecho={!!progreso.completados[ej.id]} modo="practica" onResultado={(ok) => ok && onCompletar(ej.id)} />
+      ))}
+    </>
+  );
+}
 
-  const cambiar = (i: number, campo: keyof Renglon, valor: string) =>
-    setRenglones((rs) => rs.map((r, j) => (j === i ? { ...r, [campo]: valor } : r)));
+function Examen({ leccion, mejor, onTerminar }: { leccion: Leccion; mejor?: number; onTerminar: (pct: number) => void }) {
+  const [intento, setIntento] = useState(0);
+  const [respuestas, setRespuestas] = useState<Record<string, boolean>>({});
+  const total = leccion.ejercicios.length;
+  const contestadas = Object.keys(respuestas).length;
+  const pct = Math.round((Object.values(respuestas).filter(Boolean).length / total) * 100);
 
-  function revisar() {
-    const errores: string[] = [];
-    const movs: Movimiento[] = renglones
-      .filter((r) => r.cuenta || r.cargo || r.abono)
-      .map((r, i) => {
-        const cargo = aCentavos(r.cargo), abono = aCentavos(r.abono);
-        if (cargo === null || abono === null) errores.push(`Renglón ${i + 1}: escribe importes como 1234.50`);
-        return { poliza: ejercicio.poliza, cuenta: r.cuenta, cargo: cargo ?? 0, abono: abono ?? 0 };
-      });
-    errores.push(...validarPoliza(movs, cat));
-    if (errores.length) return setMensajes({ ok: false, textos: errores });
-    if (!mismaPoliza(movs, solucion))
-      return setMensajes({ ok: false, textos: ['La póliza cuadra, pero las cuentas o importes no corresponden a la operación. Revisa el IVA y la naturaleza de cada cuenta.'] });
-    setMensajes({ ok: true, textos: ['¡Correcto! La póliza está bien registrada.'] });
-    onCorrecto();
+  function responder(id: string, ok: boolean) {
+    const r = { ...respuestas, [id]: ok };
+    setRespuestas(r);
+    if (Object.keys(r).length === total) onTerminar(Math.round((Object.values(r).filter(Boolean).length / total) * 100));
   }
 
   return (
-    <section className="ejercicio">
-      <h3>Caso {caso.id}: {caso.titulo} {hecho && <span className="insignia">Completado</span>}</h3>
-      <p className="enunciado">{caso.enunciado}</p>
-      <p className="supuestos"><strong>Supuestos:</strong> {caso.supuestos}</p>
-      <p>Registra la póliza <strong>{ejercicio.poliza}</strong>.</p>
-
-      <table>
-        <thead><tr><th>Cuenta</th><th>Cargo</th><th>Abono</th><th /></tr></thead>
-        <tbody>
-          {renglones.map((r, i) => (
-            <tr key={i}>
-              <td>
-                <select aria-label={`Cuenta renglón ${i + 1}`} value={r.cuenta} onChange={(e) => cambiar(i, 'cuenta', e.target.value)}>
-                  <option value="">Elige cuenta…</option>
-                  {cat.map((c) => <option key={c.cuenta} value={c.cuenta}>{c.agrupador} · {c.nombre}</option>)}
-                </select>
-              </td>
-              <td><input aria-label={`Cargo renglón ${i + 1}`} inputMode="decimal" value={r.cargo} onChange={(e) => cambiar(i, 'cargo', e.target.value)} /></td>
-              <td><input aria-label={`Abono renglón ${i + 1}`} inputMode="decimal" value={r.abono} onChange={(e) => cambiar(i, 'abono', e.target.value)} /></td>
-              <td><button aria-label={`Quitar renglón ${i + 1}`} onClick={() => setRenglones((rs) => rs.filter((_, j) => j !== i))}>✕</button></td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div className="acciones">
-        <button onClick={() => setRenglones((rs) => [...rs, vacio()])}>+ Renglón</button>
-        <button className="primario" onClick={revisar}>Revisar póliza</button>
-      </div>
-      {mensajes && (
-        <div role="status" className={mensajes.ok ? 'ok' : 'error'}>
-          {mensajes.textos.map((t) => <p key={t}>{t}</p>)}
-        </div>
+    <div key={intento}>
+      <section className="teoria">
+        <h2>{leccion.titulo}</h2>
+        {leccion.teoria.map((t) => <p key={t}>{t}</p>)}
+        {mejor !== undefined && <p>Mejor resultado: {mejor}% {mejor >= APROBATORIO ? '· Aprobado' : ''}</p>}
+      </section>
+      {leccion.ejercicios.map((ej) => (
+        <EjercicioVista key={ej.id} ej={ej} hecho={false} modo="examen" onResultado={(ok) => responder(ej.id, ok)} />
+      ))}
+      {contestadas === total && (
+        <section role="status" className={pct >= APROBATORIO ? 'ok' : 'error'}>
+          <h3>Resultado: {pct}% {pct >= APROBATORIO ? '· ¡Aprobado!' : `· Necesitas ${APROBATORIO}%`}</h3>
+          <button onClick={() => { setRespuestas({}); setIntento((n) => n + 1); }}>Reintentar examen</button>
+        </section>
       )}
-    </section>
+    </div>
   );
 }

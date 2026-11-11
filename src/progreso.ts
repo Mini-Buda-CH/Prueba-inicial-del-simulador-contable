@@ -1,13 +1,13 @@
 // Progreso local. Estructura versionada para poder sincronizarla con un servidor en la Fase 5.
-export type Progreso = { version: 1; completados: Record<string, string> };
+export type Progreso = { version: 1; completados: Record<string, string>; examenes: Record<string, number> };
 const CLAVE = 'simcont.progreso.v1';
 
 export function cargar(): Progreso {
   try {
     const p = JSON.parse(localStorage.getItem(CLAVE) ?? 'null');
-    if (p?.version === 1) return p;
+    if (p?.version === 1) return { examenes: {}, ...p }; // examenes se agregó en la Fase 1
   } catch { /* almacenamiento no disponible o dañado: empezar de cero */ }
-  return { version: 1, completados: {} };
+  return { version: 1, completados: {}, examenes: {} };
 }
 
 export function guardar(p: Progreso) {

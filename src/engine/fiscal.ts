@@ -26,3 +26,12 @@ export function retencionSueldo(fecha: string, ingreso: number, tarifa: RangoTar
   const subsidio = Math.min(subsidioMensual(fecha, ingreso, vigencias), isr);
   return { isr, subsidio, retenido: isr - subsidio };
 }
+
+/** IVA del mes en base a flujo: trasladado cobrado (208-01) contra acreditable pagado (118-01). */
+export function ivaDelMes(movs: { cuenta: string; cargo: number; abono: number }[]) {
+  const saldo = (cuenta: string, signo: 1 | -1) =>
+    movs.filter((m) => m.cuenta === cuenta).reduce((s, m) => s + signo * (m.cargo - m.abono), 0);
+  const trasladado = saldo('SIM-208-01', -1);
+  const acreditable = saldo('SIM-118-01', 1);
+  return { trasladado, acreditable, aCargo: Math.max(trasladado - acreditable, 0), aFavor: Math.max(acreditable - trasladado, 0) };
+}
