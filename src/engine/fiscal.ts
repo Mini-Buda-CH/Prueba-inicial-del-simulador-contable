@@ -60,15 +60,31 @@ export const LIMITE_RESICO_PF = 350000000; // 3,500,000.00 anuales (art. 113-E)
  * Arriba del último tramo legal se calcula al 2.5 % (extensión que muestra la guía del SAT) y se devuelve una alerta. */
 export function isrResicoMensual(base: number, tabla: TablaResico, retenido = 0, pagosAnteriores = 0, acumuladoAnual = 0) {
   [base, retenido, pagosAnteriores, acumuladoAnual].forEach((v, i) => monto(v, ['Base', 'Retención', 'Pagos anteriores', 'Acumulado anual'][i]));
+  const { tasa_pct, impuesto, excede } = tasaResico(base, tabla);
+  const neto = impuesto - pagosAnteriores - retenido;
+  const alerta = excede || acumuladoAnual + base > LIMITE_RESICO_PF ? ALERTA_LIMITE : undefined;
+  return { tasa_pct, impuesto, retenido, aCargo: Math.max(neto, 0), excedente: Math.max(-neto, 0), ...(alerta && { alerta }) };
+}
+
+const ALERTA_LIMITE = 'Los ingresos superan el límite de $3,500,000 del régimen: revisar la permanencia en RESICO.';
+
+/** Tasa del tramo (sin escalonar). Arriba del último tramo legal usa su tasa y marca excede. */
+function tasaResico(base: number, tabla: TablaResico) {
   const ultimo = tabla[tabla.length - 1];
-  const fila = base === 0 ? undefined : tabla.find((r) => base >= r.limite_inferior && base <= r.limite_superior!) ?? (base > ultimo.limite_superior! ? ultimo : undefined);
+  const excede = base > ultimo.limite_superior!;
+  const fila = base === 0 ? undefined : excede ? ultimo : tabla.find((r) => base >= r.limite_inferior && base <= r.limite_superior!);
   if (base > 0 && !fila) throw new RangeError(`Base ${base} fuera de la tabla RESICO`);
   const tasa_pct = fila?.tasa_pct ?? 0;
-  const impuesto = aplicarTasa(base, tasa_pct);
-  const neto = impuesto - pagosAnteriores - retenido;
-  const alerta = base > ultimo.limite_superior! || acumuladoAnual + base > LIMITE_RESICO_PF
-    ? 'Los ingresos superan el límite de $3,500,000 del régimen: revisar la permanencia en RESICO.' : undefined;
-  return { tasa_pct, impuesto, retenido, aCargo: Math.max(neto, 0), excedente: Math.max(-neto, 0), ...(alerta && { alerta }) };
+  return { tasa_pct, impuesto: aplicarTasa(base, tasa_pct), excede };
+}
+
+/** ISR anual RESICO PF (art. 113-F): tasa única sobre el total anual cobrado, menos los pagos mensuales
+ * EFECTIVAMENTE PAGADOS y las retenciones del art. 113-J. Aquí sí puede resultar un impuesto a favor (devolución o compensación). */
+export function isrResicoAnual(base: number, tablaAnual: TablaResico, pagosMensuales: number, retenido = 0) {
+  [base, pagosMensuales, retenido].forEach((v, i) => monto(v, ['Base', 'Pagos mensuales', 'Retención'][i]));
+  const { tasa_pct, impuesto: causado, excede } = tasaResico(base, tablaAnual);
+  const neto = causado - pagosMensuales - retenido;
+  return { tasa_pct, causado, pagosMensuales, retenido, aCargo: Math.max(neto, 0), aFavor: Math.max(-neto, 0), ...(excede && { alerta: ALERTA_LIMITE }) };
 }
 
 /** Retención que hace una persona moral a una PF en RESICO (porcentaje sobre el monto sin IVA). */

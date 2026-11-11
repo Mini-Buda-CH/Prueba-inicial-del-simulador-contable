@@ -89,7 +89,7 @@ parametros = {
     "resico_pf_mensual": {
         "fuente_id": "SAT_GUIA_RESICO_PF_2024_p22",
         "articulo": "113-E",
-        "estado": "COTEJADA_SAT (revisión del usuario v0.2, 2026-11-10); pendiente reglas RMF 2026 de anual, salida y retorno",
+        "estado": "COTEJADA contra el texto de la LISR (Cámara de Diputados, última reforma DOF 01-04-2024, datos/referencias/leyes/LISR.md) y SAT; pendiente confirmar reformas posteriores y RMF 2026",
         "cotejo": ["https://wwwmat.sat.gob.mx/articulo/58780/articulo-113-e", "https://wwwmat.sat.gob.mx/articulo/59511/articulo-113-j"],
         "nota": "La tasa se aplica al total de ingresos cobrados del mes (no por excedente).",
         "tabla": [{"limite_inferior": cent(li), "limite_superior": cent(ls), "tasa_pct": t} for li, ls, t in [
@@ -97,7 +97,17 @@ parametros = {
             ("83333.34", "208333.33", 2.00), ("208333.34", "3500000.00", 2.50)]],
         "retencion_pm_pct": 1.25,
         "retencion_pm_articulo": "113-J",
-        "retencion_pm_estado": "COTEJADA_SAT art. 113-J (revisión del usuario v0.2)",
+        "retencion_pm_estado": "COTEJADA art. 113-J (texto LISR DOF 01-04-2024 y SAT)",
+    },
+    # Art. 113-F: anual en abril; se acreditan los pagos mensuales y las retenciones del art. 113-J.
+    "resico_pf_anual": {
+        "fuente_id": "LISR_DOF_2024-04-01",
+        "articulo": "113-F",
+        "estado": "COTEJADA contra el texto de la LISR (DOF 01-04-2024); pendiente confirmar reformas posteriores y RMF 2026",
+        "nota": "Tasa única sobre el total anual cobrado sin IVA ni deducciones. Solo se acreditan pagos mensuales efectivamente pagados (guía SAT anual RESICO 2024).",
+        "tabla": [{"limite_inferior": cent(li), "limite_superior": cent(ls), "tasa_pct": t} for li, ls, t in [
+            ("0.01", "300000.00", 1.00), ("300000.01", "600000.00", 1.10), ("600000.01", "1000000.00", 1.50),
+            ("1000000.01", "2500000.00", 2.00), ("2500000.01", "3500000.00", 2.50)]],
     },
     "solo_referencia": {
         "nota": "habilitado_calculo=NO o estado pendiente: el motor no usa estas tablas.",

@@ -190,3 +190,21 @@ describe('docs/lecciones.txt', () => {
     expect(copia).toBe(fuente);
   });
 });
+
+describe('episodio anual RESICO 2026', () => {
+  const m = MESES.find((x) => x.id === 'resico-anual-2026')!;
+  it('declaración correcta: 540,000 al 1.10 % = 5,940; pagos 7,500 → a favor 1,560', () => {
+    expect(declaracionCorrecta(m)).toEqual({ cobrado: 54000000, devoluciones: 0, tasa_pct: 1.1, causado: 594000, pagosMensuales: 750000, retenido: 0, aCargo: 0, aFavor: 156000 });
+  });
+  it('acreditar sin regularizar octubre (6,450) da una anual incorrecta', () => {
+    const mal = { ...declaracionCorrecta(m), pagosMensuales: 645000, aFavor: 51000 };
+    const e = presentarDeclaracion(nuevoEstado(m), m.tareas.find((t) => t.tipo === 'declaracion')!, mal);
+    expect(evaluar(e).fiscal.correcta).toBe(false);
+  });
+  it('jugar perfecto: todo en verde', () => {
+    let e = nuevoEstado(m);
+    for (const t of m.tareas.filter((t) => t.tipo !== 'declaracion')) e = resolver(e, t, true);
+    e = presentarDeclaracion(e, m.tareas.find((t) => t.tipo === 'declaracion')!, declaracionCorrecta(m));
+    expect(evaluar(e)).toEqual({ registro: { correctas: 2, total: 2 }, control: null, cumplimiento: true, fiscal: { correcta: true, coherente: null }, comunicacion: true });
+  });
+});

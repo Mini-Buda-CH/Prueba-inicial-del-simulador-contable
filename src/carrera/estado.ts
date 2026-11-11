@@ -4,8 +4,9 @@ import casosResico from '../../content/casos_resico.json';
 import params from '../../content/parametros/2026.json';
 import pyme from '../../content/carrera/pyme-feb-2026.json';
 import resico from '../../content/carrera/resico-mar-2026.json';
+import resicoAnual from '../../content/carrera/resico-anual-2026.json';
 import { mismaPoliza, type Movimiento } from '../engine/contable';
-import { isrResicoMensual, ivaDelMes, type TablaResico } from '../engine/fiscal';
+import { isrResicoAnual, isrResicoMensual, ivaDelMes, type TablaResico } from '../engine/fiscal';
 import { avisarGuardado } from '../sync';
 
 export type Tarea = {
@@ -15,23 +16,26 @@ export type Tarea = {
 };
 export type Mes = {
   id: string; titulo: string; empresa: string; regimen: string; puesto: string; jefe: string;
-  declaracion: 'iva' | 'resico'; caso_declaracion?: string; vencimiento: string; tareas: Tarea[]; supuestos?: string[];
+  declaracion: 'iva' | 'resico' | 'resico_anual'; caso_declaracion?: string; vencimiento: string; tareas: Tarea[]; supuestos?: string[];
   precargados?: { fecha: string; nota: string; polizas: Omit<Movimiento, 'poliza'>[][] };
 };
-export const MESES = [pyme, resico] as Mes[];
+export const MESES = [pyme, resico, resicoAnual] as Mes[];
 export const MES = MESES[0];
 
 export type Iva = ReturnType<typeof ivaDelMes>;
 export type Resico = Omit<ReturnType<typeof isrResicoMensual>, 'alerta'> & { cobrado: number; devoluciones: number };
+export type ResicoAnual = Omit<ReturnType<typeof isrResicoAnual>, 'alerta'> & { cobrado: number; devoluciones: number };
+export type Declaracion = Iva | Resico | ResicoAnual;
 export type EstadoMes = {
   version: 1; mes: string; retraso: number;
   tareas: Record<string, { ok: boolean; fecha: string }>;
   movimientos: Movimiento[];
-  declaracion?: (Iva | Resico) & { fecha: string };
+  declaracion?: Declaracion & { fecha: string };
 };
 
 const casos = [...casosPm, ...casosResico];
 export const tablaResico = params.resico_pf_mensual.tabla as TablaResico;
+export const tablaResicoAnual = params.resico_pf_anual.tabla as TablaResico;
 
 export const precargados = (m: Mes = MES): Movimiento[] =>
   (m.precargados?.polizas ?? []).flatMap((p, i) => p.map((mv) => ({ ...mv, poliza: `PRE-${i + 1}` })));
@@ -45,9 +49,13 @@ export const solucionTarea = (t: Tarea): Movimiento[] =>
 export const libroSolucion = (m: Mes = MES): Movimiento[] => [...precargados(m), ...m.tareas.filter((t) => t.tipo === 'poliza').flatMap(solucionTarea)];
 
 /** Declaración correcta del mes, según su tipo. */
-export function declaracionCorrecta(m: Mes): Iva | Resico {
+export function declaracionCorrecta(m: Mes): Declaracion {
   if (m.declaracion === 'iva') return ivaDelMes(libroSolucion(m));
-  const d = casosResico.find((c) => c.id === m.caso_declaracion)!.datos;
+  const d = casosResico.find((c) => c.id === m.caso_declaracion)!.datos as { cobrado: number; devoluciones: number; retenido: number; pagosMensuales?: number };
+  if (m.declaracion === 'resico_anual') {
+    const { alerta: _, ...r } = isrResicoAnual(d.cobrado - d.devoluciones, tablaResicoAnual, d.pagosMensuales!, d.retenido);
+    return { cobrado: d.cobrado, devoluciones: d.devoluciones, ...r };
+  }
   const { alerta: _, ...r } = isrResicoMensual(d.cobrado - d.devoluciones, tablaResico, d.retenido);
   return { cobrado: d.cobrado, devoluciones: d.devoluciones, ...r };
 }
@@ -91,7 +99,7 @@ export function registrarPoliza(e: EstadoMes, t: Tarea, movs: Movimiento[]): Est
   return { ...marcar(e, t, mismaPoliza(propios, solucionTarea(t))), movimientos: [...e.movimientos, ...propios] };
 }
 
-export function presentarDeclaracion(e: EstadoMes, t: Tarea, declarada: Iva | Resico): EstadoMes {
+export function presentarDeclaracion(e: EstadoMes, t: Tarea, declarada: Declaracion): EstadoMes {
   exigir(e, t, ['declaracion']);
   const r = marcar(e, t, igual(declarada, declaracionCorrecta(mesDe(e))));
   return { ...r, declaracion: { ...declarada, fecha: r.tareas[t.id].fecha } };

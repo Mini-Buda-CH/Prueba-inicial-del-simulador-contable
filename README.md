@@ -38,6 +38,6 @@ Cuentas con Google y GitHub mediante Supabase (opcional; sin configurar, el prog
 ```bash
 npm install
 npm run dev        # app en http://localhost:5173
-npm test           # 62 pruebas: motores, casos, lecciones, meses PyME y RESICO, revisiones del usuario
+npm test           # 74 pruebas: motores, casos, lecciones, meses PyME y RESICO, revisiones del usuario
 npm run importar   # regenerar content/ desde datos/originales (requiere Python con openpyxl)
 ```

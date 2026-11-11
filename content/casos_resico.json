@@ -140,5 +140,319 @@
     "valor": 32500
    }
   ]
+ },
+ {
+  "id": "RA01",
+  "titulo": "Anual RESICO: meses con tasas distintas",
+  "estado": "PENDIENTE_VALIDACION",
+  "autor": "Redactado por Claude con la LISR (arts. 113-E, 113-F, 113-J) y la guía SAT anual RESICO 2024; pendiente de validación",
+  "enunciado": "Diseñadora en RESICO, ejercicio 2026: cobró $20,000 al mes de enero a junio y $70,000 al mes de julio a diciembre (sin IVA, sin descuentos ni retenciones). Presentó y pagó los 12 pagos mensuales.",
+  "supuestos": "Todos los pagos mensuales están pagados. Sin ingresos de otros capítulos. Importes sin IVA.",
+  "datos": {
+   "cobrado": 54000000,
+   "devoluciones": 0,
+   "pagosMensuales": 750000,
+   "retenido": 0,
+   "meses": [
+    {
+     "mes": 1,
+     "cobrado": 2000000,
+     "retenido": 0,
+     "pagado": true
+    },
+    {
+     "mes": 2,
+     "cobrado": 2000000,
+     "retenido": 0,
+     "pagado": true
+    },
+    {
+     "mes": 3,
+     "cobrado": 2000000,
+     "retenido": 0,
+     "pagado": true
+    },
+    {
+     "mes": 4,
+     "cobrado": 2000000,
+     "retenido": 0,
+     "pagado": true
+    },
+    {
+     "mes": 5,
+     "cobrado": 2000000,
+     "retenido": 0,
+     "pagado": true
+    },
+    {
+     "mes": 6,
+     "cobrado": 2000000,
+     "retenido": 0,
+     "pagado": true
+    },
+    {
+     "mes": 7,
+     "cobrado": 7000000,
+     "retenido": 0,
+     "pagado": true
+    },
+    {
+     "mes": 8,
+     "cobrado": 7000000,
+     "retenido": 0,
+     "pagado": true
+    },
+    {
+     "mes": 9,
+     "cobrado": 7000000,
+     "retenido": 0,
+     "pagado": true
+    },
+    {
+     "mes": 10,
+     "cobrado": 7000000,
+     "retenido": 0,
+     "pagado": true
+    },
+    {
+     "mes": 11,
+     "cobrado": 7000000,
+     "retenido": 0,
+     "pagado": true
+    },
+    {
+     "mes": 12,
+     "cobrado": 7000000,
+     "retenido": 0,
+     "pagado": true
+    }
+   ]
+  },
+  "movimientos": [],
+  "resultados": [
+   {
+    "concepto": "Tasa aplicable %",
+    "valor": 1.1,
+    "unidad": "pct"
+   },
+   {
+    "concepto": "ISR causado anual",
+    "valor": 594000
+   },
+   {
+    "concepto": "Pagos mensuales acreditables",
+    "valor": 750000
+   },
+   {
+    "concepto": "Impuesto a favor",
+    "valor": 156000
+   }
+  ]
+ },
+ {
+  "id": "RA02",
+  "titulo": "Anual RESICO: un mes declarado sin pagar",
+  "estado": "PENDIENTE_VALIDACION",
+  "autor": "Redactado por Claude con la LISR (arts. 113-E, 113-F, 113-J) y la guía SAT anual RESICO 2024; pendiente de validación",
+  "enunciado": "Cobró $24,000 cada mes de 2026 (sin IVA). Presentó los 12 pagos mensuales, pero el de mayo quedó sin pagar.",
+  "supuestos": "La anual solo acredita las declaraciones mensuales pagadas (guía SAT anual RESICO 2024). La declaración de mayo sigue siendo un adeudo propio que debe atenderse.",
+  "datos": {
+   "cobrado": 28800000,
+   "devoluciones": 0,
+   "pagosMensuales": 264000,
+   "retenido": 0,
+   "meses": [
+    {
+     "mes": 1,
+     "cobrado": 2400000,
+     "retenido": 0,
+     "pagado": true
+    },
+    {
+     "mes": 2,
+     "cobrado": 2400000,
+     "retenido": 0,
+     "pagado": true
+    },
+    {
+     "mes": 3,
+     "cobrado": 2400000,
+     "retenido": 0,
+     "pagado": true
+    },
+    {
+     "mes": 4,
+     "cobrado": 2400000,
+     "retenido": 0,
+     "pagado": true
+    },
+    {
+     "mes": 5,
+     "cobrado": 2400000,
+     "retenido": 0,
+     "pagado": false
+    },
+    {
+     "mes": 6,
+     "cobrado": 2400000,
+     "retenido": 0,
+     "pagado": true
+    },
+    {
+     "mes": 7,
+     "cobrado": 2400000,
+     "retenido": 0,
+     "pagado": true
+    },
+    {
+     "mes": 8,
+     "cobrado": 2400000,
+     "retenido": 0,
+     "pagado": true
+    },
+    {
+     "mes": 9,
+     "cobrado": 2400000,
+     "retenido": 0,
+     "pagado": true
+    },
+    {
+     "mes": 10,
+     "cobrado": 2400000,
+     "retenido": 0,
+     "pagado": true
+    },
+    {
+     "mes": 11,
+     "cobrado": 2400000,
+     "retenido": 0,
+     "pagado": true
+    },
+    {
+     "mes": 12,
+     "cobrado": 2400000,
+     "retenido": 0,
+     "pagado": true
+    }
+   ]
+  },
+  "movimientos": [],
+  "resultados": [
+   {
+    "concepto": "ISR causado anual",
+    "valor": 288000
+   },
+   {
+    "concepto": "Pagos mensuales acreditables",
+    "valor": 264000
+   },
+   {
+    "concepto": "Impuesto a cargo",
+    "valor": 24000
+   }
+  ]
+ },
+ {
+  "id": "RA03",
+  "titulo": "Anual RESICO: retenciones de personas morales",
+  "estado": "PENDIENTE_VALIDACION",
+  "autor": "Redactado por Claude con la LISR (arts. 113-E, 113-F, 113-J) y la guía SAT anual RESICO 2024; pendiente de validación",
+  "enunciado": "Cobró $30,000 cada mes de 2026 a una persona moral, que le retuvo 1.25 % ($375 al mes). Cada mes la retención cubrió el impuesto mensual, así que no hubo pagos.",
+  "supuestos": "Retenciones amparadas en CFDI. El excedente mensual no se trasladó entre meses; en la anual se acreditan todas las retenciones (art. 113-F).",
+  "datos": {
+   "cobrado": 36000000,
+   "devoluciones": 0,
+   "pagosMensuales": 0,
+   "retenido": 450000,
+   "meses": [
+    {
+     "mes": 1,
+     "cobrado": 3000000,
+     "retenido": 37500,
+     "pagado": true
+    },
+    {
+     "mes": 2,
+     "cobrado": 3000000,
+     "retenido": 37500,
+     "pagado": true
+    },
+    {
+     "mes": 3,
+     "cobrado": 3000000,
+     "retenido": 37500,
+     "pagado": true
+    },
+    {
+     "mes": 4,
+     "cobrado": 3000000,
+     "retenido": 37500,
+     "pagado": true
+    },
+    {
+     "mes": 5,
+     "cobrado": 3000000,
+     "retenido": 37500,
+     "pagado": true
+    },
+    {
+     "mes": 6,
+     "cobrado": 3000000,
+     "retenido": 37500,
+     "pagado": true
+    },
+    {
+     "mes": 7,
+     "cobrado": 3000000,
+     "retenido": 37500,
+     "pagado": true
+    },
+    {
+     "mes": 8,
+     "cobrado": 3000000,
+     "retenido": 37500,
+     "pagado": true
+    },
+    {
+     "mes": 9,
+     "cobrado": 3000000,
+     "retenido": 37500,
+     "pagado": true
+    },
+    {
+     "mes": 10,
+     "cobrado": 3000000,
+     "retenido": 37500,
+     "pagado": true
+    },
+    {
+     "mes": 11,
+     "cobrado": 3000000,
+     "retenido": 37500,
+     "pagado": true
+    },
+    {
+     "mes": 12,
+     "cobrado": 3000000,
+     "retenido": 37500,
+     "pagado": true
+    }
+   ]
+  },
+  "movimientos": [],
+  "resultados": [
+   {
+    "concepto": "ISR causado anual",
+    "valor": 396000
+   },
+   {
+    "concepto": "ISR retenido anual",
+    "valor": 450000
+   },
+   {
+    "concepto": "Impuesto a favor",
+    "valor": 54000
+   }
+  ]
  }
 ]

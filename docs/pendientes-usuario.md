@@ -26,16 +26,20 @@ Formatos: tablas en Excel/CSV con columna de fuente; casos con el formato de `ca
 ### Ruta RESICO (despacho) · ✅ jugable · revisión v0.2 atendida
 | Qué | Dónde | Estado |
 |---|---|---|
-| Tabla legal de 5 tramos (art. 113-E) | `content/parametros/2026.json` → `resico_pf_mensual` | **COTEJADA** con fuentes SAT (revisión v0.2). Falta cerrar vigencia anual con texto y reglas RMF 2026 |
-| Retención 1.25 % de PM (art. 113-J) | mismo archivo | **COTEJADA** |
+| Tabla mensual de 5 tramos (art. 113-E) | `content/parametros/2026.json` → `resico_pf_mensual` | **COTEJADA contra el texto de la LISR** (DOF 01-04-2024; prueba automática) y SAT. Falta confirmar reformas 2025–2026 y RMF 2026 |
+| Tabla anual de 5 tramos (art. 113-F) | `resico_pf_anual` | **COTEJADA contra el texto de la LISR** (prueba automática); mismas salvedades |
+| Retención 1.25 % de PM (art. 113-J) | mismo archivo | **COTEJADA** (texto LISR y SAT) |
 | Casos R01–R05 | `content/casos_resico.json` | **ARITMÉTICA COMPROBADA** (tu CSV es prueba automática); observaciones V02 aplicadas, falta tu visto bueno fiscal y pedagógico |
 | Historia del mes de despacho | `content/carrera/resico-mar-2026.json` | **REVISADA, CAMBIOS APLICADOS** (V03: mensaje del revisor, alcance solo ISR) |
 | Lección M3-L01 | `docs/lecciones.txt` | **PROPUESTAS APLICADAS** (lo determinante es el cobro, no el complemento); falta validación |
 | Tratamiento fiscal de descuentos en R03/R05 y procedimiento para el excedente de retenciones | — | **ABIERTO** |
 | Redondeo | `aPagarPesos` (art. 20 CFF) | **APLICADO** para el importe a pagar; el redondeo de cada campo de cada aplicativo sigue sin modelarse |
 | IVA de la diseñadora: retención de IVA por servicios personales independientes a PM (LIVA art. 1-A II a) | — | **FALTA**: casos o reglas para un mes de IVA |
-| Anual RESICO, salida y retorno del régimen (RMF 2026) | Word/Markdown | **FALTA** |
-| Guía SAT RESICO PF | `datos/referencias/sat_resico/` | RECIBIDO |
+| Anual RESICO: casos RA01–RA03, lección M3-L02, examen M3 y episodio de Carrera "Anual 2026" | `content/casos_resico.json`, `docs/lecciones.txt`, `content/carrera/resico-anual-2026.json` | **REDACTADO con LISR 113-E a 113-J y la guía SAT anual 2024**; aritmética probada; falta validación |
+| Salida y regreso al régimen (113-E, 113-I): en teoría y preguntas | `docs/lecciones.txt` | **REDACTADO**; las reglas RMF 2026 complementarias siguen **FALTANDO** |
+| LIVA (texto) para la retención de IVA de la diseñadora | Markdown, como la LISR | **FALTA** |
+| Guías SAT RESICO PF (mensual, anual 2024, preguntas frecuentes) | `datos/referencias/sat_resico/` | RECIBIDO |
+| Textos de LISR, LGSM y LIEPS | `datos/referencias/leyes/` | RECIBIDO; LISR cotejada en `docs/cotejo-lisr.md`; LGSM y LIEPS se usarán en el módulo 5 y en la especialidad IEPS |
 
 ### Estado de los motores (revisión v0.2)
 | Hallazgo | Estado |

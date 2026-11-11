@@ -320,6 +320,63 @@ export const lecciones: Leccion[] = [
       },
     ],
   },
+  {
+    id: 'M3-L02', modulo: M3, estado: P, titulo: 'Anual RESICO y permanencia en el régimen',
+    teoria: [
+      'La declaración anual se presenta en abril del año siguiente (art. 113-F LISR). Se aplica una sola tasa de la tabla anual (de 1.00 % hasta $300,000 a 2.50 % hasta $3,500,000) al total de ingresos cobrados en el año, sin IVA y sin deducciones.',
+      'Al ISR causado se le restan los pagos mensuales y las retenciones de personas morales (art. 113-J). En la práctica solo se acreditan las declaraciones mensuales efectivamente pagadas: un mes declarado sin pagar sigue siendo un adeudo y debe regularizarse.',
+      'Como la tasa mensual depende de cada mes y la anual del total del año, la anual puede dar impuesto a cargo o a favor. Un impuesto a favor de la anual sí puede pedirse en devolución o compensarse, a diferencia del excedente mensual de retenciones.',
+      'Se deja de tributar en RESICO a partir del mes siguiente a aquel en que los ingresos superen $3,500,000, o si se omiten tres o más pagos mensuales en el año, o no se presenta la anual (arts. 113-E y 113-I).',
+      'Quien sale por incumplimiento no puede volver al régimen. Quien sale por exceder el límite puede volver si en el ejercicio anterior no superó $3,500,000 y está al corriente (art. 113-E).',
+      'No pueden aplicar RESICO, entre otros, los socios o accionistas de personas morales y las partes relacionadas (art. 113-E, fracción I).',
+      'Fuente: texto de la LISR con última reforma DOF 01-04-2024 y guía SAT de la anual RESICO 2024; falta confirmar reformas y reglas de 2026.',
+    ],
+    ejercicios: [
+      { id: 'M3-L02-E1', tipo: 'calculo', caso: 'RA01', concepto: 'Tasa aplicable %', pregunta: '¿Qué tasa anual aplica (en %)?' },
+      { id: 'M3-L02-E2', tipo: 'calculo', caso: 'RA01', concepto: 'ISR causado anual', pregunta: '¿ISR causado del ejercicio?' },
+      { id: 'M3-L02-E3', tipo: 'calculo', caso: 'RA01', concepto: 'Impuesto a favor', pregunta: 'Con $7,500 de pagos mensuales, ¿qué impuesto a favor resulta?' },
+      { id: 'M3-L02-E4', tipo: 'calculo', caso: 'RA02', concepto: 'Impuesto a cargo', pregunta: '¿Impuesto a cargo de la anual si solo se acreditan los meses pagados?' },
+      { id: 'M3-L02-E5', tipo: 'calculo', caso: 'RA03', concepto: 'Impuesto a favor', pregunta: '¿Impuesto a favor de la anual?' },
+      {
+        id: 'M3-L02-E6', tipo: 'opcion',
+        pregunta: 'Un cliente en RESICO superó $3,500,000 de ingresos cobrados en agosto. ¿Qué pasa?',
+        opciones: ['Sigue en RESICO hasta diciembre', 'A partir de septiembre tributa en el régimen general que le corresponda', 'Debe recalcular todo el año como régimen general desde enero', 'No pasa nada si paga al 2.5 %'],
+        correcta: 1,
+        explicacion: 'Art. 113-E: deja de aplicar la Sección a partir del mes siguiente a aquel en que se excede el límite.',
+      },
+      {
+        id: 'M3-L02-E7', tipo: 'opcion',
+        pregunta: 'Un cliente omitió tres pagos mensuales en 2026. ¿Qué consecuencia tiene?',
+        opciones: ['Ninguna si presenta la anual', 'Deja de tributar en RESICO y, por ser incumplimiento, no podrá volver', 'Solo paga recargos y sigue en RESICO', 'Puede volver el año siguiente si sus ingresos son bajos'],
+        correcta: 1,
+        explicacion: 'Art. 113-I (omitir 3 o más pagos) y art. 113-E (quien sale por incumplimiento en ningún caso puede volver).',
+      },
+      {
+        id: 'M3-L02-E8', tipo: 'opcion',
+        pregunta: 'Un prospecto profesionista es accionista de una S.A. de C.V. ¿Puede tributar en RESICO como persona física?',
+        opciones: ['Sí, si gana menos de $3,500,000', 'No: los socios o accionistas de personas morales no pueden aplicar RESICO', 'Sí, si renuncia a dividendos', 'Solo por sus ingresos de arrendamiento'],
+        correcta: 1,
+        explicacion: 'Art. 113-E, fracción I.',
+      },
+    ],
+  },
+  {
+    id: 'M3-EX', modulo: M3, estado: P, examen: true, titulo: 'Examen: RESICO personas físicas',
+    teoria: ['Un intento por pregunta y sin teoría a la vista. Se aprueba con 80 %.'],
+    ejercicios: [
+      { id: 'M3-EX-1', tipo: 'calculo', caso: 'R03', concepto: 'Impuesto mensual', pregunta: 'Cobró $30,000 y concedió un descuento documentado de $5,000. ¿Impuesto mensual?' },
+      { id: 'M3-EX-2', tipo: 'calculo', caso: 'R04', concepto: 'Impuesto mensual', pregunta: 'Cobró $60,000 en el mes. ¿Impuesto mensual antes de retenciones?' },
+      { id: 'M3-EX-3', tipo: 'calculo', caso: 'RA02', concepto: 'Pagos mensuales acreditables', pregunta: '12 meses de $240 de ISR, con mayo sin pagar. ¿Pagos mensuales acreditables en la anual?' },
+      { id: 'M3-EX-4', tipo: 'calculo', caso: 'RA03', concepto: 'ISR causado anual', pregunta: 'Ingresos anuales de $360,000. ¿ISR causado anual?' },
+      {
+        id: 'M3-EX-5', tipo: 'opcion',
+        pregunta: 'En la anual resultó impuesto a favor. ¿Qué es correcto?',
+        opciones: ['Se pierde', 'Puede solicitarse en devolución o compensarse, según proceda', 'Se suma automáticamente a los pagos del año siguiente sin trámite', 'Solo se recupera si hubo retenciones'],
+        correcta: 1,
+        explicacion: 'La guía de la anual RESICO pide elegir qué hacer con el saldo a favor (por ejemplo, devolución con CLABE).',
+      },
+    ],
+  },
 ];
 
 export const todosEjercicios = lecciones.flatMap((l) => l.ejercicios);

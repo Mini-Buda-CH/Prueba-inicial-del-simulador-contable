@@ -1,0 +1,46 @@
+{
+ "id": "resico-anual-2026",
+ "titulo": "Despacho · Anual RESICO",
+ "estado": "PENDIENTE_VALIDACION",
+ "empresa": "Tu despacho · Cliente: diseñadora gráfica (ficticia)",
+ "regimen": "Persona física, RESICO · Declaración anual 2026",
+ "puesto": "Contador independiente",
+ "jefe": "Tu cliente",
+ "declaracion": "resico_anual",
+ "caso_declaracion": "RA01",
+ "vencimiento": "2027-04-30",
+ "supuestos": [
+  "Ejercicio 2026: cobró $20,000 al mes de enero a junio y $70,000 al mes de julio a diciembre, sin IVA, sin descuentos ni retenciones.",
+  "Los 12 pagos mensuales se presentaron; el de octubre ($1,050) quedó sin pagar hasta que lo regulariza en la primera tarea.",
+  "Solo se acreditan en la anual las declaraciones mensuales pagadas (guía SAT anual RESICO 2024).",
+  "Fuente: LISR arts. 113-E, 113-F y 113-I (texto con última reforma DOF 01-04-2024); falta confirmar reformas y RMF 2026. Este episodio cubre solo ISR."
+ ],
+ "tareas": [
+  {"id": "A-T01", "fecha": "2027-04-05", "tipo": "opcion", "leccion": "M3-L02",
+   "correo": "Hola, ya toca la anual 2026, ¿verdad? Revisando mis correos vi que la línea de captura de octubre nunca la pagué, se me pasó. ¿Importa?",
+   "pregunta": "¿Qué le recomiendas antes de presentar la anual?",
+   "opciones": [
+    "No importa: en la anual se acreditan todos los pagos mensuales declarados, aunque no se hayan pagado",
+    "Regularizar octubre antes de la anual: pagar el adeudo con su actualización y recargos y conservar el comprobante, para poder acreditarlo",
+    "Presentar la anual sin acreditar octubre y olvidarse del adeudo de octubre",
+    "Cancelar la declaración de octubre"
+   ],
+   "correcta": 1,
+   "explicacion": "La anual solo acredita las declaraciones mensuales pagadas. El pago omitido de octubre sigue siendo un adeudo; si se regulariza antes, se acredita y no se paga dos veces."},
+  {"id": "A-T02", "fecha": "2027-04-08", "tipo": "calculo", "leccion": "M3-L02", "caso": "RA01", "concepto": "ISR causado anual",
+   "correo": "Listo, ya pagué octubre (te paso el comprobante). Antes de entrar al portal arma tu papel de trabajo: ¿cuánto es el ISR causado del año?", "pregunta": "ISR causado del ejercicio 2026"},
+  {"id": "A-T03", "fecha": "2027-04-12", "tipo": "declaracion", "leccion": "M3-L02",
+   "correo": "Presenta mi anual, porfa. ¿Me va a salir a pagar?"},
+  {"id": "A-T04", "fecha": "2027-04-12", "tipo": "mensaje", "leccion": "M3-L02",
+   "correo": "Vi tu aviso. ¿Cómo quedó mi anual?",
+   "pregunta": "Elige tu mensaje al cliente:",
+   "opciones": [
+    "Presenté tu anual 2026: ingresos cobrados $540,000, tasa anual 1.10 %, ISR causado $5,940; se acreditan $7,500 de pagos mensuales (incluido octubre, ya regularizado). Resulta un impuesto a favor de $1,560 porque en los meses de $70,000 pagaste al 1.50 % y en el año la tasa es 1.10 %. Podemos pedir la devolución con tu CLABE o compensarlo; dime qué prefieres. Te envío el acuse. Esto cubre solo ISR.",
+    "Te salió a favor porque no habías pagado octubre.",
+    "Tienes que pagar $5,940 adicionales por la anual.",
+    "El saldo a favor se aplica solo a tus pagos de 2027, no hay otra opción."
+   ],
+   "correcta": 0,
+   "explicacion": "Se explica la base, la tasa anual, los pagos acreditables, por qué hay saldo a favor y las opciones para recuperarlo."}
+ ]
+}

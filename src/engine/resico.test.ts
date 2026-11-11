@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import casos from '../../content/casos_resico.json';
 import params from '../../content/parametros/2026.json';
-import { aPagarPesos, aplicarTasa, isrResicoMensual, isrTarifa, retencionResico, type TablaResico } from './fiscal';
+import { aPagarPesos, aplicarTasa, isrResicoAnual, isrResicoMensual, isrTarifa, retencionResico, type TablaResico } from './fiscal';
 
 const tabla = params.resico_pf_mensual.tabla as TablaResico;
 
@@ -18,7 +18,7 @@ describe('RESICO PF mensual', () => {
   it('retención de 1.25 % sobre 40,000 = 500', () => {
     expect(retencionResico(4000000, params.resico_pf_mensual.retencion_pm_pct)).toBe(50000);
   });
-  for (const c of casos) {
+  for (const c of casos.filter((x) => !x.id.startsWith('RA'))) {
     it(`${c.id}: los resultados redactados coinciden con el motor`, () => {
       const base = c.datos.cobrado - c.datos.devoluciones;
       const r = isrResicoMensual(base, tabla, c.datos.retenido);
@@ -67,4 +67,29 @@ describe('revisión v0.2', () => {
     }
     expect(() => isrResicoMensual(100, tabla, -5)).toThrow(RangeError);
   });
+});
+
+describe('anual RESICO (art. 113-F)', () => {
+  const anual = params.resico_pf_anual.tabla as TablaResico;
+  it('fronteras de la tabla anual', () => {
+    expect(isrResicoAnual(30000000, anual, 0).tasa_pct).toBe(1);
+    expect(isrResicoAnual(30000001, anual, 0).tasa_pct).toBe(1.1);
+    expect(isrResicoAnual(350000000, anual, 0).alerta).toBeUndefined();
+    expect(isrResicoAnual(350000001, anual, 0).alerta).toMatch(/3,500,000/);
+  });
+  for (const c of casos.filter((x) => x.id.startsWith('RA'))) {
+    it(`${c.id}: los meses reproducen pagos y retenciones, y la anual coincide con lo redactado`, () => {
+      const d = c.datos as { cobrado: number; devoluciones: number; pagosMensuales: number; retenido: number; meses: { cobrado: number; retenido: number; pagado: boolean }[] };
+      const mensuales = d.meses.map((m) => ({ ...m, r: isrResicoMensual(m.cobrado, tabla, m.retenido) }));
+      expect(mensuales.reduce((s, m) => s + m.cobrado, 0)).toBe(d.cobrado);
+      expect(mensuales.filter((m) => m.pagado).reduce((s, m) => s + m.r.aCargo, 0)).toBe(d.pagosMensuales);
+      expect(mensuales.reduce((s, m) => s + m.retenido, 0)).toBe(d.retenido);
+      const r = isrResicoAnual(d.cobrado - d.devoluciones, anual, d.pagosMensuales, d.retenido);
+      const esperado: Record<string, number> = {
+        'Tasa aplicable %': r.tasa_pct, 'ISR causado anual': r.causado, 'Pagos mensuales acreditables': r.pagosMensuales,
+        'ISR retenido anual': r.retenido, 'Impuesto a cargo': r.aCargo, 'Impuesto a favor': r.aFavor,
+      };
+      for (const res of c.resultados) expect(res.valor, res.concepto).toBe(esperado[res.concepto]);
+    });
+  }
 });

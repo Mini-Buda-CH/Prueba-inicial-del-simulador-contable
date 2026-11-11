@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { balanza, pesos } from '../engine/contable';
-import { aPagarPesos, isrResicoMensual, type ivaDelMes } from '../engine/fiscal';
+import { aPagarPesos, isrResicoAnual, isrResicoMensual, type ivaDelMes } from '../engine/fiscal';
 import { cat, EjercicioVista, Opcion } from '../ejercicios';
 import { lecciones, leccionCompleta } from '../lecciones';
 import { aCentavos, type Progreso } from '../progreso';
 import {
   cargarMes, evaluar, guardarMes, MESES, mesDe, nuevoEstado, presentarDeclaracion, registrarPoliza, resolver,
-  sumarDias, tablaResico, tareaActual, type EstadoMes, type Mes, type Resico, type Tarea,
+  sumarDias, tablaResico, tareaActual, type EstadoMes, type Mes, type Resico, type ResicoAnual, type Tarea,
 } from './estado';
 
 const nombre = (cuenta: string) => cat.find((c) => c.cuenta === cuenta)?.nombre ?? cuenta;
@@ -122,7 +122,7 @@ function TareaVista({ tarea, estado, actualizar }: { tarea: Tarea; estado: Estad
     case 'declaracion':
       return mes.declaracion === 'iva'
         ? <DeclaracionIva onPresentar={(d) => actualizar(() => presentarDeclaracion(estado, tarea, d))} />
-        : <DeclaracionResico vencimiento={mes.vencimiento} onPresentar={(d) => actualizar(() => presentarDeclaracion(estado, tarea, d))} />;
+        : <DeclaracionResico vencimiento={mes.vencimiento} anual={mes.declaracion === 'resico_anual'} onPresentar={(d) => actualizar(() => presentarDeclaracion(estado, tarea, d))} />;
     default:
       return (
         <section>
@@ -172,30 +172,36 @@ function DeclaracionIva({ onPresentar }: { onPresentar: (iva: ReturnType<typeof 
   );
 }
 
-// Sigue el flujo de la guía de pagos mensuales RESICO PF: Ingresos → Determinación → Pago → Envío (pantallas propias).
-function DeclaracionResico({ vencimiento, onPresentar }: { vencimiento: string; onPresentar: (d: Resico) => void }) {
+// Sigue el flujo de las guías SAT RESICO PF (mensual y anual): Ingresos → Determinación → Pago → Envío (pantallas propias).
+function DeclaracionResico({ vencimiento, anual = false, onPresentar }: { vencimiento: string; anual?: boolean; onPresentar: (d: Resico | ResicoAnual) => void }) {
   const pasos = ['Ingresos', 'Determinación', 'Pago', 'Envío'] as const;
   const [paso, setPaso] = useState(0);
-  const [campos, setCampos] = useState({ cobrado: '', devoluciones: '', retenido: '' });
+  const [campos, setCampos] = useState({ cobrado: '', devoluciones: '', retenido: '', pagos: anual ? '' : '0' });
   const [tasa, setTasa] = useState<number | null>(null);
   const [error, setError] = useState('');
-  const [cobrado, devoluciones, retenido] = [campos.cobrado, campos.devoluciones, campos.retenido].map(aCentavos);
+  const [cobrado, devoluciones, retenido, pagos] = [campos.cobrado, campos.devoluciones, campos.retenido, campos.pagos].map(aCentavos);
   const base = cobrado !== null && devoluciones !== null ? cobrado - devoluciones : null;
   // El jugador elige la tasa (es lo que se evalúa); el resto lo calcula el portal como el real.
-  const calculo = base !== null && base >= 0 && retenido !== null && tasa !== null
-    ? isrResicoMensual(base, [{ limite_inferior: 0, limite_superior: Number.MAX_SAFE_INTEGER, tasa_pct: tasa }], retenido) : null;
+  const fila = [{ limite_inferior: 0, limite_superior: Number.MAX_SAFE_INTEGER, tasa_pct: tasa ?? 0 }];
+  const listo = base !== null && base >= 0 && retenido !== null && pagos !== null && tasa !== null;
+  const mensual = listo && !anual ? isrResicoMensual(base!, fila, retenido!) : null;
+  const deAnual = listo && anual ? isrResicoAnual(base!, fila, pagos!, retenido!) : null;
+  // Vista común: impuesto determinado, a cargo y excedente/a favor (el mensual no es saldo a favor; el anual sí).
+  const calculo = mensual ? { impuesto: mensual.impuesto, aCargo: mensual.aCargo, favor: mensual.excedente }
+    : deAnual ? { impuesto: deAnual.causado, aCargo: deAnual.aCargo, favor: deAnual.aFavor } : null;
+  const etiquetaFavor = anual ? 'Impuesto a favor' : 'Excedente de retenciones';
   const tasas = [...new Set(tablaResico.map((r) => r.tasa_pct))];
 
   function siguiente() {
     if (paso === 0 && (base === null || base < 0)) return setError('Revisa los importes de ingresos.');
-    if (paso === 1 && !calculo) return setError('Captura el ISR retenido y elige la tasa aplicable.');
+    if (paso === 1 && !calculo) return setError(anual ? 'Captura los pagos mensuales, el ISR retenido y la tasa aplicable.' : 'Captura el ISR retenido y elige la tasa aplicable.');
     setError('');
     setPaso(paso + 1);
   }
 
   return (
     <section className="portal">
-      <h3>Portal fiscal simulado · ISR RESICO personas físicas · Marzo 2026</h3>
+      <h3>Portal fiscal simulado · ISR RESICO personas físicas · {anual ? 'Declaración anual 2026' : 'Pago mensual · Marzo 2026'}</h3>
       <p className="supuestos">Portal genérico con fines educativos. No es el portal de ninguna autoridad.</p>
       <ol className="pasos" aria-label="Pasos de la declaración">
         {pasos.map((p, i) => <li key={p} aria-current={i === paso ? 'step' : undefined} className={i < paso ? 'hecha' : ''}>{p}</li>)}
@@ -217,15 +223,18 @@ function DeclaracionResico({ vencimiento, onPresentar }: { vencimiento: string; 
               {tasas.map((t) => <option key={t} value={t}>{t.toFixed(2)} %</option>)}
             </select>
           </label>
+          {anual && <Campo etiqueta="Pagos mensuales efectivamente pagados" valor={campos.pagos} onChange={(v) => setCampos({ ...campos, pagos: v })} />}
           <Campo etiqueta="ISR retenido por personas morales" valor={campos.retenido} onChange={(v) => setCampos({ ...campos, retenido: v })} />
           {calculo && (
-            <p>Impuesto mensual: <strong className="cifra">{pesos(calculo.impuesto)}</strong> · {calculo.excedente ? 'Excedente de retenciones' : 'Impuesto a cargo'}: <strong className="cifra">{pesos(calculo.excedente || calculo.aCargo)}</strong></p>
+            <p>{anual ? 'ISR causado' : 'Impuesto mensual'}: <strong className="cifra">{pesos(calculo.impuesto)}</strong> · {calculo.favor ? etiquetaFavor : 'Impuesto a cargo'}: <strong className="cifra">{pesos(calculo.favor || calculo.aCargo)}</strong></p>
           )}
         </>
       )}
       {paso === 2 && calculo && (
-        <p>{calculo.excedente
-          ? <>Excedente de retenciones: <strong className="cifra">{pesos(calculo.excedente)}</strong> (resultado aritmético; su tratamiento debe validarse)</>
+        <p>{calculo.favor
+          ? anual
+            ? <>Impuesto a favor: <strong className="cifra">{pesos(calculo.favor)}</strong>. Puede solicitarse en devolución (con CLABE) o compensarse, según proceda.</>
+            : <>Excedente de retenciones: <strong className="cifra">{pesos(calculo.favor)}</strong> (resultado aritmético; su tratamiento debe validarse)</>
           : <>Impuesto a cargo: <span className="cifra">{pesos(calculo.aCargo)}</span> · Cantidad a pagar (pesos, art. 20 CFF): <strong className="cifra">${aPagarPesos(calculo.aCargo).toLocaleString('es-MX')}</strong> · Línea de captura vigente hasta el <span className="cifra">{vencimiento}</span></>}</p>
       )}
       {paso === 3 && <p>Revisa la información. Al enviar se genera el acuse y ya no podrás modificar esta declaración (solo con una complementaria).</p>}
@@ -234,7 +243,10 @@ function DeclaracionResico({ vencimiento, onPresentar }: { vencimiento: string; 
         {paso > 0 && <button onClick={() => setPaso(paso - 1)}>Anterior</button>}
         {paso < 3
           ? <button className="primario" onClick={siguiente}>Siguiente</button>
-          : <button className="primario" onClick={() => { const { alerta: _, ...c } = calculo!; onPresentar({ cobrado: cobrado!, devoluciones: devoluciones!, ...c }); }}>Enviar declaración</button>}
+          : <button className="primario" onClick={() => {
+              const { alerta: _, ...c } = (anual ? deAnual : mensual)!;
+              onPresentar({ cobrado: cobrado!, devoluciones: devoluciones!, ...c } as Resico | ResicoAnual);
+            }}>Enviar declaración</button>}
       </div>
       {error && <div role="status" className="error"><p>{error}</p></div>}
     </section>
