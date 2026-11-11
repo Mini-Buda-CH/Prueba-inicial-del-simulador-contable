@@ -1,8 +1,9 @@
+import { avisarGuardado } from './sync';
 // Progreso local. Estructura versionada para poder sincronizarla con un servidor en la Fase 5.
 export type Progreso = { version: 1; completados: Record<string, string>; examenes: Record<string, number> };
-const CLAVE = 'simcont.progreso.v1';
+export const CLAVE = 'simcont.progreso.v1';
 
-const esProgreso = (p: unknown): p is Progreso => {
+export const esProgreso = (p: unknown): p is Progreso => {
   const x = p as Progreso;
   const mapa = (o: unknown, ok: (v: unknown) => boolean) => !!o && typeof o === 'object' && Object.values(o).every(ok);
   return x?.version === 1 && mapa(x.completados, (v) => typeof v === 'string') && mapa(x.examenes ?? {}, (v) => typeof v === 'number' && v >= 0 && v <= 100);
@@ -22,6 +23,7 @@ export function cargar(): Progreso {
 
 /** Devuelve false si no se pudo guardar; la UI debe avisar. */
 export function guardar(p: Progreso): boolean {
+  avisarGuardado(CLAVE, p);
   try { localStorage.setItem(CLAVE, JSON.stringify(p)); return true; } catch { return false; }
 }
 

@@ -80,6 +80,6 @@ Formatos: tablas en Excel/CSV con columna de fuente; casos con el formato de `ca
 | Qué | Estado |
 |---|---|
 | Hosting | **DECIDIDO: GitHub Pages.** Flujo listo en `.github/workflows/pages.yml` (pruebas + compilación + publicación). Falta que actives *Settings → Pages → Source: GitHub Actions* en el repositorio. Dominio propio: opcional, sin decidir |
-| Inicio de sesión | **DECIDIDO: Google y GitHub.** GitHub Pages solo sirve archivos estáticos, así que falta elegir el servicio de autenticación y datos que guardará cuentas y progreso |
+| Inicio de sesión | **DECIDIDO: Google y GitHub con Supabase.** Código listo e inactivo hasta configurarlo. Falta que sigas `docs/configurar-supabase.md`: crear el proyecto, ejecutar `supabase/esquema.sql`, crear las OAuth Apps de Google y GitHub y agregar las variables `VITE_SUPABASE_URL` y `VITE_SUPABASE_ANON_KEY` al repositorio |
 | Diseño o texto del certificado | FALTA |
 | Qué necesita ver un profesor (grupos, calificaciones, exportar a Excel) | FALTA |

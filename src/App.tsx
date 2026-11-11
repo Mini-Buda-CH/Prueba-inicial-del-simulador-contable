@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import type { Session } from '@supabase/supabase-js';
 import Escritorio from './carrera/Escritorio';
 import { EjercicioVista } from './ejercicios';
 import { APROBATORIO, leccionCompleta, lecciones, type Leccion } from './lecciones';
+import { cerrarSesion, escucharGuardados, iniciarSesion, sincronizar, supabase } from './nube';
 import { cargar, exportarProgreso, guardar, type Progreso } from './progreso';
 
 const practicas = lecciones.filter((l) => !l.examen).flatMap((l) => l.ejercicios);
@@ -17,6 +19,23 @@ export default function App() {
   const pct = Math.round(((hechos + aprobados) / (practicas.length + examenes.length)) * 100);
 
   const [sinGuardar, setSinGuardar] = useState(false);
+  const [sesion, setSesion] = useState<Session | null>(null);
+  const [avisoNube, setAvisoNube] = useState('');
+
+  useEffect(() => {
+    if (!supabase) return;
+    const conectar = async (s: Session | null) => {
+      setSesion(s);
+      escucharGuardados(s, setAvisoNube);
+      if (!s) return;
+      try {
+        if (await sincronizar(s)) location.reload(); // se bajó progreso de la nube: recargar para mostrarlo
+      } catch (e) { setAvisoNube(`No se pudo sincronizar con la nube: ${(e as Error).message}`); }
+    };
+    supabase.auth.getSession().then(({ data }) => conectar(data.session));
+    const { data } = supabase.auth.onAuthStateChange((evento, s) => { if (evento === 'SIGNED_IN' || evento === 'SIGNED_OUT') conectar(s); });
+    return () => data.subscription.unsubscribe();
+  }, []);
   const actualizar = (p: Progreso) => { setSinGuardar(!guardar(p)); setProgreso(p); };
   const irA = (l: Leccion) => { setActual(l); setSeccion('academia'); };
 
@@ -53,11 +72,19 @@ export default function App() {
             </ol>
           </nav>
         ))}
+        {supabase && (
+          <div className="cuenta">
+            {sesion
+              ? <><p>Conectado: <strong>{sesion.user.email}</strong></p><button onClick={() => cerrarSesion()}>Cerrar sesión</button></>
+              : <><p>Guarda tu avance en la nube:</p><button onClick={() => iniciarSesion('google')}>Entrar con Google</button><button onClick={() => iniciarSesion('github')}>Entrar con GitHub</button></>}
+          </div>
+        )}
         <button className="exportar" onClick={exportarProgreso}>Exportar progreso</button>
         <p className="aviso">Material educativo 2026 v0.1, pendiente de validación profesional. No usar para declarar.</p>
       </aside>
 
       <main>
+        {avisoNube && <div role="alert" className="error">{avisoNube}</div>}
         {sinGuardar && <div role="alert" className="error">No se pudo guardar tu avance en este navegador (modo privado o almacenamiento lleno). Usa "Exportar progreso" para no perderlo.</div>}
         {seccion === 'carrera'
           ? <Escritorio progreso={progreso} irALeccion={(id) => irA(lecciones.find((l) => l.id === id)!)} />

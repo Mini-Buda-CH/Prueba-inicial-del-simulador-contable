@@ -6,6 +6,7 @@ import pyme from '../../content/carrera/pyme-feb-2026.json';
 import resico from '../../content/carrera/resico-mar-2026.json';
 import { mismaPoliza, type Movimiento } from '../engine/contable';
 import { isrResicoMensual, ivaDelMes, type TablaResico } from '../engine/fiscal';
+import { avisarGuardado } from '../sync';
 
 export type Tarea = {
   id: string; fecha: string; tipo: 'poliza' | 'opcion' | 'calculo' | 'declaracion' | 'mensaje'; leccion: string; correo: string;
@@ -130,7 +131,8 @@ export function esEstadoValido(e: unknown, m: Mes): e is EstadoMes {
     && x.movimientos.every((mv) => typeof mv?.cuenta === 'string' && typeof mv.poliza === 'string' && cent(mv.cargo) && cent(mv.abono));
 }
 
-const CLAVE = 'simcont.carrera.v1';
+export const CLAVE_CARRERA = 'simcont.carrera.v1';
+const CLAVE = CLAVE_CARRERA;
 /** Carga el mes; si un guardado está dañado, lo respalda en "<clave>:corrupto" (sin borrarlo) y prueba el siguiente. */
 export function cargarMes(m: Mes): EstadoMes {
   for (const clave of [`${CLAVE}:${m.id}`, CLAVE]) { // CLAVE sin sufijo: formato de la Fase 1, solo PyME
@@ -149,5 +151,6 @@ export function cargarMes(m: Mes): EstadoMes {
 }
 /** Devuelve false si no se pudo guardar (modo privado, cuota llena); la UI debe avisar. */
 export function guardarMes(e: EstadoMes): boolean {
+  avisarGuardado(`${CLAVE}:${e.mes}`, e);
   try { localStorage.setItem(`${CLAVE}:${e.mes}`, JSON.stringify(e)); return true; } catch { return false; }
 }
