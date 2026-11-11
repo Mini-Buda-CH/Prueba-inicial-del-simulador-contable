@@ -29,6 +29,9 @@ Combina una **Academia** (lecciones, ejercicios, exámenes, progreso) con una **
 `scripts/importar.py` lo convierte en `content/*.json` y falla si alguna póliza no cuadra o alguna cuenta no existe.
 Las tablas marcadas `habilitado_calculo=NO` o pendientes (ISN, CEAV, cuota fija IMSS) quedan en `solo_referencia` y el motor no las usa.
 
+## Publicación
+GitHub Pages, con el flujo `.github/workflows/pages.yml`: cada push a `main` o a la rama de trabajo corre las pruebas, compila y publica. Activar una vez en *Settings → Pages → Source: GitHub Actions*.
+
 ## Uso
 ```bash
 npm install

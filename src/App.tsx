@@ -25,8 +25,8 @@ export default function App() {
       <aside className="lateral">
         <h1 className="marca">
           <picture>
-            <source srcSet="/logo-claro.png" media="(prefers-color-scheme: dark)" />
-            <img src="/logo-oscuro.png" alt="" width="36" height="36" />
+            <source srcSet={`${import.meta.env.BASE_URL}logo-claro.png`} media="(prefers-color-scheme: dark)" />
+            <img src={`${import.meta.env.BASE_URL}logo-oscuro.png`} alt="" width="36" height="36" />
           </picture>
           De 0 a CFO
         </h1>

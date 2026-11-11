@@ -79,7 +79,7 @@ Formatos: tablas en Excel/CSV con columna de fuente; casos con el formato de `ca
 ## Fase 5 – Cuentas, certificado y profesores
 | Qué | Estado |
 |---|---|
-| Dónde se publicará (hosting) y si se usará un dominio propio | **EXCLUIDO** por decisión del responsable |
-| Forma de iniciar sesión (Google, correo, cuenta institucional) | **EXCLUIDO** por decisión del responsable |
+| Hosting | **DECIDIDO: GitHub Pages.** Flujo listo en `.github/workflows/pages.yml` (pruebas + compilación + publicación). Falta que actives *Settings → Pages → Source: GitHub Actions* en el repositorio. Dominio propio: opcional, sin decidir |
+| Inicio de sesión | **DECIDIDO: Google y GitHub.** GitHub Pages solo sirve archivos estáticos, así que falta elegir el servicio de autenticación y datos que guardará cuentas y progreso |
 | Diseño o texto del certificado | FALTA |
 | Qué necesita ver un profesor (grupos, calificaciones, exportar a Excel) | FALTA |
